@@ -6,24 +6,27 @@
 //  Copyright © 2019 黑化肥发灰. All rights reserved.
 //
 
-#import "GHWInitViewManager.h"
+#import "GHWInitView.h"
 #import "GHWExtensionConst.h"
 
-@interface GHWInitViewManager ()
+@interface GHWInitView ()
 
 @property (nonatomic, strong) NSMutableIndexSet *indexSet;
 
 @end
 
-@implementation GHWInitViewManager
+@implementation GHWInitView
 
-+ (GHWInitViewManager *)sharedInstane {
-    static dispatch_once_t predicate;
-    static GHWInitViewManager * sharedInstane;
-    dispatch_once(&predicate, ^{
-        sharedInstane = [[GHWInitViewManager alloc] init];
-    });
-    return sharedInstane;
+//+ (GHWInitViewManager *)sharedInstane {
+//    static dispatch_once_t predicate;
+//    static GHWInitViewManager * sharedInstane;
+//    dispatch_once(&predicate, ^{
+//        sharedInstane = [[GHWInitViewManager alloc] init];
+//    });
+//    return sharedInstane;
+//}
+- (NSString *)title {
+    return @"initView";
 }
 
 - (void)processCodeWithInvocation:(XCSourceEditorCommandInvocation *)invocation {

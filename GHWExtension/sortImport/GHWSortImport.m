@@ -6,10 +6,10 @@
 //  Copyright © 2019 黑化肥发灰. All rights reserved.
 //
 
-#import "GHWSortImportManager.h"
+#import "GHWSortImport.h"
 #import "GHWExtensionConst.h"
 
-@interface GHWSortImportManager ()
+@interface GHWSortImport ()
 
 @property (nonatomic, strong) NSString *classNameImportStr;
 
@@ -25,17 +25,19 @@
 @property (nonatomic, assign) BOOL hasSelectedImportLines;
 @end
 
-@implementation GHWSortImportManager
+@implementation GHWSortImport
 
-+ (GHWSortImportManager *)sharedInstane {
-    static dispatch_once_t predicate;
-    static GHWSortImportManager * sharedInstane;
-    dispatch_once(&predicate, ^{
-        sharedInstane = [[GHWSortImportManager alloc] init];
-    });
-    return sharedInstane;
+//+ (GHWSortImportManager *)sharedInstane {
+//    static dispatch_once_t predicate;
+//    static GHWSortImportManager * sharedInstane;
+//    dispatch_once(&predicate, ^{
+//        sharedInstane = [[GHWSortImportManager alloc] init];
+//    });
+//    return sharedInstane;
+//}
+- (NSString *)title {
+    return @"sortImport";
 }
-
 - (void)processCodeWithInvocation:(XCSourceEditorCommandInvocation *)invocation {
     NSLog(@"sortImport");
     self.classNameImportStr = nil;

@@ -6,24 +6,24 @@
 //  Copyright © 2019 黑化肥发灰. All rights reserved.
 //
 
-#import "GHWAddCommentManager.h"
+#import "GHWAddComment.h"
 #import "GHWExtensionConst.h"
 
-@interface GHWAddCommentManager ()
+@interface GHWAddComment ()
 
 
 @end
 
-@implementation GHWAddCommentManager
+@implementation GHWAddComment
 
-+ (GHWAddCommentManager *)sharedInstane {
-    static dispatch_once_t predicate;
-    static GHWAddCommentManager * sharedInstane;
-    dispatch_once(&predicate, ^{
-        sharedInstane = [[GHWAddCommentManager alloc] init];
-    });
-    return sharedInstane;
-}
+//+ (GHWAddCommentManager *)sharedInstane {
+//    static dispatch_once_t predicate;
+//    static GHWAddCommentManager * sharedInstane;
+//    dispatch_once(&predicate, ^{
+//        sharedInstane = [[GHWAddCommentManager alloc] init];
+//    });
+//    return sharedInstane;
+//}
 
 - (void)processCodeWithInvocation:(XCSourceEditorCommandInvocation *)invocation {
     XCSourceTextRange *rang = invocation.buffer.selections[0];
@@ -81,6 +81,7 @@
     
     [invocation.buffer.lines insertObjects:argsArray atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(insertIndex, [argsArray count])]];
 }
+
 
 - (NSString *)fetchArgumentsWithStr:(NSString *)str {
     NSRange tempRange = [str rangeOfString:@")" options:NSBackwardsSearch];

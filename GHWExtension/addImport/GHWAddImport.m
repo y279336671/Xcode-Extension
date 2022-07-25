@@ -6,18 +6,22 @@
 //  Copyright © 2019 Jingyao. All rights reserved.
 //
 
-#import "GHWAddImportManager.h"
+#import "GHWAddImport.h"
 #import "GHWExtensionConst.h"
 
-@implementation GHWAddImportManager
+@implementation GHWAddImport
 
-+ (GHWAddImportManager *)sharedInstane {
-    static dispatch_once_t predicate;
-    static GHWAddImportManager * sharedInstane;
-    dispatch_once(&predicate, ^{
-        sharedInstane = [[GHWAddImportManager alloc] init];
-    });
-    return sharedInstane;
+//+ (GHWAddImportManager *)sharedInstane {
+//    static dispatch_once_t predicate;
+//    static GHWAddImportManager * sharedInstane;
+//    dispatch_once(&predicate, ^{
+//        sharedInstane = [[GHWAddImportManager alloc] init];
+//    });
+//    return sharedInstane;
+//}
+
+- (NSString *)title {
+    return @"addImport";
 }
 
 - (void)processCodeWithInvocation:(XCSourceEditorCommandInvocation *)invocation {

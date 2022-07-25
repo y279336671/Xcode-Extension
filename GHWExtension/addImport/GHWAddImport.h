@@ -7,14 +7,10 @@
 //
 
 #import <XcodeKit/XcodeKit.h>
-
+#import "MenuInfo.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GHWAddImportManager : NSObject
-
-+ (GHWAddImportManager *)sharedInstane;
-
-- (void)processCodeWithInvocation:(XCSourceEditorCommandInvocation *)invocation;
+@interface GHWAddImport : MenuInfo
 
 @end
 

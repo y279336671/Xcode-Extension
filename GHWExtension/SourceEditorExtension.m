@@ -7,7 +7,8 @@
 //
 
 #import "SourceEditorExtension.h"
-
+#import "MenuManager/MenuManager.h"
+#import "Tools/MenuInfo.h"
 @implementation SourceEditorExtension
 
 /*
@@ -20,25 +21,16 @@
 
 - (NSArray <NSDictionary <XCSourceEditorCommandDefinitionKey, id> *> *)commandDefinitions
 {
-    // If your extension needs to return a collection of command definitions that differs from those in its Info.plist, implement this optional property getter.
-
+    NSMutableArray *menus = [[NSMutableArray alloc] init];
+    for (int n = 0; n < [MenuManager sharedInstane].menuArray.count; n++) {
+        MenuInfo *menuInfo = [MenuManager sharedInstane].menuArray[n];
+        [menus addObject:@{XCSourceEditorCommandClassNameKey: @"SourceEditorCommand",
+                           XCSourceEditorCommandIdentifierKey: menuInfo.title,
+                           XCSourceEditorCommandNameKey: menuInfo.title
+                           }];
+    }
     
-    return @[@{XCSourceEditorCommandClassNameKey: @"SourceEditorCommand",
-               XCSourceEditorCommandIdentifierKey: @"com.jingyao.GHWXcodeExtension.GHWExtension.initView",
-               XCSourceEditorCommandNameKey: @"initView"
-               },
-             @{XCSourceEditorCommandClassNameKey: @"SourceEditorCommand",
-               XCSourceEditorCommandIdentifierKey: @"com.jingyao.GHWXcodeExtension.GHWExtension.addLazyCode",
-               XCSourceEditorCommandNameKey: @"addLazyCode"
-               },
-             @{XCSourceEditorCommandClassNameKey: @"SourceEditorCommand",
-               XCSourceEditorCommandIdentifierKey: @"com.jingyao.GHWXcodeExtension.GHWExtension.addImport",
-               XCSourceEditorCommandNameKey: @"addImport"
-               },
-             @{XCSourceEditorCommandClassNameKey: @"SourceEditorCommand",
-               XCSourceEditorCommandIdentifierKey: @"com.jingyao.GHWXcodeExtension.GHWExtension.sortImport",
-               XCSourceEditorCommandNameKey: @"sortImport"
-               }];
+    return menus;
 }
 
 

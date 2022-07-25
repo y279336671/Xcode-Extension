@@ -6,26 +6,29 @@
 //  Copyright © 2019年 黑化肥发灰. All rights reserved.
 //
 
-#import "GHWAddLazyCodeManager.h"
+#import "GHWAddLazyCode.h"
 #import "NSString+Extension.h"
 #import "GHWExtensionConst.h"
 
-@interface GHWAddLazyCodeManager ()
+@interface GHWAddLazyCode ()
 
 @property (nonatomic, copy) NSMutableArray *lazyArray;
 @property (nonatomic, copy) NSMutableArray *delegateMethodsArray;
 
 @end
 
-@implementation GHWAddLazyCodeManager
+@implementation GHWAddLazyCode
 
-+(GHWAddLazyCodeManager *)sharedInstane{
-    static dispatch_once_t predicate;
-    static GHWAddLazyCodeManager * sharedInstane;
-    dispatch_once(&predicate, ^{
-        sharedInstane = [[GHWAddLazyCodeManager alloc] init];
-    });
-    return sharedInstane;
+//+(GHWAddLazyCodeManager *)sharedInstane{
+//    static dispatch_once_t predicate;
+//    static GHWAddLazyCodeManager * sharedInstane;
+//    dispatch_once(&predicate, ^{
+//        sharedInstane = [[GHWAddLazyCodeManager alloc] init];
+//    });
+//    return sharedInstane;
+//}
+- (NSString *)title {
+    return @"addLazyCode";
 }
 
 - (void)processCodeWithInvocation:(XCSourceEditorCommandInvocation *)invocation {

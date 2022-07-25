@@ -7,9 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		ED6552302318F98E0036A04A /* GHWAddLazyCodeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ED65522C2318F98E0036A04A /* GHWAddLazyCodeManager.m */; };
-		ED6552372318FB180036A04A /* GHWInitViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6552362318FB180036A04A /* GHWInitViewManager.m */; };
-		ED65523A2318FBB70036A04A /* GHWSortImportManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6552392318FBB70036A04A /* GHWSortImportManager.m */; };
+		217DFF0C288E6C160056680B /* MenuManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF0B288E6C160056680B /* MenuManager.m */; };
+		217DFF0F288E6ED60056680B /* MenuInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF0E288E6ED60056680B /* MenuInfo.m */; };
+		217DFF12288E79900056680B /* XcodeWayScript.scpt in Resources */ = {isa = PBXBuildFile; fileRef = 217DFF11288E79900056680B /* XcodeWayScript.scpt */; };
+		217DFF17288E7BA90056680B /* OpenProjectRoot.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF16288E7BA90056680B /* OpenProjectRoot.m */; };
+		217DFF1A288E7BD70056680B /* OpenProjectRootWithTerminal.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF19288E7BD70056680B /* OpenProjectRootWithTerminal.m */; };
+		217DFF1D288E7C4A0056680B /* RemoveDerivedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF1C288E7C4A0056680B /* RemoveDerivedData.m */; };
+		217DFF20288E86020056680B /* ScriptRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF1F288E86020056680B /* ScriptRunner.m */; };
+		ED6552302318F98E0036A04A /* GHWAddLazyCode.m in Sources */ = {isa = PBXBuildFile; fileRef = ED65522C2318F98E0036A04A /* GHWAddLazyCode.m */; };
+		ED6552372318FB180036A04A /* GHWInitView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6552362318FB180036A04A /* GHWInitView.m */; };
+		ED65523A2318FBB70036A04A /* GHWSortImport.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6552392318FBB70036A04A /* GHWSortImport.m */; };
 		ED65524023190CE00036A04A /* NSMutableArray+GHWExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = ED65523F23190CE00036A04A /* NSMutableArray+GHWExtension.m */; };
 		EDA60A402317F41000B5FA3D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA60A3F2317F41000B5FA3D /* AppDelegate.m */; };
 		EDA60A432317F41000B5FA3D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA60A422317F41000B5FA3D /* ViewController.m */; };
@@ -23,8 +30,8 @@
 		EDAB4ADD25F3D0D100342C7A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDA60A582317F43500B5FA3D /* Cocoa.framework */; };
 		EDAB4ADF25F3D0D900342C7A /* XcodeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDAB4ADE25F3D0D900342C7A /* XcodeKit.framework */; };
 		EDAB4AE025F3D0D900342C7A /* XcodeKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = EDAB4ADE25F3D0D900342C7A /* XcodeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		EDBFBD1D231FF38000490C20 /* GHWAddCommentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBFBD1C231FF38000490C20 /* GHWAddCommentManager.m */; };
-		EDC57717232E2EEB00445D4F /* GHWAddImportManager.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC57716232E2EEB00445D4F /* GHWAddImportManager.m */; };
+		EDBFBD1D231FF38000490C20 /* GHWAddComment.m in Sources */ = {isa = PBXBuildFile; fileRef = EDBFBD1C231FF38000490C20 /* GHWAddComment.m */; };
+		EDC57717232E2EEB00445D4F /* GHWAddImport.m in Sources */ = {isa = PBXBuildFile; fileRef = EDC57716232E2EEB00445D4F /* GHWAddImport.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,13 +70,26 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		217DFF0A288E6C160056680B /* MenuManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuManager.h; sourceTree = "<group>"; };
+		217DFF0B288E6C160056680B /* MenuManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuManager.m; sourceTree = "<group>"; };
+		217DFF0D288E6ED60056680B /* MenuInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuInfo.h; sourceTree = "<group>"; };
+		217DFF0E288E6ED60056680B /* MenuInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuInfo.m; sourceTree = "<group>"; };
+		217DFF11288E79900056680B /* XcodeWayScript.scpt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = XcodeWayScript.scpt; sourceTree = "<group>"; };
+		217DFF15288E7BA90056680B /* OpenProjectRoot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenProjectRoot.h; sourceTree = "<group>"; };
+		217DFF16288E7BA90056680B /* OpenProjectRoot.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenProjectRoot.m; sourceTree = "<group>"; };
+		217DFF18288E7BD70056680B /* OpenProjectRootWithTerminal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenProjectRootWithTerminal.h; sourceTree = "<group>"; };
+		217DFF19288E7BD70056680B /* OpenProjectRootWithTerminal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenProjectRootWithTerminal.m; sourceTree = "<group>"; };
+		217DFF1B288E7C4A0056680B /* RemoveDerivedData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RemoveDerivedData.h; sourceTree = "<group>"; };
+		217DFF1C288E7C4A0056680B /* RemoveDerivedData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RemoveDerivedData.m; sourceTree = "<group>"; };
+		217DFF1E288E86020056680B /* ScriptRunner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScriptRunner.h; sourceTree = "<group>"; };
+		217DFF1F288E86020056680B /* ScriptRunner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScriptRunner.m; sourceTree = "<group>"; };
 		ED65522A2318F98E0036A04A /* GHWExtensionConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHWExtensionConst.h; sourceTree = "<group>"; };
-		ED65522C2318F98E0036A04A /* GHWAddLazyCodeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHWAddLazyCodeManager.m; sourceTree = "<group>"; };
-		ED65522E2318F98E0036A04A /* GHWAddLazyCodeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHWAddLazyCodeManager.h; sourceTree = "<group>"; };
-		ED6552352318FB180036A04A /* GHWInitViewManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHWInitViewManager.h; sourceTree = "<group>"; };
-		ED6552362318FB180036A04A /* GHWInitViewManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHWInitViewManager.m; sourceTree = "<group>"; };
-		ED6552382318FBB70036A04A /* GHWSortImportManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHWSortImportManager.h; sourceTree = "<group>"; };
-		ED6552392318FBB70036A04A /* GHWSortImportManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHWSortImportManager.m; sourceTree = "<group>"; };
+		ED65522C2318F98E0036A04A /* GHWAddLazyCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHWAddLazyCode.m; sourceTree = "<group>"; };
+		ED65522E2318F98E0036A04A /* GHWAddLazyCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHWAddLazyCode.h; sourceTree = "<group>"; };
+		ED6552352318FB180036A04A /* GHWInitView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHWInitView.h; sourceTree = "<group>"; };
+		ED6552362318FB180036A04A /* GHWInitView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHWInitView.m; sourceTree = "<group>"; };
+		ED6552382318FBB70036A04A /* GHWSortImport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHWSortImport.h; sourceTree = "<group>"; };
+		ED6552392318FBB70036A04A /* GHWSortImport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHWSortImport.m; sourceTree = "<group>"; };
 		ED65523E23190CE00036A04A /* NSMutableArray+GHWExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+GHWExtension.h"; sourceTree = "<group>"; };
 		ED65523F23190CE00036A04A /* NSMutableArray+GHWExtension.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+GHWExtension.m"; sourceTree = "<group>"; };
 		EDA60A3B2317F41000B5FA3D /* GHWXcodeExtension.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GHWXcodeExtension.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,10 +113,10 @@
 		EDA60A712317F4BF00B5FA3D /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
 		EDA60A722317F4BF00B5FA3D /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
 		EDAB4ADE25F3D0D900342C7A /* XcodeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XcodeKit.framework; path = Library/Frameworks/XcodeKit.framework; sourceTree = DEVELOPER_DIR; };
-		EDBFBD1B231FF38000490C20 /* GHWAddCommentManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHWAddCommentManager.h; sourceTree = "<group>"; };
-		EDBFBD1C231FF38000490C20 /* GHWAddCommentManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHWAddCommentManager.m; sourceTree = "<group>"; };
-		EDC57715232E2EEB00445D4F /* GHWAddImportManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHWAddImportManager.h; sourceTree = "<group>"; };
-		EDC57716232E2EEB00445D4F /* GHWAddImportManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHWAddImportManager.m; sourceTree = "<group>"; };
+		EDBFBD1B231FF38000490C20 /* GHWAddComment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHWAddComment.h; sourceTree = "<group>"; };
+		EDBFBD1C231FF38000490C20 /* GHWAddComment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHWAddComment.m; sourceTree = "<group>"; };
+		EDC57715232E2EEB00445D4F /* GHWAddImport.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GHWAddImport.h; sourceTree = "<group>"; };
+		EDC57716232E2EEB00445D4F /* GHWAddImport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GHWAddImport.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,11 +139,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		217DFF09288E6C160056680B /* MenuManager */ = {
+			isa = PBXGroup;
+			children = (
+				217DFF0A288E6C160056680B /* MenuManager.h */,
+				217DFF0B288E6C160056680B /* MenuManager.m */,
+				217DFF1E288E86020056680B /* ScriptRunner.h */,
+				217DFF1F288E86020056680B /* ScriptRunner.m */,
+			);
+			path = MenuManager;
+			sourceTree = "<group>";
+		};
+		217DFF10288E79760056680B /* Script */ = {
+			isa = PBXGroup;
+			children = (
+				217DFF11288E79900056680B /* XcodeWayScript.scpt */,
+			);
+			path = Script;
+			sourceTree = "<group>";
+		};
+		217DFF13288E7B8A0056680B /* removeDerivedData */ = {
+			isa = PBXGroup;
+			children = (
+				217DFF1B288E7C4A0056680B /* RemoveDerivedData.h */,
+				217DFF1C288E7C4A0056680B /* RemoveDerivedData.m */,
+			);
+			path = removeDerivedData;
+			sourceTree = "<group>";
+		};
+		217DFF14288E7B8A0056680B /* openFinder */ = {
+			isa = PBXGroup;
+			children = (
+				217DFF15288E7BA90056680B /* OpenProjectRoot.h */,
+				217DFF16288E7BA90056680B /* OpenProjectRoot.m */,
+				217DFF18288E7BD70056680B /* OpenProjectRootWithTerminal.h */,
+				217DFF19288E7BD70056680B /* OpenProjectRootWithTerminal.m */,
+			);
+			path = openFinder;
+			sourceTree = "<group>";
+		};
 		ED65522B2318F98E0036A04A /* addLazyCode */ = {
 			isa = PBXGroup;
 			children = (
-				ED65522E2318F98E0036A04A /* GHWAddLazyCodeManager.h */,
-				ED65522C2318F98E0036A04A /* GHWAddLazyCodeManager.m */,
+				ED65522E2318F98E0036A04A /* GHWAddLazyCode.h */,
+				ED65522C2318F98E0036A04A /* GHWAddLazyCode.m */,
 			);
 			path = addLazyCode;
 			sourceTree = "<group>";
@@ -131,8 +190,8 @@
 		ED6552322318FA500036A04A /* initView */ = {
 			isa = PBXGroup;
 			children = (
-				ED6552352318FB180036A04A /* GHWInitViewManager.h */,
-				ED6552362318FB180036A04A /* GHWInitViewManager.m */,
+				ED6552352318FB180036A04A /* GHWInitView.h */,
+				ED6552362318FB180036A04A /* GHWInitView.m */,
 			);
 			path = initView;
 			sourceTree = "<group>";
@@ -140,8 +199,8 @@
 		ED6552342318FA720036A04A /* sortImport */ = {
 			isa = PBXGroup;
 			children = (
-				ED6552382318FBB70036A04A /* GHWSortImportManager.h */,
-				ED6552392318FBB70036A04A /* GHWSortImportManager.m */,
+				ED6552382318FBB70036A04A /* GHWSortImport.h */,
+				ED6552392318FBB70036A04A /* GHWSortImport.m */,
 			);
 			path = sortImport;
 			sourceTree = "<group>";
@@ -193,6 +252,10 @@
 		EDA60A5A2317F43500B5FA3D /* GHWExtension */ = {
 			isa = PBXGroup;
 			children = (
+				217DFF14288E7B8A0056680B /* openFinder */,
+				217DFF13288E7B8A0056680B /* removeDerivedData */,
+				217DFF10288E79760056680B /* Script */,
+				217DFF09288E6C160056680B /* MenuManager */,
 				EDC57714232E2EC100445D4F /* addImport */,
 				EDBFBD1A231FF35500490C20 /* addComment */,
 				ED6552322318FA500036A04A /* initView */,
@@ -204,6 +267,8 @@
 				EDA60A5C2317F43500B5FA3D /* SourceEditorExtension.m */,
 				EDA60A5E2317F43500B5FA3D /* SourceEditorCommand.h */,
 				EDA60A5F2317F43500B5FA3D /* SourceEditorCommand.m */,
+				217DFF0D288E6ED60056680B /* MenuInfo.h */,
+				217DFF0E288E6ED60056680B /* MenuInfo.m */,
 				EDA60A612317F43500B5FA3D /* Info.plist */,
 				EDA60A622317F43500B5FA3D /* GHWExtension.entitlements */,
 			);
@@ -224,8 +289,8 @@
 		EDBFBD1A231FF35500490C20 /* addComment */ = {
 			isa = PBXGroup;
 			children = (
-				EDBFBD1B231FF38000490C20 /* GHWAddCommentManager.h */,
-				EDBFBD1C231FF38000490C20 /* GHWAddCommentManager.m */,
+				EDBFBD1B231FF38000490C20 /* GHWAddComment.h */,
+				EDBFBD1C231FF38000490C20 /* GHWAddComment.m */,
 			);
 			path = addComment;
 			sourceTree = "<group>";
@@ -233,8 +298,8 @@
 		EDC57714232E2EC100445D4F /* addImport */ = {
 			isa = PBXGroup;
 			children = (
-				EDC57715232E2EEB00445D4F /* GHWAddImportManager.h */,
-				EDC57716232E2EEB00445D4F /* GHWAddImportManager.m */,
+				EDC57715232E2EEB00445D4F /* GHWAddImport.h */,
+				EDC57716232E2EEB00445D4F /* GHWAddImport.m */,
 			);
 			path = addImport;
 			sourceTree = "<group>";
@@ -329,6 +394,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				217DFF12288E79900056680B /* XcodeWayScript.scpt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,13 +416,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDA60A752317F4BF00B5FA3D /* NSString+Extension.m in Sources */,
+				217DFF20288E86020056680B /* ScriptRunner.m in Sources */,
+				217DFF1D288E7C4A0056680B /* RemoveDerivedData.m in Sources */,
 				EDA60A5D2317F43500B5FA3D /* SourceEditorExtension.m in Sources */,
-				ED6552302318F98E0036A04A /* GHWAddLazyCodeManager.m in Sources */,
-				ED6552372318FB180036A04A /* GHWInitViewManager.m in Sources */,
-				EDC57717232E2EEB00445D4F /* GHWAddImportManager.m in Sources */,
+				ED6552302318F98E0036A04A /* GHWAddLazyCode.m in Sources */,
+				217DFF0F288E6ED60056680B /* MenuInfo.m in Sources */,
+				ED6552372318FB180036A04A /* GHWInitView.m in Sources */,
+				EDC57717232E2EEB00445D4F /* GHWAddImport.m in Sources */,
 				EDA60A602317F43500B5FA3D /* SourceEditorCommand.m in Sources */,
-				ED65523A2318FBB70036A04A /* GHWSortImportManager.m in Sources */,
-				EDBFBD1D231FF38000490C20 /* GHWAddCommentManager.m in Sources */,
+				ED65523A2318FBB70036A04A /* GHWSortImport.m in Sources */,
+				EDBFBD1D231FF38000490C20 /* GHWAddComment.m in Sources */,
+				217DFF17288E7BA90056680B /* OpenProjectRoot.m in Sources */,
+				217DFF1A288E7BD70056680B /* OpenProjectRootWithTerminal.m in Sources */,
+				217DFF0C288E6C160056680B /* MenuManager.m in Sources */,
 				ED65524023190CE00036A04A /* NSMutableArray+GHWExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
