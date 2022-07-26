@@ -2,9 +2,7 @@
 //  GHWAddLazyCodeManager.m
 //  GHWExtension
 //
-//  Created by 黑化肥发灰 on 2019/8/30.
-//  Copyright © 2019年 黑化肥发灰. All rights reserved.
-//
+ 
 
 #import "GHWAddLazyCode.h"
 #import "NSString+Extension.h"
@@ -19,18 +17,10 @@
 
 @implementation GHWAddLazyCode
 
-//+(GHWAddLazyCodeManager *)sharedInstane{
-//    static dispatch_once_t predicate;
-//    static GHWAddLazyCodeManager * sharedInstane;
-//    dispatch_once(&predicate, ^{
-//        sharedInstane = [[GHWAddLazyCodeManager alloc] init];
-//    });
-//    return sharedInstane;
-//}
-- (NSString *)title {
+
+- (NSString *)menuTitle {
     return @"addLazyCode";
 }
-
 - (void)processCodeWithInvocation:(XCSourceEditorCommandInvocation *)invocation {
     for (XCSourceTextRange *rang in invocation.buffer.selections) {
         [self initWithFormaterArray:rang invocation:invocation];

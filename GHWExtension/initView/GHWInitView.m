@@ -17,18 +17,9 @@
 
 @implementation GHWInitView
 
-//+ (GHWInitViewManager *)sharedInstane {
-//    static dispatch_once_t predicate;
-//    static GHWInitViewManager * sharedInstane;
-//    dispatch_once(&predicate, ^{
-//        sharedInstane = [[GHWInitViewManager alloc] init];
-//    });
-//    return sharedInstane;
-//}
-- (NSString *)title {
+- (NSString *)menuTitle {
     return @"initView";
 }
-
 - (void)processCodeWithInvocation:(XCSourceEditorCommandInvocation *)invocation {
     [self.indexSet removeAllIndexes];
     

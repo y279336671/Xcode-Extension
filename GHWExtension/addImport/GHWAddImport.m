@@ -11,16 +11,7 @@
 
 @implementation GHWAddImport
 
-//+ (GHWAddImportManager *)sharedInstane {
-//    static dispatch_once_t predicate;
-//    static GHWAddImportManager * sharedInstane;
-//    dispatch_once(&predicate, ^{
-//        sharedInstane = [[GHWAddImportManager alloc] init];
-//    });
-//    return sharedInstane;
-//}
-
-- (NSString *)title {
+- (NSString *)menuTitle {
     return @"addImport";
 }
 

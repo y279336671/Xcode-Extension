@@ -2,13 +2,16 @@
 //  MenuInfo.m
 //  GHWExtension
 //
-//  Created by yanghe04 on 2022/7/25.
-//  Copyright © 2022 Jingyao. All rights reserved.
-//
+ 
 
 #import "MenuInfo.h"
 
 @implementation MenuInfo
+
+- (NSString *)menuTitle {
+    return @"";
+}
+
 - (void)processCodeWithInvocation:(XCSourceEditorCommandInvocation *)invocation {
     
 }

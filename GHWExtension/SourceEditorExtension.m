@@ -2,13 +2,11 @@
 //  SourceEditorExtension.m
 //  GHWExtension
 //
-//  Created by 黑化肥发灰 on 2019/8/29.
-//  Copyright © 2019 黑化肥发灰. All rights reserved.
-//
+ 
 
 #import "SourceEditorExtension.h"
 #import "MenuManager/MenuManager.h"
-#import "Tools/MenuInfo.h"
+#import "MenuInfo.h"
 @implementation SourceEditorExtension
 
 /*
@@ -24,12 +22,12 @@
     NSMutableArray *menus = [[NSMutableArray alloc] init];
     for (int n = 0; n < [MenuManager sharedInstane].menuArray.count; n++) {
         MenuInfo *menuInfo = [MenuManager sharedInstane].menuArray[n];
+        NSLog(@">>>>%@", [menuInfo menuTitle]);
         [menus addObject:@{XCSourceEditorCommandClassNameKey: @"SourceEditorCommand",
-                           XCSourceEditorCommandIdentifierKey: menuInfo.title,
-                           XCSourceEditorCommandNameKey: menuInfo.title
+                           XCSourceEditorCommandIdentifierKey: [menuInfo menuTitle],
+                           XCSourceEditorCommandNameKey: [menuInfo menuTitle]
                            }];
     }
-    
     return menus;
 }
 

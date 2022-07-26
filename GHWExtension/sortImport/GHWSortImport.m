@@ -27,15 +27,7 @@
 
 @implementation GHWSortImport
 
-//+ (GHWSortImportManager *)sharedInstane {
-//    static dispatch_once_t predicate;
-//    static GHWSortImportManager * sharedInstane;
-//    dispatch_once(&predicate, ^{
-//        sharedInstane = [[GHWSortImportManager alloc] init];
-//    });
-//    return sharedInstane;
-//}
-- (NSString *)title {
+- (NSString *)menuTitle {
     return @"sortImport";
 }
 - (void)processCodeWithInvocation:(XCSourceEditorCommandInvocation *)invocation {

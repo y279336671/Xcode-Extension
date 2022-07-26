@@ -2,9 +2,7 @@
 //  GHWExtensionConst.h
 //
 //
-//  Created by 黑化肥发灰 on 2019/8/30.
-//  Copyright © 2019年 黑化肥发灰. All rights reserved.
-//
+ 
 
 #import "NSString+Extension.h"
 #import "NSMutableArray+GHWExtension.h"
@@ -40,7 +38,6 @@ static NSString * const kInitViewControllerLifeCycleCode = @"\n#pragma mark - Li
 
 /*******************************  addlazyCode  ******************************************/
 //自定义内容格式
-
 
 static NSString * const kAddLazyCodeTableViewDataSourceAndDelegate = @"\n#pragma mark - tableView DataSource\n\n- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {\n    return 5;\n}\n\n- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {\n    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@\"UITableViewCell\"];\n    if (indexPath.row % 2 == 0) {\n        cell.contentView.backgroundColor = [UIColor blueColor];\n     } else {\n        cell.contentView.backgroundColor = [UIColor redColor];\n    }\n    return cell;\n}\n\n#pragma mark - tableView Delegate\n\n- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {\n    return 60;\n}\n\n-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {\n\n}";
 

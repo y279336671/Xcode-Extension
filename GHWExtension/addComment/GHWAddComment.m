@@ -15,16 +15,9 @@
 @end
 
 @implementation GHWAddComment
-
-//+ (GHWAddCommentManager *)sharedInstane {
-//    static dispatch_once_t predicate;
-//    static GHWAddCommentManager * sharedInstane;
-//    dispatch_once(&predicate, ^{
-//        sharedInstane = [[GHWAddCommentManager alloc] init];
-//    });
-//    return sharedInstane;
-//}
-
+- (NSString *)menuTitle {
+    return @"addComment";
+}
 - (void)processCodeWithInvocation:(XCSourceEditorCommandInvocation *)invocation {
     XCSourceTextRange *rang = invocation.buffer.selections[0];
     NSInteger insertIndex = rang.start.line;

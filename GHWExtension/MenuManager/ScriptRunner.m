@@ -2,9 +2,7 @@
 //  ScriptRunner.m
 //  GHWExtension
 //
-//  Created by yanghe04 on 2022/7/25.
-//  Copyright © 2022 Jingyao. All rights reserved.
-//
+ 
 
 #import "ScriptRunner.h"
 #import <Carbon/Carbon.h>
@@ -31,17 +29,21 @@
     if (![[NSFileManager defaultManager] fileExistsAtPath:filePath.path]) {
         return;;
     }
+    
     NSUserAppleScriptTask *task =  [[NSUserAppleScriptTask alloc] initWithURL:filePath error:nil];
-//    task executeWithAppleEvent:<#(nullable NSAppleEventDescriptor *)#> completionHandler:<#^(NSAppleEventDescriptor * _Nullable result, NSError * _Nullable error)handler#>
+    
+    NSAppleEventDescriptor *event = [self eventDescriptior:funcName];
+    [task executeWithAppleEvent:event completionHandler:^(NSAppleEventDescriptor * _Nullable result, NSError * _Nullable error) {
+        NSLog(@"%@, %@", result, error);
+    }];
 }
 
 - (NSAppleEventDescriptor *)eventDescriptior:(NSString *)funcName {
-    ProcessSerialNumber psn;
-    psn.highLongOfPSN = 0;
-    psn.lowLongOfPSN = kCurrentProcess;
+    NSAppleEventDescriptor *target = [[NSAppleEventDescriptor alloc] initWithEventClass:kASAppleScriptSuite eventID:kASSubroutineEvent targetDescriptor:nil returnID:kAutoGenerateReturnID transactionID:kAnyTransactionID];
     
-    malloc(psn)
-    
-//    NSAppleEventDescriptor *target = [[NSAppleEventDescriptor alloc] initWithDescriptorType:typeProcessSerialNumber bytes:&psn length:MemoryLayout<ProcessSerialNumber>.size];
+    NSAppleEventDescriptor *function = [NSAppleEventDescriptor descriptorWithString:funcName];
+    [target setParamDescriptor:function forKeyword:keyASSubroutineName];
+    return target;
 }
+
 @end
