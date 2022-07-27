@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2121D1D22890E26A003A47CA /* XcodeWayScript.scpt in Resources */ = {isa = PBXBuildFile; fileRef = 2121D1D12890E26A003A47CA /* XcodeWayScript.scpt */; };
 		217DFF0C288E6C160056680B /* MenuManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF0B288E6C160056680B /* MenuManager.m */; };
 		217DFF0F288E6ED60056680B /* MenuInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF0E288E6ED60056680B /* MenuInfo.m */; };
-		217DFF12288E79900056680B /* XcodeWayScript.scpt in Resources */ = {isa = PBXBuildFile; fileRef = 217DFF11288E79900056680B /* XcodeWayScript.scpt */; };
 		217DFF17288E7BA90056680B /* OpenProjectRoot.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF16288E7BA90056680B /* OpenProjectRoot.m */; };
 		217DFF1A288E7BD70056680B /* OpenProjectRootWithTerminal.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF19288E7BD70056680B /* OpenProjectRootWithTerminal.m */; };
 		217DFF1D288E7C4A0056680B /* RemoveDerivedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF1C288E7C4A0056680B /* RemoveDerivedData.m */; };
@@ -70,11 +70,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2121D1D12890E26A003A47CA /* XcodeWayScript.scpt */ = {isa = PBXFileReference; lastKnownFileType = file; name = XcodeWayScript.scpt; path = GHWXcodeExtension/XcodeWayScript.scpt; sourceTree = SOURCE_ROOT; };
 		217DFF0A288E6C160056680B /* MenuManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuManager.h; sourceTree = "<group>"; };
 		217DFF0B288E6C160056680B /* MenuManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuManager.m; sourceTree = "<group>"; };
 		217DFF0D288E6ED60056680B /* MenuInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuInfo.h; sourceTree = "<group>"; };
 		217DFF0E288E6ED60056680B /* MenuInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MenuInfo.m; sourceTree = "<group>"; };
-		217DFF11288E79900056680B /* XcodeWayScript.scpt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = XcodeWayScript.scpt; sourceTree = "<group>"; };
 		217DFF15288E7BA90056680B /* OpenProjectRoot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenProjectRoot.h; sourceTree = "<group>"; };
 		217DFF16288E7BA90056680B /* OpenProjectRoot.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenProjectRoot.m; sourceTree = "<group>"; };
 		217DFF18288E7BD70056680B /* OpenProjectRootWithTerminal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenProjectRootWithTerminal.h; sourceTree = "<group>"; };
@@ -148,14 +148,6 @@
 				217DFF1F288E86020056680B /* ScriptRunner.m */,
 			);
 			path = MenuManager;
-			sourceTree = "<group>";
-		};
-		217DFF10288E79760056680B /* Script */ = {
-			isa = PBXGroup;
-			children = (
-				217DFF11288E79900056680B /* XcodeWayScript.scpt */,
-			);
-			path = Script;
 			sourceTree = "<group>";
 		};
 		217DFF13288E7B8A0056680B /* removeDerivedData */ = {
@@ -252,9 +244,9 @@
 		EDA60A5A2317F43500B5FA3D /* GHWExtension */ = {
 			isa = PBXGroup;
 			children = (
+				2121D1D12890E26A003A47CA /* XcodeWayScript.scpt */,
 				217DFF14288E7B8A0056680B /* openFinder */,
 				217DFF13288E7B8A0056680B /* removeDerivedData */,
-				217DFF10288E79760056680B /* Script */,
 				217DFF09288E6C160056680B /* MenuManager */,
 				EDC57714232E2EC100445D4F /* addImport */,
 				EDBFBD1A231FF35500490C20 /* addComment */,
@@ -394,7 +386,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				217DFF12288E79900056680B /* XcodeWayScript.scpt in Resources */,
+				2121D1D22890E26A003A47CA /* XcodeWayScript.scpt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,7 +590,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = QQGC6FGPZU;
 				INFOPLIST_FILE = GHWXcodeExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -5,14 +5,11 @@
  
 
 #import "OpenProjectRoot.h"
-
+#import "ScriptRunner.h"
 @implementation OpenProjectRoot
 
 - (NSString *)menuTitle {
     return @"openProjectRoot";
 }
 
-- (void)processCodeWithInvocation:(XCSourceEditorCommandInvocation *)invocation {
-    
-}
 @end

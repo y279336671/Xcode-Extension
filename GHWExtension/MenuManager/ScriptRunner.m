@@ -18,18 +18,18 @@
 }
 
 - (NSURL *)fileScriptPath:(NSString *)fileName {
+    // todo 文件如何复制到 ~/Library/Application Scripts/code-signing-id 路径
     NSURL *url = [[NSFileManager defaultManager] URLForDirectory:NSApplicationScriptsDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:nil];
-    [url URLByAppendingPathComponent:fileName];
-    [url URLByAppendingPathExtension:@"scpt"];
+    url = [url URLByAppendingPathComponent:fileName];
+    url = [url URLByAppendingPathExtension:@"scpt"];
     return url;
 }
 
 - (void)run:(NSString *)funcName {
-   NSURL *filePath = [self fileScriptPath:@"XcodeWayScript"];
+    NSURL *filePath = [self fileScriptPath:@"XcodeWayScript"];
     if (![[NSFileManager defaultManager] fileExistsAtPath:filePath.path]) {
         return;;
     }
-    
     NSUserAppleScriptTask *task =  [[NSUserAppleScriptTask alloc] initWithURL:filePath error:nil];
     
     NSAppleEventDescriptor *event = [self eventDescriptior:funcName];

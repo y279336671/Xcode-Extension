@@ -139,15 +139,15 @@ set myPath to myLibraryPath() & "/MobileDevice/Provisioning Profiles"
 myOpenFolder(myPath)
 end myOpenProvisioningProfileFolder
 
-on myOpenProjectFolder()
+on openProjectRoot()
 set myPath to myProjectPath()
 myOpenFolder(myPath)
-end myOpenProjectFolder
+end openProjectRoot
 
-on myOpenTermnalForCurrentProject()
+on openProjectRootTerminal()
 set myPath to myProjectPath()
 myOpeniTerm(myPath)
-end myOpeniTermForCurrentProject
+end openProjectRootTerminal
 
 on myOpenDerivedDataFolder()
 set myRelativePath to myProjectPath() & "/DerivedData/"
@@ -168,15 +168,11 @@ end myOpenDocument
 
 -- Clean
 
-on myCleanDerivedData()
+on removeDerivedData()
 set myRelativePath to myProjectPath() & "/DerivedData"
 if myFolderExists(myRelativePath) then
 else
 set myRelativePath to myXcodePath() & "/DerivedData"
 end if
 do shell script "rm -rf " & myRelativePath
-end myCleanDerivedData
-
-on myOpenAbout()
-open location "https://github.com/GesanTung/XcodeWay"
-end myOpenAbout
+end removeDerivedData

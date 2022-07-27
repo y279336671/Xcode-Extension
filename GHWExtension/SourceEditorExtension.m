@@ -22,7 +22,6 @@
     NSMutableArray *menus = [[NSMutableArray alloc] init];
     for (int n = 0; n < [MenuManager sharedInstane].menuArray.count; n++) {
         MenuInfo *menuInfo = [MenuManager sharedInstane].menuArray[n];
-        NSLog(@">>>>%@", [menuInfo menuTitle]);
         [menus addObject:@{XCSourceEditorCommandClassNameKey: @"SourceEditorCommand",
                            XCSourceEditorCommandIdentifierKey: [menuInfo menuTitle],
                            XCSourceEditorCommandNameKey: [menuInfo menuTitle]

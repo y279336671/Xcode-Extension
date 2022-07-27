@@ -9,7 +9,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface MenuInfo : NSObject
-- (NSString *)menuTitle;
+@property (nonatomic, copy) NSString *menuTitle;
+
 - (void)processCodeWithInvocation:(XCSourceEditorCommandInvocation *)invocation;
 - (void)runWithFuncName:(NSString *)fucName;
 @end

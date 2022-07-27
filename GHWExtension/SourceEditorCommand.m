@@ -22,8 +22,8 @@
                    completionHandler:(void (^)(NSError * _Nullable nilOrError))completionHandler
 {
     NSString *identifier = invocation.commandIdentifier;
-    
-    [[[MenuManager sharedInstane] findMenuInfo:identifier] processCodeWithInvocation:invocation];
+    MenuInfo *menuInfo = [[MenuManager sharedInstane] findMenuInfo:identifier];
+    [menuInfo processCodeWithInvocation:invocation];
         
     completionHandler(nil);
 }
