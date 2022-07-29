@@ -19,6 +19,7 @@
 
 - (NSURL *)fileScriptPath:(NSString *)fileName {
     // todo 文件如何复制到 ~/Library/Application Scripts/code-signing-id 路径
+    //file:///Users/yanghe04/Library/Application%20Scripts/com.yanghe.boring.TBCXcodeExtension/XcodeWayScript.scpt
     NSURL *url = [[NSFileManager defaultManager] URLForDirectory:NSApplicationScriptsDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:nil];
     url = [url URLByAppendingPathComponent:fileName];
     url = [url URLByAppendingPathExtension:@"scpt"];
@@ -28,7 +29,7 @@
 - (void)run:(NSString *)funcName {
     NSURL *filePath = [self fileScriptPath:@"XcodeWayScript"];
     if (![[NSFileManager defaultManager] fileExistsAtPath:filePath.path]) {
-        return;;
+        return;
     }
     NSUserAppleScriptTask *task =  [[NSUserAppleScriptTask alloc] initWithURL:filePath error:nil];
     

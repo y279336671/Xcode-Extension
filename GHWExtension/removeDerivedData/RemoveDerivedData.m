@@ -11,8 +11,5 @@
 - (NSString *)menuTitle {
     return @"removeDerivedData";
 }
-- (void)processCodeWithInvocation:(XCSourceEditorCommandInvocation *)invocation {
-
-}
 
 @end

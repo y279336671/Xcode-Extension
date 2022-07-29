@@ -13,7 +13,4 @@
     [[ScriptRunner sharedInstane] run:invocation.commandIdentifier];
 }
 
-- (void)runWithFuncName:(NSString *)fucName {
-    
-}
 @end

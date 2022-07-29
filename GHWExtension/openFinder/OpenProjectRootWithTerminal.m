@@ -11,7 +11,5 @@
 - (NSString *)menuTitle {
     return @"openProjectRootTerminal";
 }
-- (void)processCodeWithInvocation:(XCSourceEditorCommandInvocation *)invocation {
-    
-}
+
 @end

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2121D1D22890E26A003A47CA /* XcodeWayScript.scpt in Resources */ = {isa = PBXBuildFile; fileRef = 2121D1D12890E26A003A47CA /* XcodeWayScript.scpt */; };
+		2105102D2893D33400395A7A /* XcodeWayScript.scpt in Resources */ = {isa = PBXBuildFile; fileRef = 2105102C2893D33400395A7A /* XcodeWayScript.scpt */; };
 		217DFF0C288E6C160056680B /* MenuManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF0B288E6C160056680B /* MenuManager.m */; };
 		217DFF0F288E6ED60056680B /* MenuInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF0E288E6ED60056680B /* MenuInfo.m */; };
 		217DFF17288E7BA90056680B /* OpenProjectRoot.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF16288E7BA90056680B /* OpenProjectRoot.m */; };
@@ -70,7 +70,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2121D1D12890E26A003A47CA /* XcodeWayScript.scpt */ = {isa = PBXFileReference; lastKnownFileType = file; name = XcodeWayScript.scpt; path = GHWXcodeExtension/XcodeWayScript.scpt; sourceTree = SOURCE_ROOT; };
+		2105102C2893D33400395A7A /* XcodeWayScript.scpt */ = {isa = PBXFileReference; lastKnownFileType = file; name = XcodeWayScript.scpt; path = GHWXcodeExtension/XcodeWayScript.scpt; sourceTree = SOURCE_ROOT; };
 		217DFF0A288E6C160056680B /* MenuManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuManager.h; sourceTree = "<group>"; };
 		217DFF0B288E6C160056680B /* MenuManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuManager.m; sourceTree = "<group>"; };
 		217DFF0D288E6ED60056680B /* MenuInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuInfo.h; sourceTree = "<group>"; };
@@ -244,7 +244,7 @@
 		EDA60A5A2317F43500B5FA3D /* GHWExtension */ = {
 			isa = PBXGroup;
 			children = (
-				2121D1D12890E26A003A47CA /* XcodeWayScript.scpt */,
+				2105102C2893D33400395A7A /* XcodeWayScript.scpt */,
 				217DFF14288E7B8A0056680B /* openFinder */,
 				217DFF13288E7B8A0056680B /* removeDerivedData */,
 				217DFF09288E6C160056680B /* MenuManager */,
@@ -386,7 +386,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2121D1D22890E26A003A47CA /* XcodeWayScript.scpt in Resources */,
+				2105102D2893D33400395A7A /* XcodeWayScript.scpt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *menuTitle;
 
 - (void)processCodeWithInvocation:(XCSourceEditorCommandInvocation *)invocation;
-- (void)runWithFuncName:(NSString *)fucName;
+
 @end
 
 NS_ASSUME_NONNULL_END
