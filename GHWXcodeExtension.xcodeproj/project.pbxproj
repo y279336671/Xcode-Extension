@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2105102D2893D33400395A7A /* XcodeWayScript.scpt in Resources */ = {isa = PBXBuildFile; fileRef = 2105102C2893D33400395A7A /* XcodeWayScript.scpt */; };
 		217DFF0C288E6C160056680B /* MenuManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF0B288E6C160056680B /* MenuManager.m */; };
 		217DFF0F288E6ED60056680B /* MenuInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF0E288E6ED60056680B /* MenuInfo.m */; };
 		217DFF17288E7BA90056680B /* OpenProjectRoot.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF16288E7BA90056680B /* OpenProjectRoot.m */; };
 		217DFF1A288E7BD70056680B /* OpenProjectRootWithTerminal.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF19288E7BD70056680B /* OpenProjectRootWithTerminal.m */; };
 		217DFF1D288E7C4A0056680B /* RemoveDerivedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF1C288E7C4A0056680B /* RemoveDerivedData.m */; };
 		217DFF20288E86020056680B /* ScriptRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF1F288E86020056680B /* ScriptRunner.m */; };
+		21A41C2D289CB13C00624ED9 /* XcodeWayScript.scpt in Resources */ = {isa = PBXBuildFile; fileRef = 21A41C2C289CB13C00624ED9 /* XcodeWayScript.scpt */; };
+		21A41C2E289CB13C00624ED9 /* XcodeWayScript.scpt in Resources */ = {isa = PBXBuildFile; fileRef = 21A41C2C289CB13C00624ED9 /* XcodeWayScript.scpt */; };
 		ED6552302318F98E0036A04A /* GHWAddLazyCode.m in Sources */ = {isa = PBXBuildFile; fileRef = ED65522C2318F98E0036A04A /* GHWAddLazyCode.m */; };
 		ED6552372318FB180036A04A /* GHWInitView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6552362318FB180036A04A /* GHWInitView.m */; };
 		ED65523A2318FBB70036A04A /* GHWSortImport.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6552392318FBB70036A04A /* GHWSortImport.m */; };
@@ -70,7 +71,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2105102C2893D33400395A7A /* XcodeWayScript.scpt */ = {isa = PBXFileReference; lastKnownFileType = file; name = XcodeWayScript.scpt; path = GHWXcodeExtension/XcodeWayScript.scpt; sourceTree = SOURCE_ROOT; };
 		217DFF0A288E6C160056680B /* MenuManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuManager.h; sourceTree = "<group>"; };
 		217DFF0B288E6C160056680B /* MenuManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuManager.m; sourceTree = "<group>"; };
 		217DFF0D288E6ED60056680B /* MenuInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuInfo.h; sourceTree = "<group>"; };
@@ -83,6 +83,7 @@
 		217DFF1C288E7C4A0056680B /* RemoveDerivedData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RemoveDerivedData.m; sourceTree = "<group>"; };
 		217DFF1E288E86020056680B /* ScriptRunner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScriptRunner.h; sourceTree = "<group>"; };
 		217DFF1F288E86020056680B /* ScriptRunner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScriptRunner.m; sourceTree = "<group>"; };
+		21A41C2C289CB13C00624ED9 /* XcodeWayScript.scpt */ = {isa = PBXFileReference; lastKnownFileType = file; name = XcodeWayScript.scpt; path = GHWXcodeExtension/XcodeWayScript.scpt; sourceTree = SOURCE_ROOT; };
 		ED65522A2318F98E0036A04A /* GHWExtensionConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHWExtensionConst.h; sourceTree = "<group>"; };
 		ED65522C2318F98E0036A04A /* GHWAddLazyCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHWAddLazyCode.m; sourceTree = "<group>"; };
 		ED65522E2318F98E0036A04A /* GHWAddLazyCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHWAddLazyCode.h; sourceTree = "<group>"; };
@@ -244,7 +245,7 @@
 		EDA60A5A2317F43500B5FA3D /* GHWExtension */ = {
 			isa = PBXGroup;
 			children = (
-				2105102C2893D33400395A7A /* XcodeWayScript.scpt */,
+				21A41C2C289CB13C00624ED9 /* XcodeWayScript.scpt */,
 				217DFF14288E7B8A0056680B /* openFinder */,
 				217DFF13288E7B8A0056680B /* removeDerivedData */,
 				217DFF09288E6C160056680B /* MenuManager */,
@@ -377,6 +378,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21A41C2D289CB13C00624ED9 /* XcodeWayScript.scpt in Resources */,
 				EDA60A452317F41000B5FA3D /* Assets.xcassets in Resources */,
 				EDA60A482317F41000B5FA3D /* Main.storyboard in Resources */,
 			);
@@ -386,7 +388,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2105102D2893D33400395A7A /* XcodeWayScript.scpt in Resources */,
+				21A41C2E289CB13C00624ED9 /* XcodeWayScript.scpt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,7 +578,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yanghe.boring.TBCXcodeExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yanghe.boring.TBCXcodeExtension1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -597,7 +599,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yanghe.boring.TBCXcodeExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yanghe.boring.TBCXcodeExtension1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -612,6 +614,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = QQGC6FGPZU;
+				ENABLE_APP_SANDBOX = YES;
 				INFOPLIST_FILE = GHWExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -619,7 +622,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yanghe.boring.TBCXcodeExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yanghe.boring.TBCXcodeExtension1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -635,6 +638,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = QQGC6FGPZU;
+				ENABLE_APP_SANDBOX = YES;
 				INFOPLIST_FILE = GHWExtension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -642,7 +646,7 @@
 					"@executable_path/../../../../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yanghe.boring.TBCXcodeExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yanghe.boring.TBCXcodeExtension1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
