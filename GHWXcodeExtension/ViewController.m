@@ -20,6 +20,64 @@
 
     // Update the view, if already loaded.
 }
+
+- (IBAction)installAutomationScript:(id)sender {
+    // NOTE: For this to work, you MUST update the Capbilities > App Sandbox > File Access > User Selected File to Read/Write.
+
+    NSError *error;
+    NSURL *directoryURL = [[NSFileManager defaultManager] URLForDirectory:NSApplicationScriptsDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
+    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+    [openPanel setDirectoryURL:directoryURL];
+    [openPanel setCanChooseDirectories:YES];
+    [openPanel setCanChooseFiles:NO];
+    [openPanel setPrompt:@"Select Script Folder"];
+    [openPanel setMessage:@"Please select the User > Library > Application Scripts > com.iconfactory.Scriptinator folder"];
+    [openPanel beginWithCompletionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelOKButton) {
+            NSURL *selectedURL = [openPanel URL];
+            if ([selectedURL isEqual:directoryURL]) {
+                NSURL *destinationURL = [selectedURL URLByAppendingPathComponent:@"XcodeWayScript.scpt"];
+                NSFileManager *fileManager = [NSFileManager defaultManager];
+                NSURL *sourceURL = [[NSBundle mainBundle] URLForResource:@"XcodeWayScript" withExtension:@"scpt"];
+                NSError *error;
+                BOOL success = [fileManager copyItemAtURL:sourceURL toURL:destinationURL error:&error];
+                if (success) {
+                    NSAlert *alert = [NSAlert alertWithMessageText:@"Script Installed" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"The Automation script was installed succcessfully."];
+                    [alert runModal];
+
+                    // NOTE: This is a bit of a hack to get the Application Scripts path out of the next open or save panel that appears.
+                    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"NSNavLastRootDirectory"];
+                }
+                else {
+                    NSLog(@"%s error = %@", __PRETTY_FUNCTION__, error);
+                    if ([error code] == NSFileWriteFileExistsError) {
+                        // the script was already installed Application Scripts folder
+
+                        if (! [fileManager removeItemAtURL:destinationURL error:&error]) {
+                            NSLog(@"%s error = %@", __PRETTY_FUNCTION__, error);
+                        }
+                        else {
+                            BOOL success = [fileManager copyItemAtURL:sourceURL toURL:destinationURL error:&error];
+                            if (success) {
+                                NSAlert *alert = [NSAlert alertWithMessageText:@"Script Updated" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"The Automation script was updated."];
+                                [alert runModal];
+                            }
+                        }
+                    }
+                    else {
+                        // the item couldn't be copied, try again
+                        [self performSelector:@selector(installAutomationScript:) withObject:self afterDelay:0.0];
+                    }
+                }
+            }
+            else {
+                // try again because the user changed the folder path
+                [self performSelector:@selector(installAutomationScript:) withObject:self afterDelay:0.0];
+            }
+        }
+    }];
+}
+
 //
 //#pragma mark 获取鼠标右键事件
 //-(void)rightMouseDown:(NSEvent *)event{

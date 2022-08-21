@@ -13,6 +13,7 @@
 #import "OpenProjectRoot.h"
 #import "OpenProjectRootWithTerminal.h"
 #import "RemoveDerivedData.h"
+
 @implementation MenuManager
 
 + (MenuManager *)sharedInstane {
