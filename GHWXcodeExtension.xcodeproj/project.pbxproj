@@ -14,6 +14,7 @@
 		217DFF1D288E7C4A0056680B /* RemoveDerivedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF1C288E7C4A0056680B /* RemoveDerivedData.m */; };
 		217DFF20288E86020056680B /* ScriptRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF1F288E86020056680B /* ScriptRunner.m */; };
 		21A41C2D289CB13C00624ED9 /* XcodeWayScript.scpt in Resources */ = {isa = PBXBuildFile; fileRef = 21A41C2C289CB13C00624ED9 /* XcodeWayScript.scpt */; };
+		21D0AE1228B4606E00A49757 /* AddToFavorite.m in Sources */ = {isa = PBXBuildFile; fileRef = 21D0AE1128B4606E00A49757 /* AddToFavorite.m */; };
 		ED6552302318F98E0036A04A /* GHWAddLazyCode.m in Sources */ = {isa = PBXBuildFile; fileRef = ED65522C2318F98E0036A04A /* GHWAddLazyCode.m */; };
 		ED6552372318FB180036A04A /* GHWInitView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6552362318FB180036A04A /* GHWInitView.m */; };
 		ED65523A2318FBB70036A04A /* GHWSortImport.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6552392318FBB70036A04A /* GHWSortImport.m */; };
@@ -83,6 +84,8 @@
 		217DFF1E288E86020056680B /* ScriptRunner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScriptRunner.h; sourceTree = "<group>"; };
 		217DFF1F288E86020056680B /* ScriptRunner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScriptRunner.m; sourceTree = "<group>"; };
 		21A41C2C289CB13C00624ED9 /* XcodeWayScript.scpt */ = {isa = PBXFileReference; lastKnownFileType = text; name = XcodeWayScript.scpt; path = GHWXcodeExtension/XcodeWayScript.scpt; sourceTree = SOURCE_ROOT; };
+		21D0AE1028B4606E00A49757 /* AddToFavorite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddToFavorite.h; sourceTree = "<group>"; };
+		21D0AE1128B4606E00A49757 /* AddToFavorite.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddToFavorite.m; sourceTree = "<group>"; };
 		ED65522A2318F98E0036A04A /* GHWExtensionConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHWExtensionConst.h; sourceTree = "<group>"; };
 		ED65522C2318F98E0036A04A /* GHWAddLazyCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHWAddLazyCode.m; sourceTree = "<group>"; };
 		ED65522E2318F98E0036A04A /* GHWAddLazyCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHWAddLazyCode.h; sourceTree = "<group>"; };
@@ -170,6 +173,15 @@
 			path = openFinder;
 			sourceTree = "<group>";
 		};
+		21D0AE0F28B45FFD00A49757 /* addToFavorite */ = {
+			isa = PBXGroup;
+			children = (
+				21D0AE1028B4606E00A49757 /* AddToFavorite.h */,
+				21D0AE1128B4606E00A49757 /* AddToFavorite.m */,
+			);
+			path = addToFavorite;
+			sourceTree = "<group>";
+		};
 		ED65522B2318F98E0036A04A /* addLazyCode */ = {
 			isa = PBXGroup;
 			children = (
@@ -245,6 +257,7 @@
 		EDA60A5A2317F43500B5FA3D /* GHWExtension */ = {
 			isa = PBXGroup;
 			children = (
+				21D0AE0F28B45FFD00A49757 /* addToFavorite */,
 				217DFF14288E7B8A0056680B /* openFinder */,
 				217DFF13288E7B8A0056680B /* removeDerivedData */,
 				217DFF09288E6C160056680B /* MenuManager */,
@@ -413,6 +426,7 @@
 				EDA60A5D2317F43500B5FA3D /* SourceEditorExtension.m in Sources */,
 				ED6552302318F98E0036A04A /* GHWAddLazyCode.m in Sources */,
 				217DFF0F288E6ED60056680B /* MenuInfo.m in Sources */,
+				21D0AE1228B4606E00A49757 /* AddToFavorite.m in Sources */,
 				ED6552372318FB180036A04A /* GHWInitView.m in Sources */,
 				EDC57717232E2EEB00445D4F /* GHWAddImport.m in Sources */,
 				EDA60A602317F43500B5FA3D /* SourceEditorCommand.m in Sources */,

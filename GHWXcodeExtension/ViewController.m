@@ -11,7 +11,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    // Do any additional setup after loading the view.
+    
 }
 
 
@@ -19,6 +19,10 @@
     [super setRepresentedObject:representedObject];
 
     // Update the view, if already loaded.
+}
+
+- (IBAction)testScript:(id)sender {
+    
 }
 
 - (IBAction)installAutomationScript:(id)sender {
@@ -31,7 +35,7 @@
     [openPanel setCanChooseDirectories:YES];
     [openPanel setCanChooseFiles:NO];
     [openPanel setPrompt:@"Select Script Folder"];
-    [openPanel setMessage:@"Please select the User > Library > Application Scripts > com.iconfactory.Scriptinator folder"];
+    [openPanel setMessage:@"Please select the User > Library > Application Scripts > com.yanghe.boring.TBCXcodeExtension folder"];
     [openPanel beginWithCompletionHandler:^(NSInteger result) {
         if (result == NSFileHandlingPanelOKButton) {
             NSURL *selectedURL = [openPanel URL];

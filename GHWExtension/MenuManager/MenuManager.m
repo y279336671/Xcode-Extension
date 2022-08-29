@@ -13,7 +13,7 @@
 #import "OpenProjectRoot.h"
 #import "OpenProjectRootWithTerminal.h"
 #import "RemoveDerivedData.h"
-
+#import "AddToFavorite.h"
 @implementation MenuManager
 
 + (MenuManager *)sharedInstane {
@@ -35,7 +35,8 @@
             [[GHWSortImport alloc] init],
             [[OpenProjectRoot alloc] init],
             [[OpenProjectRootWithTerminal alloc] init],
-            [[RemoveDerivedData alloc] init],nil];
+            [[RemoveDerivedData alloc] init],
+            [[AddToFavorite alloc] init], nil];
     }
     return _menuArray;
 }
