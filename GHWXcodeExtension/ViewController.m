@@ -6,12 +6,18 @@
 
 #import "ViewController.h"
 
+#define  kDefaultProjectPath @"kDefaultProjectPath"
+#define  kDefaultScriptPath  @"kDefaultScriptPath"
+
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    
+    NSUserDefaults *local = [NSUserDefaults standardUserDefaults];
+    NSString *projectPath = [local stringForKey:kDefaultProjectPath];
+    NSString *scriptPath = [local stringForKey:kDefaultScriptPath];
+    self.projectPath.stringValue = projectPath != nil ? projectPath : @"";
+    self.scriptsPath.stringValue = scriptPath != nil ? scriptPath : @"";
 }
 
 
@@ -25,20 +31,42 @@
     
 }
 
-- (IBAction)installAutomationScript:(id)sender {
-    // NOTE: For this to work, you MUST update the Capbilities > App Sandbox > File Access > User Selected File to Read/Write.
+- (IBAction)selectedProjectRoot:(id)sender {
+    NSError *error;
+    NSURL *directoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
+    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
+    [openPanel setDirectoryURL:directoryURL];
+    [openPanel setCanChooseDirectories:YES];
+    [openPanel setCanChooseFiles:NO];
+    [openPanel setPrompt:@"确定"];
+    [openPanel setMessage:@"请选择项目根目录"];
+    [openPanel beginWithCompletionHandler:^(NSInteger result) {
+        if (result == NSModalResponseOK) {
+            NSURL *selectedURL = [openPanel URL];
+            self.projectPath.stringValue =  [NSString stringWithFormat:@"%@", selectedURL.absoluteURL];
+            NSUserDefaults *local = [NSUserDefaults standardUserDefaults];
+            [local setObject:self.projectPath.stringValue forKey:kDefaultProjectPath];
+            [local synchronize];
+            NSLog(@"%@", selectedURL.absoluteURL);
+        }
+    }];
+}
 
+
+
+- (IBAction)installAutomationScript:(id)sender {
     NSError *error;
     NSURL *directoryURL = [[NSFileManager defaultManager] URLForDirectory:NSApplicationScriptsDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
     NSOpenPanel *openPanel = [NSOpenPanel openPanel];
     [openPanel setDirectoryURL:directoryURL];
     [openPanel setCanChooseDirectories:YES];
     [openPanel setCanChooseFiles:NO];
-    [openPanel setPrompt:@"Select Script Folder"];
-    [openPanel setMessage:@"Please select the User > Library > Application Scripts > com.yanghe.boring.TBCXcodeExtension folder"];
+    [openPanel setPrompt:@"确定"];
+    [openPanel setMessage:@"直接点击确定即可,或者选择 User > Library > Application Scripts > com.yanghe.boring.TBCXcodeExtension文件夹"];
     [openPanel beginWithCompletionHandler:^(NSInteger result) {
-        if (result == NSFileHandlingPanelOKButton) {
+        if (result == NSModalResponseOK) {
             NSURL *selectedURL = [openPanel URL];
+            
             if ([selectedURL isEqual:directoryURL]) {
                 NSURL *destinationURL = [selectedURL URLByAppendingPathComponent:@"XcodeWayScript.scpt"];
                 NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -46,8 +74,17 @@
                 NSError *error;
                 BOOL success = [fileManager copyItemAtURL:sourceURL toURL:destinationURL error:&error];
                 if (success) {
-                    NSAlert *alert = [NSAlert alertWithMessageText:@"Script Installed" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"The Automation script was installed succcessfully."];
-                    [alert runModal];
+                    self.scriptsPath.stringValue = [NSString stringWithFormat:@"%@", selectedURL.absoluteURL];
+                    NSUserDefaults *local = [NSUserDefaults standardUserDefaults];
+                    [local setObject:self.scriptsPath.stringValue forKey:kDefaultScriptPath];
+                    [local synchronize];
+//                    self.scriptsPath set
+                    
+//                    NSAlert *alert = [[NSAlert alloc] init];
+//                    [alert setMessageText:@"脚本已安装"];
+//                    [alert addButtonWithTitle:@"确定"];
+//                    [alert setInformativeText:@"自动化脚本安装完成"];
+//                    [alert runModal];
 
                     // NOTE: This is a bit of a hack to get the Application Scripts path out of the next open or save panel that appears.
                     [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"NSNavLastRootDirectory"];
@@ -63,8 +100,15 @@
                         else {
                             BOOL success = [fileManager copyItemAtURL:sourceURL toURL:destinationURL error:&error];
                             if (success) {
-                                NSAlert *alert = [NSAlert alertWithMessageText:@"Script Updated" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"The Automation script was updated."];
-                                [alert runModal];
+                                self.scriptsPath.stringValue = [NSString stringWithFormat:@"%@", selectedURL.absoluteURL];
+                                NSUserDefaults *local = [NSUserDefaults standardUserDefaults];
+                                [local setObject:self.scriptsPath.stringValue forKey:kDefaultScriptPath];
+                                [local synchronize];
+//                                NSAlert *alert = [[NSAlert alloc] init];
+//                                [alert setMessageText:@"脚本已更新"];
+//                                [alert addButtonWithTitle:@"确定"];
+//                                [alert setInformativeText:@"自动化脚本更新完成"];
+//                                [alert runModal];
                             }
                         }
                     }
