@@ -21,5 +21,16 @@
     // Insert code here to tear down your application
 }
 
-
+- (void)applicationWillBecomeActive:(NSNotification *)notification {
+    NSLog(@"func name applicationWillBecomeActive");
+}
+- (void)applicationDidBecomeActive:(NSNotification *)notification {
+    NSLog(@"func name applicationDidBecomeActive");
+}
+- (void)applicationWillResignActive:(NSNotification *)notification {
+    NSLog(@"func name applicationWillResignActive");
+}
+- (void)applicationDidResignActive:(NSNotification *)notification {
+    NSLog(@"func name applicationDidResignActive");
+}
 @end

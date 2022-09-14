@@ -39,44 +39,19 @@
             }
         }
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"test"
+                                                        object:@{@"obj":@"1"}];
     NSLog(@"className = %@ ,funName = %@ , funcLocation = %@",className, funName ,funcLocation);
+    
+    [[NSUserDefaults standardUserDefaults] setObject:@"123" forKey:@"test"];
     // 列表名称,用户自定义
         // 类名
             // 方法名
-    
-    
-    
-    //    NSMutableDictionary *classObject = [[NSMutableDictionary alloc] initWithDictionary:@{
-    //        className:@{
-    //        }
-    //    }];
-    //    [[classObject objectForKey:className]  addEntriesFromDictionary:funObject];
-    //    NSLog(@"%@", classObject);
-    //    NSUserDefaults *local = [NSUserDefaults standardUserDefaults];
-    
-    
-    
     // 1. 获取收藏方法名称
     // 2. 解析类名 (类名要和文件名称相同)
     // 3. 手动设置项目根目录 ✅
     // 4. 根据类名扫根目录里面的文件.
     // 5. 通过apple script 调用当前xCode 打开文件并定位到当前行数
     // 6. todo 将选中数据发给 主窗口
-    
-    
-    //    {
-    //        "列表名字": {
-    //            "类名":{
-    //                "方法名1":{
-    //                    "lineNum":52,
-    //                    "columnNum":100
-    //                },
-    //                "方法名2":{
-    //                    "lineNum":52,
-    //                    "columnNum":100
-    //                }
-    //            }
-    //        }
-    //    }
 }
 @end

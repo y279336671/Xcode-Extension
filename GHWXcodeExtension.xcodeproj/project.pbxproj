@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B94E7D74DF515A00A1EADB4 /* Pods_GHWExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBC9CA1E244FCC635FA25BF4 /* Pods_GHWExtension.framework */; };
 		217DFF0C288E6C160056680B /* MenuManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF0B288E6C160056680B /* MenuManager.m */; };
 		217DFF0F288E6ED60056680B /* MenuInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF0E288E6ED60056680B /* MenuInfo.m */; };
 		217DFF17288E7BA90056680B /* OpenProjectRoot.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF16288E7BA90056680B /* OpenProjectRoot.m */; };
@@ -15,6 +16,7 @@
 		217DFF20288E86020056680B /* ScriptRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF1F288E86020056680B /* ScriptRunner.m */; };
 		21A41C2D289CB13C00624ED9 /* XcodeWayScript.scpt in Resources */ = {isa = PBXBuildFile; fileRef = 21A41C2C289CB13C00624ED9 /* XcodeWayScript.scpt */; };
 		21D0AE1228B4606E00A49757 /* AddToFavorite.m in Sources */ = {isa = PBXBuildFile; fileRef = 21D0AE1128B4606E00A49757 /* AddToFavorite.m */; };
+		D1235212BEBB0480B2BB770C /* Pods_GHWXcodeExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92229F7234384BD68DEED940 /* Pods_GHWXcodeExtension.framework */; };
 		ED6552302318F98E0036A04A /* GHWAddLazyCode.m in Sources */ = {isa = PBXBuildFile; fileRef = ED65522C2318F98E0036A04A /* GHWAddLazyCode.m */; };
 		ED6552372318FB180036A04A /* GHWInitView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6552362318FB180036A04A /* GHWInitView.m */; };
 		ED65523A2318FBB70036A04A /* GHWSortImport.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6552392318FBB70036A04A /* GHWSortImport.m */; };
@@ -86,6 +88,12 @@
 		21A41C2C289CB13C00624ED9 /* XcodeWayScript.scpt */ = {isa = PBXFileReference; lastKnownFileType = text; name = XcodeWayScript.scpt; path = GHWXcodeExtension/XcodeWayScript.scpt; sourceTree = SOURCE_ROOT; };
 		21D0AE1028B4606E00A49757 /* AddToFavorite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddToFavorite.h; sourceTree = "<group>"; };
 		21D0AE1128B4606E00A49757 /* AddToFavorite.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddToFavorite.m; sourceTree = "<group>"; };
+		22D679596404856FB6BB4145 /* Pods-GHWExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GHWExtension.debug.xcconfig"; path = "Target Support Files/Pods-GHWExtension/Pods-GHWExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		44F77CC4E21EA8A95ADDBA3C /* Pods-GHWXcodeExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GHWXcodeExtension.release.xcconfig"; path = "Target Support Files/Pods-GHWXcodeExtension/Pods-GHWXcodeExtension.release.xcconfig"; sourceTree = "<group>"; };
+		70022FC8A7C8E96E13E4C19F /* Pods-GHWExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GHWExtension.release.xcconfig"; path = "Target Support Files/Pods-GHWExtension/Pods-GHWExtension.release.xcconfig"; sourceTree = "<group>"; };
+		92229F7234384BD68DEED940 /* Pods_GHWXcodeExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GHWXcodeExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B52E29B332C61AA6549F741F /* Pods-GHWXcodeExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GHWXcodeExtension.debug.xcconfig"; path = "Target Support Files/Pods-GHWXcodeExtension/Pods-GHWXcodeExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		BBC9CA1E244FCC635FA25BF4 /* Pods_GHWExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GHWExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED65522A2318F98E0036A04A /* GHWExtensionConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHWExtensionConst.h; sourceTree = "<group>"; };
 		ED65522C2318F98E0036A04A /* GHWAddLazyCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHWAddLazyCode.m; sourceTree = "<group>"; };
 		ED65522E2318F98E0036A04A /* GHWAddLazyCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHWAddLazyCode.h; sourceTree = "<group>"; };
@@ -127,6 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1235212BEBB0480B2BB770C /* Pods_GHWXcodeExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,12 +145,25 @@
 			files = (
 				EDAB4ADD25F3D0D100342C7A /* Cocoa.framework in Frameworks */,
 				EDAB4ADF25F3D0D900342C7A /* XcodeKit.framework in Frameworks */,
+				0B94E7D74DF515A00A1EADB4 /* Pods_GHWExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A58A76C8F8C3DAD6756E59D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				22D679596404856FB6BB4145 /* Pods-GHWExtension.debug.xcconfig */,
+				70022FC8A7C8E96E13E4C19F /* Pods-GHWExtension.release.xcconfig */,
+				B52E29B332C61AA6549F741F /* Pods-GHWXcodeExtension.debug.xcconfig */,
+				44F77CC4E21EA8A95ADDBA3C /* Pods-GHWXcodeExtension.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		217DFF09288E6C160056680B /* MenuManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,6 +238,7 @@
 				EDA60A5A2317F43500B5FA3D /* GHWExtension */,
 				EDA60A572317F43500B5FA3D /* Frameworks */,
 				EDA60A3C2317F41000B5FA3D /* Products */,
+				0A58A76C8F8C3DAD6756E59D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -250,6 +273,8 @@
 			children = (
 				EDAB4ADE25F3D0D900342C7A /* XcodeKit.framework */,
 				EDA60A582317F43500B5FA3D /* Cocoa.framework */,
+				BBC9CA1E244FCC635FA25BF4 /* Pods_GHWExtension.framework */,
+				92229F7234384BD68DEED940 /* Pods_GHWXcodeExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -316,10 +341,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EDA60A4F2317F41000B5FA3D /* Build configuration list for PBXNativeTarget "GHWXcodeExtension" */;
 			buildPhases = (
+				58FE073717BC2BAD7A696826 /* [CP] Check Pods Manifest.lock */,
 				EDA60A372317F41000B5FA3D /* Sources */,
 				EDA60A382317F41000B5FA3D /* Frameworks */,
 				EDA60A392317F41000B5FA3D /* Resources */,
 				EDA60A692317F43500B5FA3D /* Embed App Extensions */,
+				401A3CD6A476284720B74CF8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -335,6 +362,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EDA60A662317F43500B5FA3D /* Build configuration list for PBXNativeTarget "GHWExtension" */;
 			buildPhases = (
+				DD48384AAD66C5D51BA9B98E /* [CP] Check Pods Manifest.lock */,
 				EDA60A522317F43500B5FA3D /* Sources */,
 				EDA60A532317F43500B5FA3D /* Frameworks */,
 				EDA60A542317F43500B5FA3D /* Resources */,
@@ -404,6 +432,70 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		401A3CD6A476284720B74CF8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GHWXcodeExtension/Pods-GHWXcodeExtension-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GHWXcodeExtension/Pods-GHWXcodeExtension-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GHWXcodeExtension/Pods-GHWXcodeExtension-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		58FE073717BC2BAD7A696826 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GHWXcodeExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DD48384AAD66C5D51BA9B98E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GHWExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EDA60A372317F41000B5FA3D /* Sources */ = {
@@ -577,6 +669,7 @@
 		};
 		EDA60A502317F41000B5FA3D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B52E29B332C61AA6549F741F /* Pods-GHWXcodeExtension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GHWXcodeExtension/GHWXcodeExtension.entitlements;
@@ -598,6 +691,7 @@
 		};
 		EDA60A512317F41000B5FA3D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 44F77CC4E21EA8A95ADDBA3C /* Pods-GHWXcodeExtension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GHWXcodeExtension/GHWXcodeExtension.entitlements;
@@ -619,6 +713,7 @@
 		};
 		EDA60A672317F43500B5FA3D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 22D679596404856FB6BB4145 /* Pods-GHWExtension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				CODE_SIGN_ENTITLEMENTS = GHWExtension/GHWExtension.entitlements;
@@ -643,6 +738,7 @@
 		};
 		EDA60A682317F43500B5FA3D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 70022FC8A7C8E96E13E4C19F /* Pods-GHWExtension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				CODE_SIGN_ENTITLEMENTS = GHWExtension/GHWExtension.entitlements;

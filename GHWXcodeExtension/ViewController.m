@@ -18,8 +18,19 @@
     NSString *scriptPath = [local stringForKey:kDefaultScriptPath];
     self.projectPath.stringValue = projectPath != nil ? projectPath : @"";
     self.scriptsPath.stringValue = scriptPath != nil ? scriptPath : @"";
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(testNoti) name:@"test111" object:nil];
 }
 
+- (void)viewWillAppear {
+    id obj = [[NSUserDefaults standardUserDefaults] objectForKey:@"test"];
+     NSLog(@"**************%@", obj);
+}
+
+- (void)testNoti {
+    NSLog(@">>>>>>>>>>>>>>");
+}
 
 - (void)setRepresentedObject:(id)representedObject {
     [super setRepresentedObject:representedObject];
@@ -28,7 +39,8 @@
 }
 
 - (IBAction)testScript:(id)sender {
-    
+   id obj = [[NSUserDefaults standardUserDefaults] objectForKey:@"test"];
+    NSLog(@"%@", obj);
 }
 
 - (IBAction)selectedProjectRoot:(id)sender {
