@@ -5,9 +5,23 @@
  
 
 #import "ViewController.h"
+#import "FuncItem.h"
+#import "CustomTableRowView.h"
+#import "CustomTableCellView.h"
 
 #define  kDefaultProjectPath @"kDefaultProjectPath"
 #define  kDefaultScriptPath  @"kDefaultScriptPath"
+
+
+@interface ViewController ()<NSOutlineViewDelegate, NSOutlineViewDataSource>
+@property (weak) IBOutlet NSTextField *scriptsPath;
+@property (weak) IBOutlet NSTextField *projectPath;
+@property (weak) IBOutlet NSOutlineView *contentOutlineView;
+
+@property (nonatomic, strong) NSMutableArray *bookmarks;
+@property (nonatomic, strong) NSMutableArray *classNames;
+@property (nonatomic, strong) NSMutableArray *funcNames;
+@end
 
 @implementation ViewController
 
@@ -18,7 +32,7 @@
     NSString *scriptPath = [local stringForKey:kDefaultScriptPath];
     self.projectPath.stringValue = projectPath != nil ? projectPath : @"";
     self.scriptsPath.stringValue = scriptPath != nil ? scriptPath : @"";
-    
+
     [self bindOutlineView];
 }
 
@@ -28,7 +42,20 @@
 }
 
 - (void)bindOutlineView {
+    FuncItem *funcItem1 = [[FuncItem alloc] init];
+    funcItem1.funName = @"方法名1";
+    FuncItem *funcItem2 = [[FuncItem alloc] init];
+    funcItem2.funName = @"方法名2";
+    FuncItem *funcItem3 = [[FuncItem alloc] init];
+    funcItem3.funName = @"方法名3";
     
+    self.funcNames = [[NSMutableArray alloc] initWithArray:@[funcItem1, funcItem2, funcItem3]];
+  
+    self.classNames = [[NSMutableArray alloc] initWithArray:@[self.funcNames, self.funcNames]];
+    
+    self.bookmarks =  [[NSMutableArray alloc] initWithArray:@[self.classNames]];
+    
+    [self.contentOutlineView reloadData];
 }
 
 - (void)testNoti {
@@ -176,4 +203,64 @@
 //
 //}
 
+
+
+#pragma mark
+
+- (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item {
+    NSInteger num = 0;
+    if (!item) {
+        num = self.bookmarks.count;
+    }
+    return num;
+}
+
+- (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item {
+    if (!item) {
+        item = self.bookmarks[index];
+    }
+    return item;
+}
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView isGroupItem:(id)item {
+    NSInteger num = 0;
+   
+    return num != 0;
+}
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item {
+    return  YES;
+}
+
+- (nullable NSView *)outlineView:(NSOutlineView *)outlineView viewForTableColumn:(nullable NSTableColumn *)tableColumn item:(id)item {
+    CustomTableCellView *cell = [CustomTableCellView cellWithTableView:outlineView owner:self];
+    NSLog(@"item : %@",item);
+    return cell;
+}
+
+- (NSTableRowView *)outlineView:(NSOutlineView *)outlineView rowViewForItem:(id)item {
+    CustomTableRowView *rowView = [CustomTableRowView rowViewWithTableView:outlineView];
+    rowView.backgroundColor = [NSColor orangeColor];
+    return rowView;
+}
+
+- (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item {
+    //提供Staff的名字
+    return @"hhh";
+}
+
+// 自定义行高
+- (CGFloat)outlineView:(NSOutlineView *)outlineView heightOfRowByItem:(id)item {
+    return 30;
+}
+ 
+// 选择节点后的通知
+- (void)outlineViewSelectionDidChange:(NSNotification *)notification {
+    NSLog(@"--");
+    NSOutlineView *outlineView = notification.object;
+    NSInteger row = [outlineView selectedRow];
+    id model = [outlineView itemAtRow:row];
+    NSLog(@"name = %@",model);
+
+}
 @end

@@ -18,9 +18,7 @@
 
 @implementation SourceEditorCommand
 
-- (void)performCommandWithInvocation:(XCSourceEditorCommandInvocation *)invocation
-                   completionHandler:(void (^)(NSError * _Nullable nilOrError))completionHandler
-{
+- (void)performCommandWithInvocation:(XCSourceEditorCommandInvocation *)invocation completionHandler:(void (^)(NSError * _Nullable nilOrError))completionHandler{
     NSString *identifier = invocation.commandIdentifier;
     MenuInfo *menuInfo = [[MenuManager sharedInstane] findMenuInfo:identifier];
     [menuInfo processCodeWithInvocation:invocation];

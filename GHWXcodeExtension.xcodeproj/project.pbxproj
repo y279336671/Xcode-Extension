@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,9 @@
 		217DFF1A288E7BD70056680B /* OpenProjectRootWithTerminal.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF19288E7BD70056680B /* OpenProjectRootWithTerminal.m */; };
 		217DFF1D288E7C4A0056680B /* RemoveDerivedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF1C288E7C4A0056680B /* RemoveDerivedData.m */; };
 		217DFF20288E86020056680B /* ScriptRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF1F288E86020056680B /* ScriptRunner.m */; };
+		21A1C86828D8415A000B9FD3 /* FuncItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 21A1C86728D8415A000B9FD3 /* FuncItem.m */; };
+		21A1C87428D8627A000B9FD3 /* CustomTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21A1C87328D8627A000B9FD3 /* CustomTableCellView.m */; };
+		21A1C87728D86291000B9FD3 /* CustomTableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21A1C87628D86291000B9FD3 /* CustomTableRowView.m */; };
 		21A41C2D289CB13C00624ED9 /* XcodeWayScript.scpt in Resources */ = {isa = PBXBuildFile; fileRef = 21A41C2C289CB13C00624ED9 /* XcodeWayScript.scpt */; };
 		21D0AE1228B4606E00A49757 /* AddToFavorite.m in Sources */ = {isa = PBXBuildFile; fileRef = 21D0AE1128B4606E00A49757 /* AddToFavorite.m */; };
 		D1235212BEBB0480B2BB770C /* Pods_GHWXcodeExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92229F7234384BD68DEED940 /* Pods_GHWXcodeExtension.framework */; };
@@ -85,6 +88,12 @@
 		217DFF1C288E7C4A0056680B /* RemoveDerivedData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RemoveDerivedData.m; sourceTree = "<group>"; };
 		217DFF1E288E86020056680B /* ScriptRunner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScriptRunner.h; sourceTree = "<group>"; };
 		217DFF1F288E86020056680B /* ScriptRunner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScriptRunner.m; sourceTree = "<group>"; };
+		21A1C86628D8415A000B9FD3 /* FuncItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FuncItem.h; sourceTree = "<group>"; };
+		21A1C86728D8415A000B9FD3 /* FuncItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FuncItem.m; sourceTree = "<group>"; };
+		21A1C87228D8627A000B9FD3 /* CustomTableCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableCellView.h; sourceTree = "<group>"; };
+		21A1C87328D8627A000B9FD3 /* CustomTableCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableCellView.m; sourceTree = "<group>"; };
+		21A1C87528D86291000B9FD3 /* CustomTableRowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableRowView.h; sourceTree = "<group>"; };
+		21A1C87628D86291000B9FD3 /* CustomTableRowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableRowView.m; sourceTree = "<group>"; };
 		21A41C2C289CB13C00624ED9 /* XcodeWayScript.scpt */ = {isa = PBXFileReference; lastKnownFileType = text; name = XcodeWayScript.scpt; path = GHWXcodeExtension/XcodeWayScript.scpt; sourceTree = SOURCE_ROOT; };
 		21D0AE1028B4606E00A49757 /* AddToFavorite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddToFavorite.h; sourceTree = "<group>"; };
 		21D0AE1128B4606E00A49757 /* AddToFavorite.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddToFavorite.m; sourceTree = "<group>"; };
@@ -160,7 +169,6 @@
 				B52E29B332C61AA6549F741F /* Pods-GHWXcodeExtension.debug.xcconfig */,
 				44F77CC4E21EA8A95ADDBA3C /* Pods-GHWXcodeExtension.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -264,6 +272,12 @@
 				EDA60A492317F41000B5FA3D /* Info.plist */,
 				EDA60A4A2317F41000B5FA3D /* main.m */,
 				EDA60A4C2317F41000B5FA3D /* GHWXcodeExtension.entitlements */,
+				21A1C86628D8415A000B9FD3 /* FuncItem.h */,
+				21A1C86728D8415A000B9FD3 /* FuncItem.m */,
+				21A1C87228D8627A000B9FD3 /* CustomTableCellView.h */,
+				21A1C87328D8627A000B9FD3 /* CustomTableCellView.m */,
+				21A1C87528D86291000B9FD3 /* CustomTableRowView.h */,
+				21A1C87628D86291000B9FD3 /* CustomTableRowView.m */,
 			);
 			path = GHWXcodeExtension;
 			sourceTree = "<group>";
@@ -503,7 +517,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDA60A432317F41000B5FA3D /* ViewController.m in Sources */,
+				21A1C87728D86291000B9FD3 /* CustomTableRowView.m in Sources */,
 				EDA60A4B2317F41000B5FA3D /* main.m in Sources */,
+				21A1C86828D8415A000B9FD3 /* FuncItem.m in Sources */,
+				21A1C87428D8627A000B9FD3 /* CustomTableCellView.m in Sources */,
 				EDA60A402317F41000B5FA3D /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
