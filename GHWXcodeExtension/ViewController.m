@@ -19,13 +19,16 @@
     self.projectPath.stringValue = projectPath != nil ? projectPath : @"";
     self.scriptsPath.stringValue = scriptPath != nil ? scriptPath : @"";
     
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(testNoti) name:@"test111" object:nil];
+    [self bindOutlineView];
 }
 
 - (void)viewWillAppear {
     id obj = [[NSUserDefaults standardUserDefaults] objectForKey:@"test"];
      NSLog(@"**************%@", obj);
+}
+
+- (void)bindOutlineView {
+    
 }
 
 - (void)testNoti {
