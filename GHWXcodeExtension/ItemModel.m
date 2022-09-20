@@ -6,8 +6,8 @@
 //  Copyright © 2022 Jingyao. All rights reserved.
 //
 
-#import "FuncItem.h"
+#import "ItemModel.h"
 
-@implementation FuncItem
+@implementation ItemModel
 
 @end

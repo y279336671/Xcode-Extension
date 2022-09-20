@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FuncItem : NSObject
+@interface ItemModel : NSObject
 @property (nonatomic, copy) NSString *startLine;
 @property (nonatomic, copy) NSString *endLine;
 @property (nonatomic, copy) NSString *startColumn;
@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *funcLocation;
 
 @property (nonatomic, copy) NSString *keyName;
-@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray *subItems;
 @end
 
 NS_ASSUME_NONNULL_END

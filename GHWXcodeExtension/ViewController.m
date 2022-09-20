@@ -5,7 +5,7 @@
  
 
 #import "ViewController.h"
-#import "FuncItem.h"
+#import "ItemModel.h"
 #import "CustomTableRowView.h"
 #import "CustomTableCellView.h"
 
@@ -19,8 +19,7 @@
 @property (weak) IBOutlet NSOutlineView *contentOutlineView;
 
 @property (nonatomic, strong) NSMutableArray *bookmarks;
-@property (nonatomic, strong) NSMutableArray *classNames;
-@property (nonatomic, strong) NSMutableArray *funcNames;
+
 @end
 
 @implementation ViewController
@@ -42,18 +41,31 @@
 }
 
 - (void)bindOutlineView {
-    FuncItem *funcItem1 = [[FuncItem alloc] init];
+    ItemModel *funcItem1 = [[ItemModel alloc] init];
     funcItem1.funName = @"方法名1";
-    FuncItem *funcItem2 = [[FuncItem alloc] init];
+    
+    ItemModel *funcItem11 = [[ItemModel alloc] init];
+    funcItem11.funName = @"方法名11";
+    funcItem1.subItems = [[NSMutableArray alloc] initWithArray:@[funcItem11]];
+    
+    ItemModel *funcItem111 = [[ItemModel alloc] init];
+    funcItem111.funName = @"方法名111";
+    funcItem11.subItems = [[NSMutableArray alloc] initWithArray:@[funcItem111]];
+    
+    
+    ItemModel *funcItem2 = [[ItemModel alloc] init];
     funcItem2.funName = @"方法名2";
-    FuncItem *funcItem3 = [[FuncItem alloc] init];
+    ItemModel *funcItem22 = [[ItemModel alloc] init];
+    funcItem22.funName = @"方法名22";
+   
+    ItemModel *funcItem222 = [[ItemModel alloc] init];
+    funcItem222.funName = @"方法名222";
+    funcItem2.subItems = [[NSMutableArray alloc] initWithArray:@[funcItem22, funcItem222]];
+    
+    ItemModel *funcItem3 = [[ItemModel alloc] init];
     funcItem3.funName = @"方法名3";
     
-    self.funcNames = [[NSMutableArray alloc] initWithArray:@[funcItem1, funcItem2, funcItem3]];
-  
-    self.classNames = [[NSMutableArray alloc] initWithArray:@[self.funcNames, self.funcNames]];
-    
-    self.bookmarks =  [[NSMutableArray alloc] initWithArray:@[self.classNames]];
+    self.bookmarks =  [[NSMutableArray alloc] initWithArray:@[funcItem1, funcItem2, funcItem3]];
     
     [self.contentOutlineView reloadData];
 }
@@ -211,6 +223,9 @@
     NSInteger num = 0;
     if (!item) {
         num = self.bookmarks.count;
+    } else {
+        ItemModel *itemObject = (ItemModel *)item;
+        num = itemObject.subItems.count;
     }
     return num;
 }
@@ -218,13 +233,21 @@
 - (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item {
     if (!item) {
         item = self.bookmarks[index];
+    } else {
+        ItemModel *itemObject = (ItemModel *)item;
+        item = itemObject.subItems[index];
     }
     return item;
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView isGroupItem:(id)item {
     NSInteger num = 0;
-   
+    if (!item) {
+        num = self.bookmarks.count;
+    } else {
+        ItemModel *itemObject = (ItemModel *)item;
+        num = itemObject.subItems.count;
+    }
     return num != 0;
 }
 
@@ -235,6 +258,8 @@
 - (nullable NSView *)outlineView:(NSOutlineView *)outlineView viewForTableColumn:(nullable NSTableColumn *)tableColumn item:(id)item {
     CustomTableCellView *cell = [CustomTableCellView cellWithTableView:outlineView owner:self];
     NSLog(@"item : %@",item);
+    ItemModel *itemObject = (ItemModel *)item;
+    cell.titleLabel.stringValue = itemObject.funName;
     return cell;
 }
 
