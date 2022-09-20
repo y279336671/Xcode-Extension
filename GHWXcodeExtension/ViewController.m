@@ -9,7 +9,8 @@
 #import "CustomTableRowView.h"
 #import "CustomTableCellView.h"
 #import "ScriptRunner.h"
-#import "ConstKeys.h"
+#import "GHWExtensionConst.h"
+#import "ItemObjectManager.h"
 #define  kDefaultProjectPath @"kDefaultProjectPath"
 #define  kDefaultScriptPath  @"kDefaultScriptPath"
 
@@ -33,7 +34,13 @@
     self.projectPath.stringValue = projectPath != nil ? projectPath : @"";
     self.scriptsPath.stringValue = scriptPath != nil ? scriptPath : @"";
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bindOutlineView) name:NSApplicationWillBecomeActiveNotification object:nil];
+    
     [self bindOutlineView];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewWillAppear {
@@ -42,43 +49,39 @@
 }
 
 - (void)bindOutlineView {
-    ItemModel *funcItem1 = [[ItemModel alloc] init];
-    funcItem1.funName = @"方法名1";
-    
-    ItemModel *funcItem11 = [[ItemModel alloc] init];
-    funcItem11.funName = @"方法名11";
-    funcItem1.subItems = [[NSMutableArray alloc] initWithArray:@[funcItem11]];
-    
-    ItemModel *funcItem111 = [[ItemModel alloc] init];
-    funcItem111.funName = @"方法名111";
-    funcItem11.subItems = [[NSMutableArray alloc] initWithArray:@[funcItem111]];
-    
-    
-    ItemModel *funcItem2 = [[ItemModel alloc] init];
-    funcItem2.funName = @"方法名2";
-    ItemModel *funcItem22 = [[ItemModel alloc] init];
-    funcItem22.funName = @"方法名22";
-   
-    ItemModel *funcItem222 = [[ItemModel alloc] init];
-    funcItem222.funName = @"方法名222";
-    funcItem2.subItems = [[NSMutableArray alloc] initWithArray:@[funcItem22, funcItem222]];
-    
-    ItemModel *funcItem3 = [[ItemModel alloc] init];
-    funcItem3.funName = @"方法名3";
-    
-    self.bookmarks =  [[NSMutableArray alloc] initWithArray:@[funcItem1, funcItem2, funcItem3]];
-    
+//    ItemModel *funcItem1 = [[ItemModel alloc] init];
+//    funcItem1.funName = @"方法名1";
+//
+//    ItemModel *funcItem11 = [[ItemModel alloc] init];
+//    funcItem11.funName = @"方法名11";
+//    funcItem1.subItems = [[NSMutableArray alloc] initWithArray:@[funcItem11]];
+//
+//    ItemModel *funcItem111 = [[ItemModel alloc] init];
+//    funcItem111.funName = @"方法名111";
+//    funcItem11.subItems = [[NSMutableArray alloc] initWithArray:@[funcItem111]];
+//
+//
+//    ItemModel *funcItem2 = [[ItemModel alloc] init];
+//    funcItem2.funName = @"方法名2";
+//    ItemModel *funcItem22 = [[ItemModel alloc] init];
+//    funcItem22.funName = @"方法名22";
+//
+//    ItemModel *funcItem222 = [[ItemModel alloc] init];
+//    funcItem222.funName = @"方法名222";
+//    funcItem2.subItems = [[NSMutableArray alloc] initWithArray:@[funcItem22, funcItem222]];
+//
+//    ItemModel *funcItem3 = [[ItemModel alloc] init];
+//    funcItem3.funName = @"方法名3";
+//
+//    self.bookmarks =  [[NSMutableArray alloc] initWithArray:@[funcItem1, funcItem2, funcItem3]];
+    self.bookmarks =  [[ItemObjectManager sharedInstane] getBookmarkOject];
     [self.contentOutlineView reloadData];
 }
 
-- (void)setDefaultBookmark:(NSString *)bookmarkName {
-    [[NSUserDefaults standardUserDefaults] setObject:bookmarkName forKey:kDefaultBookmark];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
 
 - (void)createBookmark:(NSString *)bookmarkName {
     // 查找重名
-    NSMutableArray *bookmarks = [self getBookmarkOject];
+    NSMutableArray *bookmarks = [[ItemObjectManager sharedInstane] getBookmarkOject];
     if (bookmarks && bookmarks.count > 0) {
         BOOL isContain = NO;
         for (ItemModel *model in bookmarks) {
@@ -96,37 +99,18 @@
         } else {
             ItemModel *model = [[ItemModel alloc] init];
             model.keyName = bookmarkName;
-            [self addBookmarkObject:model];
+            [[ItemObjectManager sharedInstane] addBookmarkObject:model];
         }
     } else {
         
         ItemModel *model = [[ItemModel alloc] init];
         model.keyName = bookmarkName;
-        [self addBookmarkObject:model];
+        [[ItemObjectManager sharedInstane] addBookmarkObject:model];
         
-        [self setDefaultBookmark:bookmarkName];
+        [[ItemObjectManager sharedInstane] setDefaultBookmark:model];
     }
 }
 
-- (NSMutableArray *)getBookmarkOject {
-    NSArray *temp =  [[NSArray alloc]initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:kBookmarksInfo]];
-    NSMutableArray *bookmarks = [[NSMutableArray alloc] init];
-    for (NSData *data in temp) {
-        ItemModel *model = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-        [bookmarks addObject:model];
-    }
-    
-    return bookmarks;
-}
-
-- (void)addBookmarkObject:(ItemModel *)model {
-    
-    NSData *modelObject = [NSKeyedArchiver archivedDataWithRootObject:model];
-    NSMutableArray *tempObject = [[NSMutableArray alloc]initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:kBookmarksInfo]];
-    [tempObject addObject:modelObject];
-    [[NSUserDefaults standardUserDefaults] setObject:tempObject forKey:kBookmarksInfo];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
 
 - (void)setRepresentedObject:(id)representedObject {
     [super setRepresentedObject:representedObject];
@@ -280,7 +264,8 @@
     CustomTableCellView *cell = [CustomTableCellView cellWithTableView:outlineView owner:self];
     NSLog(@"item : %@",item);
     ItemModel *itemObject = (ItemModel *)item;
-    cell.titleLabel.stringValue = itemObject.funName;
+    
+    cell.titleLabel.stringValue = itemObject.keyName ? itemObject.keyName :itemObject.funName;
     return cell;
 }
 
@@ -290,10 +275,6 @@
     return rowView;
 }
 
-- (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item {
-    //提供Staff的名字
-    return @"hhh";
-}
 
 // 自定义行高
 - (CGFloat)outlineView:(NSOutlineView *)outlineView heightOfRowByItem:(id)item {

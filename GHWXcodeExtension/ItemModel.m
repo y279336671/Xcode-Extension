@@ -29,6 +29,7 @@
     [coder encodeObject:self.funcLocation forKey:@"funcLocation"];
     [coder encodeObject:self.keyName forKey:@"keyName"];
     [coder encodeObject:self.subItems forKey:@"subItems"];
+    [coder encodeObject:[NSNumber numberWithBool:self.isDefault] forKey:@"isDefault"];
 }
 
 - (id)initWithCoder:(NSCoder *)coder {
@@ -42,6 +43,7 @@
         self.funcLocation = [coder decodeObjectForKey:@"funcLocation"];
         self.keyName = [coder decodeObjectForKey:@"keyName"];
         self.subItems = [coder decodeObjectForKey:@"subItems"];
+        self.isDefault = [[coder decodeObjectForKey:@"isDefault"] boolValue];
     }
     return self;
 }

@@ -21,6 +21,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString *keyName;
 @property (nonatomic, strong) NSMutableArray *subItems;
+
+@property (nonatomic, assign) BOOL isDefault;
 @end
 
 NS_ASSUME_NONNULL_END

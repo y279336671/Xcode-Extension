@@ -7,15 +7,15 @@
 //
 
 #import "AddToFavorite.h"
-#import <Cocoa/Cocoa.h>
-
+#import "GHWExtensionConst.h"
+#import "ItemObjectManager.h"
 @implementation AddToFavorite
 - (NSString *)menuTitle {
     return @"addToFavorite";
 }
 
 - (void)processCodeWithInvocation:(XCSourceEditorCommandInvocation *)invocation {
-    NSArray *bookmarks = (NSArray *)[[NSUserDefaults standardUserDefaults] objectForKey:@"kBookmarksInfo"];
+    NSMutableArray *bookmarks = [[ItemObjectManager sharedInstane] getBookmarkOject];
     if (!bookmarks || bookmarks.count == 0) {
         // 没有创建书签就什么也不做
         return;
