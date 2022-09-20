@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ItemModel : NSObject
+@interface ItemModel : NSObject<NSCoding>
 @property (nonatomic, copy) NSString *startLine;
 @property (nonatomic, copy) NSString *endLine;
 @property (nonatomic, copy) NSString *startColumn;

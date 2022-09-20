@@ -13,11 +13,12 @@
 		217DFF17288E7BA90056680B /* OpenProjectRoot.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF16288E7BA90056680B /* OpenProjectRoot.m */; };
 		217DFF1A288E7BD70056680B /* OpenProjectRootWithTerminal.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF19288E7BD70056680B /* OpenProjectRootWithTerminal.m */; };
 		217DFF1D288E7C4A0056680B /* RemoveDerivedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF1C288E7C4A0056680B /* RemoveDerivedData.m */; };
-		217DFF20288E86020056680B /* ScriptRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 217DFF1F288E86020056680B /* ScriptRunner.m */; };
 		21A1C86828D8415A000B9FD3 /* ItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 21A1C86728D8415A000B9FD3 /* ItemModel.m */; };
 		21A1C87428D8627A000B9FD3 /* CustomTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21A1C87328D8627A000B9FD3 /* CustomTableCellView.m */; };
 		21A1C87728D86291000B9FD3 /* CustomTableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21A1C87628D86291000B9FD3 /* CustomTableRowView.m */; };
 		21A41C2D289CB13C00624ED9 /* XcodeWayScript.scpt in Resources */ = {isa = PBXBuildFile; fileRef = 21A41C2C289CB13C00624ED9 /* XcodeWayScript.scpt */; };
+		21AE11FF28D9A0EE00A294B8 /* ScriptRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AE11FE28D9A0EE00A294B8 /* ScriptRunner.m */; };
+		21AE120028D9A0EE00A294B8 /* ScriptRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AE11FE28D9A0EE00A294B8 /* ScriptRunner.m */; };
 		21D0AE1228B4606E00A49757 /* AddToFavorite.m in Sources */ = {isa = PBXBuildFile; fileRef = 21D0AE1128B4606E00A49757 /* AddToFavorite.m */; };
 		D1235212BEBB0480B2BB770C /* Pods_GHWXcodeExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92229F7234384BD68DEED940 /* Pods_GHWXcodeExtension.framework */; };
 		ED6552302318F98E0036A04A /* GHWAddLazyCode.m in Sources */ = {isa = PBXBuildFile; fileRef = ED65522C2318F98E0036A04A /* GHWAddLazyCode.m */; };
@@ -86,8 +87,6 @@
 		217DFF19288E7BD70056680B /* OpenProjectRootWithTerminal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenProjectRootWithTerminal.m; sourceTree = "<group>"; };
 		217DFF1B288E7C4A0056680B /* RemoveDerivedData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RemoveDerivedData.h; sourceTree = "<group>"; };
 		217DFF1C288E7C4A0056680B /* RemoveDerivedData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RemoveDerivedData.m; sourceTree = "<group>"; };
-		217DFF1E288E86020056680B /* ScriptRunner.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScriptRunner.h; sourceTree = "<group>"; };
-		217DFF1F288E86020056680B /* ScriptRunner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScriptRunner.m; sourceTree = "<group>"; };
 		21A1C86628D8415A000B9FD3 /* ItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemModel.h; sourceTree = "<group>"; };
 		21A1C86728D8415A000B9FD3 /* ItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemModel.m; sourceTree = "<group>"; };
 		21A1C87228D8627A000B9FD3 /* CustomTableCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableCellView.h; sourceTree = "<group>"; };
@@ -95,6 +94,9 @@
 		21A1C87528D86291000B9FD3 /* CustomTableRowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableRowView.h; sourceTree = "<group>"; };
 		21A1C87628D86291000B9FD3 /* CustomTableRowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableRowView.m; sourceTree = "<group>"; };
 		21A41C2C289CB13C00624ED9 /* XcodeWayScript.scpt */ = {isa = PBXFileReference; lastKnownFileType = text; name = XcodeWayScript.scpt; path = GHWXcodeExtension/XcodeWayScript.scpt; sourceTree = SOURCE_ROOT; };
+		21AE11FD28D9A0EE00A294B8 /* ScriptRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptRunner.h; sourceTree = "<group>"; };
+		21AE11FE28D9A0EE00A294B8 /* ScriptRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptRunner.m; sourceTree = "<group>"; };
+		21AE120128D9C19E00A294B8 /* ConstKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConstKeys.h; sourceTree = "<group>"; };
 		21D0AE1028B4606E00A49757 /* AddToFavorite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddToFavorite.h; sourceTree = "<group>"; };
 		21D0AE1128B4606E00A49757 /* AddToFavorite.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddToFavorite.m; sourceTree = "<group>"; };
 		22D679596404856FB6BB4145 /* Pods-GHWExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GHWExtension.debug.xcconfig"; path = "Target Support Files/Pods-GHWExtension/Pods-GHWExtension.debug.xcconfig"; sourceTree = "<group>"; };
@@ -175,10 +177,10 @@
 		217DFF09288E6C160056680B /* MenuManager */ = {
 			isa = PBXGroup;
 			children = (
+				21AE11FD28D9A0EE00A294B8 /* ScriptRunner.h */,
+				21AE11FE28D9A0EE00A294B8 /* ScriptRunner.m */,
 				217DFF0A288E6C160056680B /* MenuManager.h */,
 				217DFF0B288E6C160056680B /* MenuManager.m */,
-				217DFF1E288E86020056680B /* ScriptRunner.h */,
-				217DFF1F288E86020056680B /* ScriptRunner.m */,
 			);
 			path = MenuManager;
 			sourceTree = "<group>";
@@ -278,6 +280,7 @@
 				21A1C87328D8627A000B9FD3 /* CustomTableCellView.m */,
 				21A1C87528D86291000B9FD3 /* CustomTableRowView.h */,
 				21A1C87628D86291000B9FD3 /* CustomTableRowView.m */,
+				21AE120128D9C19E00A294B8 /* ConstKeys.h */,
 			);
 			path = GHWXcodeExtension;
 			sourceTree = "<group>";
@@ -522,6 +525,7 @@
 				21A1C86828D8415A000B9FD3 /* ItemModel.m in Sources */,
 				21A1C87428D8627A000B9FD3 /* CustomTableCellView.m in Sources */,
 				EDA60A402317F41000B5FA3D /* AppDelegate.m in Sources */,
+				21AE11FF28D9A0EE00A294B8 /* ScriptRunner.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,7 +534,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDA60A752317F4BF00B5FA3D /* NSString+Extension.m in Sources */,
-				217DFF20288E86020056680B /* ScriptRunner.m in Sources */,
 				217DFF1D288E7C4A0056680B /* RemoveDerivedData.m in Sources */,
 				EDA60A5D2317F43500B5FA3D /* SourceEditorExtension.m in Sources */,
 				ED6552302318F98E0036A04A /* GHWAddLazyCode.m in Sources */,
@@ -538,6 +541,7 @@
 				21D0AE1228B4606E00A49757 /* AddToFavorite.m in Sources */,
 				ED6552372318FB180036A04A /* GHWInitView.m in Sources */,
 				EDC57717232E2EEB00445D4F /* GHWAddImport.m in Sources */,
+				21AE120028D9A0EE00A294B8 /* ScriptRunner.m in Sources */,
 				EDA60A602317F43500B5FA3D /* SourceEditorCommand.m in Sources */,
 				ED65523A2318FBB70036A04A /* GHWSortImport.m in Sources */,
 				EDBFBD1D231FF38000490C20 /* GHWAddComment.m in Sources */,

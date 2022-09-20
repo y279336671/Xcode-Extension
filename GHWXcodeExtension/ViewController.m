@@ -8,7 +8,8 @@
 #import "ItemModel.h"
 #import "CustomTableRowView.h"
 #import "CustomTableCellView.h"
-
+#import "ScriptRunner.h"
+#import "ConstKeys.h"
 #define  kDefaultProjectPath @"kDefaultProjectPath"
 #define  kDefaultScriptPath  @"kDefaultScriptPath"
 
@@ -70,8 +71,61 @@
     [self.contentOutlineView reloadData];
 }
 
-- (void)testNoti {
-    NSLog(@">>>>>>>>>>>>>>");
+- (void)setDefaultBookmark:(NSString *)bookmarkName {
+    [[NSUserDefaults standardUserDefaults] setObject:bookmarkName forKey:kDefaultBookmark];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)createBookmark:(NSString *)bookmarkName {
+    // 查找重名
+    NSMutableArray *bookmarks = [self getBookmarkOject];
+    if (bookmarks && bookmarks.count > 0) {
+        BOOL isContain = NO;
+        for (ItemModel *model in bookmarks) {
+            if ([model.keyName isEqualToString:bookmarkName]) {
+                isContain = YES;
+                break;
+            }
+        }
+        
+        if (isContain) {
+            NSAlert *alert = [[NSAlert alloc] init];
+            [alert setMessageText:@"包含同名书签"];
+            [alert addButtonWithTitle:@"确定"];
+            [alert runModal];
+        } else {
+            ItemModel *model = [[ItemModel alloc] init];
+            model.keyName = bookmarkName;
+            [self addBookmarkObject:model];
+        }
+    } else {
+        
+        ItemModel *model = [[ItemModel alloc] init];
+        model.keyName = bookmarkName;
+        [self addBookmarkObject:model];
+        
+        [self setDefaultBookmark:bookmarkName];
+    }
+}
+
+- (NSMutableArray *)getBookmarkOject {
+    NSArray *temp =  [[NSArray alloc]initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:kBookmarksInfo]];
+    NSMutableArray *bookmarks = [[NSMutableArray alloc] init];
+    for (NSData *data in temp) {
+        ItemModel *model = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        [bookmarks addObject:model];
+    }
+    
+    return bookmarks;
+}
+
+- (void)addBookmarkObject:(ItemModel *)model {
+    
+    NSData *modelObject = [NSKeyedArchiver archivedDataWithRootObject:model];
+    NSMutableArray *tempObject = [[NSMutableArray alloc]initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:kBookmarksInfo]];
+    [tempObject addObject:modelObject];
+    [[NSUserDefaults standardUserDefaults] setObject:tempObject forKey:kBookmarksInfo];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)setRepresentedObject:(id)representedObject {
@@ -81,8 +135,11 @@
 }
 
 - (IBAction)testScript:(id)sender {
-   id obj = [[NSUserDefaults standardUserDefaults] objectForKey:@"test"];
-    NSLog(@"%@", obj);
+//    id obj = [[NSUserDefaults standardUserDefaults] objectForKey:@"test"];
+//    NSLog(@"%@", obj);
+//
+//    [[ScriptRunner sharedInstane] run:@"openFileToFunc" inputString:@"TBCLaunchADViewController1111.m:20"];
+    [self createBookmark:@"书签1"];
 }
 
 - (IBAction)selectedProjectRoot:(id)sender {
@@ -180,43 +237,6 @@
     }];
 }
 
-//
-//#pragma mark 获取鼠标右键事件
-//-(void)rightMouseDown:(NSEvent *)event{
-//
-//    //创建Menu
-//    NSMenu *theMenu = [[NSMenu alloc] initWithTitle:@"Contextual Menu"];
-//    //NSMenu *theMenu = [[NSMenu alloc] init];
-//    
-//    //常规添加菜单
-//    [theMenu insertItemWithTitle:@"Item 1"action:@selector(beep:)keyEquivalent:@""atIndex:0];
-//
-//    [theMenu insertItemWithTitle:@"Item 2"action:@selector(beep:)keyEquivalent:@""atIndex:1];
-//    
-//    //自定义的NSMenuItem
-//    NSMenuItem *item3 = [[NSMenuItem alloc]init];
-//
-//    item3.title = @"Item 38";
-//
-//    item3.target = self;
-//
-//    item3.action = @selector(beep:);
-//
-//    [theMenu insertItem:item3 atIndex:2];
-//
-//    [NSMenu popUpContextMenu:theMenu withEvent:event forView:self.view];
-//
-//}
-//
-//#pragma mark 统一使用响应方法，不然不使用该方法的菜单栏将不能点击
-//-(void)beep:(NSMenuItem *)menuItem{
-//
-//    NSLog(@"_____%@", menuItem);
-//
-//}
-
-
-
 #pragma mark
 
 - (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item {
@@ -252,6 +272,7 @@
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item {
+    
     return  YES;
 }
 
