@@ -9,13 +9,14 @@
 #import "AddToFavorite.h"
 #import "GHWExtensionConst.h"
 #import "ItemObjectManager.h"
+#import "MJExtension.h"
 @implementation AddToFavorite
 - (NSString *)menuTitle {
     return @"addToFavorite";
 }
 
 - (void)processCodeWithInvocation:(XCSourceEditorCommandInvocation *)invocation {
-    NSMutableArray *bookmarks = [[ItemObjectManager sharedInstane] getBookmarkOject];
+    NSMutableArray *bookmarks = [ItemObjectManager sharedInstane].bookmarkModels;
     if (!bookmarks || bookmarks.count == 0) {
         // 没有创建书签就什么也不做
         return;
@@ -33,38 +34,58 @@
     NSLog(@"startLine = %ld, endLine = %ld, startColumn = %ld, endColumn = %ld, funName = %@", startLine, endLine, startColumn, endColumn, funName);
     
     NSString *funcLocation = @"";
-    NSString *fullClassName = @"";
+    NSString *className = @"";
     for (int n = 0; n < lines.count; n++) {
         NSString *tempLine = lines[n];
         if ([tempLine containsString:@"@implementation"] || [tempLine containsString:@"@interface"]) {
             NSArray *tempLineArray = [tempLine componentsSeparatedByString:@" "];
             if (tempLineArray.count >= 2) {
                 NSString *suffix = [tempLine containsString:@"@interface"] ? @".h" : @".m";
-                NSString *className = [tempLineArray[1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                fullClassName = [NSString stringWithFormat:@"%@%@", className, suffix];
-                funcLocation = [NSString stringWithFormat:@"%@:%ld",fullClassName, (long)startLine];
+                NSString *tempClassName = [tempLineArray[1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                className = [NSString stringWithFormat:@"%@%@", tempClassName, suffix];
+                funcLocation = [NSString stringWithFormat:@"%@:%ld",className, (long)startLine];
                 break;
             }
         }
     }
-    NSLog(@"className = %@ ,funName = %@ , funcLocation = %@",fullClassName, funName ,funcLocation);
+    NSLog(@"className = %@ ,funName = %@ , funcLocation = %@",className, funName ,funcLocation);
     
-    NSMutableDictionary *itemInfo = [[NSMutableDictionary alloc] initWithDictionary:@{
-        @"startLine":[NSString stringWithFormat:@"%ld", (long)startLine],
-        @"endLine":[NSString stringWithFormat:@"%ld", (long)endLine],
-        @"startColumn":[NSString stringWithFormat:@"%ld", (long)startColumn],
-        @"endColumn":[NSString stringWithFormat:@"%ld", (long)endColumn],
-        @"funName":[NSString stringWithFormat:@"%@", funName],
-        @"className":[NSString stringWithFormat:@"%@", fullClassName],
-        @"funcLocation":[NSString stringWithFormat:@"%@", funcLocation],
-    }];
+    NSDictionary *itemInfo = [[NSDictionary alloc] initWithObjectsAndKeys:
+                              [NSString stringWithFormat:@"%ld", (long)startLine], @"startLine",
+                              [NSString stringWithFormat:@"%ld", (long)endLine], @"endLine",
+                              [NSString stringWithFormat:@"%ld", (long)startColumn], @"startColumn",
+                              [NSString stringWithFormat:@"%ld", (long)endColumn], @"endColumn",
+                              [NSString stringWithFormat:@"%@", funName], @"funName",
+                              [NSString stringWithFormat:@"%@", className], @"className",
+                              [NSString stringWithFormat:@"%@", funcLocation], @"funcLocation",
+                              nil];
     
-    // 1. 先检查是否有书签列表 -> 列表第一层, 由用户手动创建.
-    // 2. 检查是否有重名类名. 有 -> 直接加到对应类名下面, 没有 -> 创建第二层列表
-
-    // todo 先去出来 ,再拼接上
-    [[NSUserDefaults standardUserDefaults] setObject:itemInfo forKey:@"kItemInfo"];
     
+//    ItemModel *newModel = [ItemModel mj_objectWithKeyValues:itemInfo];
+//
+//    ItemModel *defaultBookmark = [[ItemObjectManager sharedInstane] getDefautlBookmark];
+//
+//    if (NSArrayCheck(defaultBookmark.subItems)) {
+//        for (ItemModel *model in defaultBookmark.subItems) {
+//            if ([model.className isEqualToString:newModel.className]) {
+//                if (NSArrayCheck(model.subItems)) {
+//                    for (ItemModel *subModel in model.subItems) {
+//                        if (![subModel.funName isEqualToString:newModel.funName]) {
+//                            [model.subItems addObject:newModel];
+//                        }
+//                    }
+//                } else {
+//                    model.subItems = [[NSMutableArray alloc] initWithArray:@[newModel]];
+//                }
+//
+//            } else {
+//                defaultBookmark.subItems = [[NSMutableArray alloc] initWithArray:@[newModel]];
+//            }
+//        }
+//    }  else {
+//        defaultBookmark.subItems = [[NSMutableArray alloc] initWithArray:@[newModel]];
+//    }
+//    [[ItemObjectManager sharedInstane] updateAllBookmark];
 }
 
 

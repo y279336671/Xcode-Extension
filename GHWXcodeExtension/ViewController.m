@@ -21,7 +21,7 @@
 @property (weak) IBOutlet NSOutlineView *contentOutlineView;
 
 @property (nonatomic, strong) NSMutableArray *bookmarks;
-
+@property (nonatomic, strong) ItemModel *curSelectedModel;
 @end
 
 @implementation ViewController
@@ -74,14 +74,14 @@
 //    funcItem3.funName = @"方法名3";
 //
 //    self.bookmarks =  [[NSMutableArray alloc] initWithArray:@[funcItem1, funcItem2, funcItem3]];
-    self.bookmarks =  [[ItemObjectManager sharedInstane] getBookmarkOject];
+    self.bookmarks =  [ItemObjectManager sharedInstane].bookmarkModels;
     [self.contentOutlineView reloadData];
 }
 
 
 - (void)createBookmark:(NSString *)bookmarkName {
     // 查找重名
-    NSMutableArray *bookmarks = [[ItemObjectManager sharedInstane] getBookmarkOject];
+    NSMutableArray *bookmarks =  [ItemObjectManager sharedInstane].bookmarkModels;;
     if (bookmarks && bookmarks.count > 0) {
         BOOL isContain = NO;
         for (ItemModel *model in bookmarks) {
@@ -111,6 +111,10 @@
     }
 }
 
+- (void)removeBookmarks {
+    [[ItemObjectManager sharedInstane] removeBookmark:self.curSelectedModel];
+}
+
 
 - (void)setRepresentedObject:(id)representedObject {
     [super setRepresentedObject:representedObject];
@@ -123,7 +127,7 @@
 //    NSLog(@"%@", obj);
 //
 //    [[ScriptRunner sharedInstane] run:@"openFileToFunc" inputString:@"TBCLaunchADViewController1111.m:20"];
-    [self createBookmark:@"书签1"];
+
 }
 
 - (IBAction)selectedProjectRoot:(id)sender {
@@ -286,8 +290,16 @@
     NSLog(@"--");
     NSOutlineView *outlineView = notification.object;
     NSInteger row = [outlineView selectedRow];
-    id model = [outlineView itemAtRow:row];
+    ItemModel *model = [outlineView itemAtRow:row];
     NSLog(@"name = %@",model);
+    self.curSelectedModel = model;
 
+}
+- (IBAction)removeBookmarkAction:(id)sender {
+    [self removeBookmarks];
+}
+
+- (IBAction)addBookmarkAction:(id)sender {
+    [self createBookmark:@"书签1"];
 }
 @end

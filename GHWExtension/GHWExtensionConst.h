@@ -66,3 +66,45 @@ static NSString * const kLazyUICollectionViewCode = @"- (%@ *)%@ {\n    if (!_%@
 
 #define kBookmarksInfo @"kBookmarksInfo"
 #define kDefaultBookmark @"kDefaultBookmark"
+
+#define ClassCheck(var,className)               ((var) && [(var) isKindOfClass:[className class]])
+#define NSStringCheck(var)                      (ClassCheck(var, NSString) && (((NSString*)var).length > 0))
+#define NSAttributedStringCheck(var)            (ClassCheck(var, NSAttributedString) && (((NSAttributedString*)var).length > 0))
+#define NSArrayCheck(var)                       (ClassCheck(var, NSArray) && (var.count > 0))
+#define NSArrayCheckCount(var,minCount)         (ClassCheck(var, NSArray) && (var.count > minCount))
+#define NSDictionaryCheck(var)                  (ClassCheck(var, NSDictionary) && (var.count > 0))
+#define NSSetCheck(var)                         (ClassCheck(var, NSSet) && (var.count > 0))
+#define NSNumberCheck(var)                      (((var) != nil) && [(var) isKindOfClass:[NSNumber class]])
+
+#define DelegateCheckToSelector(delegate,selector) ((delegate) && ([delegate respondsToSelector:selector]))
+
+/// 返回NSString安全值
+#define NSStringSafeVoidValue(originValue)         (NSStringCheck(originValue) ? originValue : @"")
+#define NSStringSafeValue(originValue,safevalue)   (NSStringCheck(originValue) ? originValue : (NSStringCheck(safevalue) ? safevalue : @""))
+
+#define ClassCheckForReturn(var,className,returnValue) if (!ClassCheck(var,className)) {\
+return (returnValue);\
+}
+
+#define ClassCheckForReturnNil(var,className) ClassCheckForReturn(var,className,nil)
+#define ClassCheckForReturnVoid(var,className) if (!ClassCheck(var,className)) {\
+return ;\
+}
+
+#define ClassCheckForContinue(var,className) if (!ClassCheck(var, className)) {\
+continue;\
+}
+
+#define NSStringCheckForReturn(var,value) if (!NSStringCheck(var)) {\
+return (value);\
+}
+
+#define NSStringCheckForReturnNil(var) NSStringCheckForReturn(var,nil)
+
+#define NSStringCheckForReturnVoid(var) if (!(ClassCheck(var, NSString) && var.length > 0)) {\
+return ;\
+}
+
+#define NSStringCheckForContinue(var) if (!NSStringCheck(var)) {\
+continue;\
+}

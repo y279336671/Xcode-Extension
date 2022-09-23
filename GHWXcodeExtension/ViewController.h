@@ -9,6 +9,8 @@
 @interface ViewController : NSViewController
 
 
+- (IBAction)addBookmarkAction:(id)sender;
+- (IBAction)removeBookmarkAction:(id)sender;
 
 @end
 
