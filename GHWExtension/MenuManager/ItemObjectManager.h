@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ItemObjectManager : NSObject
 + (NSMutableArray *)fetchBookmarkOject;
-+ (void)addBookmarkObject:(NSMutableDictionary *)modelDic;
++ (void)addBookmarkObject:(ItemModel *)modelDic;
 + (void)removeBookmark:(ItemModel *)model;
 
 + (void)setDefaultBookmark:(ItemModel *)bookmarkModel;

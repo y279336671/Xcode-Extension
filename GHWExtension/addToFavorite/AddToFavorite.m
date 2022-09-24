@@ -17,7 +17,7 @@
 }
 
 - (void)processCodeWithInvocation:(XCSourceEditorCommandInvocation *)invocation {
-    NSMutableArray *bookmarks = [ItemObjectManager fetchDefautlBookmark];
+    NSMutableArray *bookmarks = [ItemObjectManager fetchBookmarkOject];
     if (!NSArrayCheck(bookmarks)) {
         // 没有创建书签就什么也不做
         return;
@@ -50,7 +50,7 @@
         }
     }
     NSLog(@"className = %@ ,funName = %@ , funcLocation = %@",className, funName ,funcLocation);
-    
+    NSLog(@"<<<<<<<<<<<");
     NSDictionary *itemInfo = [[NSDictionary alloc] initWithObjectsAndKeys:
                               [NSString stringWithFormat:@"%ld", (long)startLine], @"startLine",
                               [NSString stringWithFormat:@"%ld", (long)endLine], @"endLine",
@@ -60,6 +60,8 @@
                               [NSString stringWithFormat:@"%@", className], @"className",
                               [NSString stringWithFormat:@"%@", funcLocation], @"funcLocation",
                               nil];
+    ItemModel *model = [ItemModel mj_objectWithKeyValues:itemInfo];
+    [ItemObjectManager addBookmarkObject:model];
 }
 
 

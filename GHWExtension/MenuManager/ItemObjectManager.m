@@ -39,8 +39,8 @@
     return defaultModel;
 }
 
-+ (void)addBookmarkObject:(NSMutableDictionary *)modelDic {
-    ItemModel *newModel = [ItemModel mj_objectWithKeyValues:modelDic];
++ (void)addBookmarkObject:(ItemModel *)newModel {
+//    ItemModel *newModel = [ItemModel mj_objectWithKeyValues:modelDic];
     NSMutableArray *temp = [self fetchBookmarkOject];
     ItemModel *defaultBookmark = nil;
     if (NSArrayCheck(temp)) {
@@ -51,25 +51,42 @@
             }
         }
     }
-    if (NSArrayCheck(defaultBookmark.subItems)) {
-        for (ItemModel *model in defaultBookmark.subItems) {
-            if ([model.className isEqualToString:newModel.className]) {
-                if (NSArrayCheck(model.subItems)) {
-                    for (ItemModel *subModel in model.subItems) {
-                        if (![subModel.funName isEqualToString:newModel.funName]) {
-                            [model.subItems addObject:newModel];
-                        }
-                    }
-                } else {
-                    model.subItems = [[NSMutableArray alloc] initWithArray:@[newModel]];
-                }
 
-            } else {
-                defaultBookmark.subItems = [[NSMutableArray alloc] initWithArray:@[newModel]];
+    NSMutableArray *defaultBookmarkFor = [[NSMutableArray alloc] initWithArray:defaultBookmark.subItems];
+    if (NSArrayCheck(defaultBookmarkFor)) {
+        BOOL isHave = NO;
+        ItemModel *tempModel;
+        for (ItemModel *model in defaultBookmarkFor) {
+            if ([model.className isEqualToString:newModel.className]) {
+                isHave = YES;
+                tempModel = model;
             }
         }
+        if (isHave) {
+            if (NSArrayCheck(tempModel.subItems)) {
+                NSMutableArray *modelFor = [[NSMutableArray alloc] initWithArray:tempModel.subItems];
+                for (ItemModel *subModel in modelFor) {
+                    if (![subModel.funcLocation isEqualToString:newModel.funcLocation]) {
+                        [tempModel.subItems addObject:newModel];
+                    }
+                }
+            } else {
+                tempModel.subItems = [[NSMutableArray alloc] initWithArray:@[newModel]];
+            }
+        } else {
+            ItemModel *tempNewModel = [[ItemModel alloc] init];
+            tempNewModel.subItems = [[NSMutableArray alloc] initWithObjects:newModel, nil];
+            tempNewModel.keyName = newModel.className;
+            tempNewModel.className = newModel.className;
+            [defaultBookmark.subItems addObject:tempNewModel];
+        }
+
     } else {
-        defaultBookmark.subItems = [[NSMutableArray alloc] initWithArray:@[newModel]];
+        ItemModel *tempNewModel = [[ItemModel alloc] init];
+        tempNewModel.subItems = [[NSMutableArray alloc] initWithObjects:newModel, nil];
+        tempNewModel.keyName = newModel.className;
+        tempNewModel.className = newModel.className;
+        defaultBookmark.subItems = [[NSMutableArray alloc] initWithArray:@[tempNewModel]];
     }
     [ItemObjectManager updateAllBookmark:temp];
 }
