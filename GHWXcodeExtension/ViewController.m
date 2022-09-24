@@ -20,7 +20,6 @@
 @property (weak) IBOutlet NSTextField *projectPath;
 @property (weak) IBOutlet NSOutlineView *contentOutlineView;
 
-@property (nonatomic, strong) NSMutableArray *bookmarks;
 @property (nonatomic, strong) ItemModel *curSelectedModel;
 @end
 
@@ -49,39 +48,13 @@
 }
 
 - (void)bindOutlineView {
-//    ItemModel *funcItem1 = [[ItemModel alloc] init];
-//    funcItem1.funName = @"方法名1";
-//
-//    ItemModel *funcItem11 = [[ItemModel alloc] init];
-//    funcItem11.funName = @"方法名11";
-//    funcItem1.subItems = [[NSMutableArray alloc] initWithArray:@[funcItem11]];
-//
-//    ItemModel *funcItem111 = [[ItemModel alloc] init];
-//    funcItem111.funName = @"方法名111";
-//    funcItem11.subItems = [[NSMutableArray alloc] initWithArray:@[funcItem111]];
-//
-//
-//    ItemModel *funcItem2 = [[ItemModel alloc] init];
-//    funcItem2.funName = @"方法名2";
-//    ItemModel *funcItem22 = [[ItemModel alloc] init];
-//    funcItem22.funName = @"方法名22";
-//
-//    ItemModel *funcItem222 = [[ItemModel alloc] init];
-//    funcItem222.funName = @"方法名222";
-//    funcItem2.subItems = [[NSMutableArray alloc] initWithArray:@[funcItem22, funcItem222]];
-//
-//    ItemModel *funcItem3 = [[ItemModel alloc] init];
-//    funcItem3.funName = @"方法名3";
-//
-//    self.bookmarks =  [[NSMutableArray alloc] initWithArray:@[funcItem1, funcItem2, funcItem3]];
-    self.bookmarks =  [ItemObjectManager sharedInstane].bookmarkModels;
     [self.contentOutlineView reloadData];
 }
 
 
 - (void)createBookmark:(NSString *)bookmarkName {
     // 查找重名
-    NSMutableArray *bookmarks =  [ItemObjectManager sharedInstane].bookmarkModels;;
+    NSMutableArray *bookmarks =  [ItemObjectManager fetchBookmarkOject];;
     if (bookmarks && bookmarks.count > 0) {
         BOOL isContain = NO;
         for (ItemModel *model in bookmarks) {
@@ -99,20 +72,18 @@
         } else {
             ItemModel *model = [[ItemModel alloc] init];
             model.keyName = bookmarkName;
-            [[ItemObjectManager sharedInstane] addBookmarkObject:model];
+            [ItemObjectManager setDefaultBookmark:model];
         }
     } else {
         
         ItemModel *model = [[ItemModel alloc] init];
         model.keyName = bookmarkName;
-        [[ItemObjectManager sharedInstane] addBookmarkObject:model];
-        
-        [[ItemObjectManager sharedInstane] setDefaultBookmark:model];
+        [ItemObjectManager  setDefaultBookmark:model];
     }
 }
 
 - (void)removeBookmarks {
-    [[ItemObjectManager sharedInstane] removeBookmark:self.curSelectedModel];
+    [ItemObjectManager removeBookmark:self.curSelectedModel];
 }
 
 
@@ -230,7 +201,7 @@
 - (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item {
     NSInteger num = 0;
     if (!item) {
-        num = self.bookmarks.count;
+        num = [ItemObjectManager fetchBookmarkOject].count;
     } else {
         ItemModel *itemObject = (ItemModel *)item;
         num = itemObject.subItems.count;
@@ -240,7 +211,7 @@
 
 - (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item {
     if (!item) {
-        item = self.bookmarks[index];
+        item = [ItemObjectManager fetchBookmarkOject][index];
     } else {
         ItemModel *itemObject = (ItemModel *)item;
         item = itemObject.subItems[index];
@@ -251,7 +222,7 @@
 - (BOOL)outlineView:(NSOutlineView *)outlineView isGroupItem:(id)item {
     NSInteger num = 0;
     if (!item) {
-        num = self.bookmarks.count;
+        num = [ItemObjectManager fetchBookmarkOject].count;
     } else {
         ItemModel *itemObject = (ItemModel *)item;
         num = itemObject.subItems.count;

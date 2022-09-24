@@ -9,14 +9,14 @@
 #import "AddToFavorite.h"
 #import "GHWExtensionConst.h"
 #import "ItemObjectManager.h"
-#import "MJExtension.h"
+
 @implementation AddToFavorite
 - (NSString *)menuTitle {
     return @"addToFavorite";
 }
 
 - (void)processCodeWithInvocation:(XCSourceEditorCommandInvocation *)invocation {
-    NSMutableArray *bookmarks = [ItemObjectManager sharedInstane].bookmarkModels;
+    NSMutableArray *bookmarks = [ItemObjectManager fetchDefautlBookmark];
     if (!bookmarks || bookmarks.count == 0) {
         // 没有创建书签就什么也不做
         return;
@@ -60,32 +60,9 @@
                               [NSString stringWithFormat:@"%@", funcLocation], @"funcLocation",
                               nil];
     
-    
-//    ItemModel *newModel = [ItemModel mj_objectWithKeyValues:itemInfo];
-//
-//    ItemModel *defaultBookmark = [[ItemObjectManager sharedInstane] getDefautlBookmark];
-//
-//    if (NSArrayCheck(defaultBookmark.subItems)) {
-//        for (ItemModel *model in defaultBookmark.subItems) {
-//            if ([model.className isEqualToString:newModel.className]) {
-//                if (NSArrayCheck(model.subItems)) {
-//                    for (ItemModel *subModel in model.subItems) {
-//                        if (![subModel.funName isEqualToString:newModel.funName]) {
-//                            [model.subItems addObject:newModel];
-//                        }
-//                    }
-//                } else {
-//                    model.subItems = [[NSMutableArray alloc] initWithArray:@[newModel]];
-//                }
-//
-//            } else {
-//                defaultBookmark.subItems = [[NSMutableArray alloc] initWithArray:@[newModel]];
-//            }
-//        }
-//    }  else {
-//        defaultBookmark.subItems = [[NSMutableArray alloc] initWithArray:@[newModel]];
-//    }
-//    [[ItemObjectManager sharedInstane] updateAllBookmark];
+    // 不知道为什么这里 itemmodel不能解析 所以直接传递 itemInfo
+    [ItemObjectManager addBookmarkObject:[[NSMutableDictionary alloc] initWithDictionary:itemInfo]];
+
 }
 
 

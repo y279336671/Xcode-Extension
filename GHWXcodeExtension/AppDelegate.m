@@ -20,7 +20,6 @@
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application
-    [[ItemObjectManager sharedInstane] updateAllBookmark];
 }
 
 - (void)applicationWillBecomeActive:(NSNotification *)notification {
@@ -31,7 +30,6 @@
 }
 - (void)applicationWillResignActive:(NSNotification *)notification {
     NSLog(@"func name applicationWillResignActive");
-    [[ItemObjectManager sharedInstane] updateAllBookmark];
 }
 - (void)applicationDidResignActive:(NSNotification *)notification {
     NSLog(@"func name applicationDidResignActive");
