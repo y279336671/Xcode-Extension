@@ -13,7 +13,6 @@
 
 //-------------------------------插件中的单例和主程序中的单例完全是2个, 所以起不到单例的作用, 貌似唯一能通用的地方就是 NSUserDefault, 所有的增删改查 都要改NSUserDefault--------------------------------
 
-
 + (NSMutableArray *)fetchBookmarkOject {
     NSArray *temp =  [[NSArray alloc]initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:kBookmarksInfo]];
     NSMutableArray *bookmarks = [[NSMutableArray alloc] init];

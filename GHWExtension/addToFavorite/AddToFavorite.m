@@ -9,7 +9,8 @@
 #import "AddToFavorite.h"
 #import "GHWExtensionConst.h"
 #import "ItemObjectManager.h"
-
+#import "ItemModel.h"
+#import "MJExtension.h"
 @implementation AddToFavorite
 - (NSString *)menuTitle {
     return @"addToFavorite";
@@ -17,7 +18,7 @@
 
 - (void)processCodeWithInvocation:(XCSourceEditorCommandInvocation *)invocation {
     NSMutableArray *bookmarks = [ItemObjectManager fetchDefautlBookmark];
-    if (!bookmarks || bookmarks.count == 0) {
+    if (!NSArrayCheck(bookmarks)) {
         // 没有创建书签就什么也不做
         return;
     }
@@ -59,10 +60,6 @@
                               [NSString stringWithFormat:@"%@", className], @"className",
                               [NSString stringWithFormat:@"%@", funcLocation], @"funcLocation",
                               nil];
-    
-    // 不知道为什么这里 itemmodel不能解析 所以直接传递 itemInfo
-    [ItemObjectManager addBookmarkObject:[[NSMutableDictionary alloc] initWithDictionary:itemInfo]];
-
 }
 
 
