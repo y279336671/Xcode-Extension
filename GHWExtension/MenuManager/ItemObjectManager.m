@@ -64,12 +64,17 @@
         }
         if (isHave) {
             if (NSArrayCheck(tempModel.subItems)) {
+                BOOL isSubHave = NO;
                 NSMutableArray *modelFor = [[NSMutableArray alloc] initWithArray:tempModel.subItems];
                 for (ItemModel *subModel in modelFor) {
-                    if (![subModel.funcLocation isEqualToString:newModel.funcLocation]) {
-                        [tempModel.subItems addObject:newModel];
+                    if ([subModel.funcLocation isEqualToString:newModel.funcLocation]) {
+                        isSubHave = YES;
                     }
                 }
+                if (!isSubHave){
+                    [tempModel.subItems addObject:newModel];
+                }
+
             } else {
                 tempModel.subItems = [[NSMutableArray alloc] initWithArray:@[newModel]];
             }
