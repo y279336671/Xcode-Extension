@@ -72,13 +72,15 @@
         } else {
             ItemModel *model = [[ItemModel alloc] init];
             model.keyName = bookmarkName;
+            [ItemObjectManager addBookmarkObject:model];
             [ItemObjectManager setDefaultBookmark:model];
         }
     } else {
         
         ItemModel *model = [[ItemModel alloc] init];
         model.keyName = bookmarkName;
-        [ItemObjectManager  setDefaultBookmark:model];
+        [ItemObjectManager addBookmarkObject:model];
+        [ItemObjectManager setDefaultBookmark:model];
     }
 }
 
@@ -271,6 +273,9 @@
 }
 
 - (IBAction)addBookmarkAction:(id)sender {
-    [self createBookmark:@"书签1"];
+    NSTimeInterval interval = [[NSDate date] timeIntervalSince1970];
+    NSInteger time = interval;
+    NSString *bookmark = [NSString stringWithFormat:@"书签1%zd",time];
+    [self createBookmark:bookmark];
 }
 @end
