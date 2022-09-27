@@ -25,19 +25,6 @@
 }
 
 
-+ (ItemModel *)fetchDefautlBookmark {
-    NSMutableArray *temp = [self fetchBookmarkOject];
-    ItemModel *defaultModel = nil;
-    if (NSArrayCheck(temp)) {
-        for (ItemModel *model in temp) {
-            if (model.isDefault) {
-                defaultModel = model;
-                break;
-            }
-        }
-    }
-    return defaultModel;
-}
 
 + (void)addBookmarkObject:(ItemModel *)newModel {
     NSMutableArray *temp = [self fetchBookmarkOject];
@@ -139,6 +126,32 @@
         }
         [self updateAllBookmark:bookmarks];
     }
+}
+
++ (void)addDefaultBookmark:(ItemModel *)bookmarkModel {
+    NSMutableArray *bookmarks = [self fetchBookmarkOject];
+    NSMutableArray *temp = [[NSMutableArray alloc]initWithArray:bookmarks];
+    if (NSArrayCheck(temp)) {
+        [bookmarks insertObject:bookmarkModel atIndex:0];
+    } else {
+        [bookmarks addObject:bookmarkModel];
+    }
+    
+    [self updateAllBookmark:bookmarks];
+}
+
++ (ItemModel *)fetchDefautlBookmark {
+    NSMutableArray *temp = [self fetchBookmarkOject];
+    ItemModel *defaultModel = nil;
+    if (NSArrayCheck(temp)) {
+        for (ItemModel *model in temp) {
+            if (model.isDefault) {
+                defaultModel = model;
+                break;
+            }
+        }
+    }
+    return defaultModel;
 }
 
 + (void)setDefaultBookmark:(ItemModel *)bookmarkModel {

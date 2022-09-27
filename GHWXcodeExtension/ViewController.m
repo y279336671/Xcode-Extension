@@ -72,15 +72,14 @@
         } else {
             ItemModel *model = [[ItemModel alloc] init];
             model.keyName = bookmarkName;
-            [ItemObjectManager addBookmarkObject:model];
-            [ItemObjectManager setDefaultBookmark:model];
+            [ItemObjectManager addDefaultBookmark:model];
+            
         }
     } else {
         
         ItemModel *model = [[ItemModel alloc] init];
         model.keyName = bookmarkName;
-        [ItemObjectManager addBookmarkObject:model];
-        [ItemObjectManager setDefaultBookmark:model];
+        [ItemObjectManager addDefaultBookmark:model];
     }
 }
 
