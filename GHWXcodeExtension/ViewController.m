@@ -19,6 +19,10 @@
 @property (weak) IBOutlet NSTextField *scriptsPath;
 @property (weak) IBOutlet NSTextField *projectPath;
 @property (weak) IBOutlet NSOutlineView *contentOutlineView;
+@property (weak) IBOutlet NSTextField *changeKeyNameTextField;
+
+@property (weak) IBOutlet NSButton *changeButton;
+- (IBAction)changeKeyName:(id)sender;
 
 @property (nonatomic, strong) ItemModel *curSelectedModel;
 @end
@@ -276,5 +280,13 @@
     NSInteger time = interval;
     NSString *bookmark = [NSString stringWithFormat:@"书签1%zd",time];
     [self createBookmark:bookmark];
+}
+
+- (IBAction)changeKeyName:(id)sender {
+//
+    if (self.curSelectedModel && NSStringCheck(self.changeKeyNameTextField.stringValue)) {
+        [ItemObjectManager changeBookmarWithSourceMode:self.curSelectedModel withKeyName:self.changeKeyNameTextField.stringValue];
+    }
+    
 }
 @end

@@ -15,10 +15,12 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)addBookmarkObject:(ItemModel *)modelDic;
 + (void)removeBookmark:(ItemModel *)model;
 
+
 + (void)addDefaultBookmark:(ItemModel *)bookmarkModel;
 + (void)setDefaultBookmark:(ItemModel *)bookmarkModel;
 + (ItemModel *)fetchDefautlBookmark;
 
++ (void)changeBookmarWithSourceMode:(ItemModel *)bookmarkModel withKeyName:(NSString *)keyName;
 
 
 @end

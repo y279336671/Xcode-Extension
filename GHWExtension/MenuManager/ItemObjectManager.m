@@ -164,7 +164,7 @@
             NSMutableArray *temp = [[NSMutableArray alloc]initWithArray:bookmarks];
             for (int n = 0; n < temp.count; n++) {
                 ItemModel *model = (ItemModel *)temp[n];
-                if (NSStringCheck(model) && [model.keyName isEqualToString:bookmarkModel.keyName]) {
+                if ([model.keyName isEqualToString:bookmarkModel.keyName]) {
                     model.isDefault = YES;
                     [bookmarks exchangeObjectAtIndex:n withObjectAtIndex:0];
                 } else {
@@ -176,6 +176,21 @@
     }
     [self updateAllBookmark:bookmarks];
 }
+
++ (void)changeBookmarWithSourceMode:(ItemModel *)bookmarkModel withKeyName:(NSString *)keyName{
+    NSMutableArray *bookmarks = [self fetchBookmarkOject];
+    NSMutableArray *temp = [[NSMutableArray alloc]initWithArray:bookmarks];
+    if (NSArrayCheck(temp)) {
+        for (int n = 0; n < temp.count; n++) {
+            ItemModel *model = (ItemModel *)temp[n];
+            if ([model.keyName isEqualToString:bookmarkModel.keyName]) {
+                model.keyName = keyName;
+            }
+        }
+    }
+    [self updateAllBookmark:bookmarks];
+}
+
 
 + (void)updateAllBookmark:(NSMutableArray *)itemModels {
     NSMutableArray *bookmarks = [[NSMutableArray alloc] init];
