@@ -22,7 +22,7 @@
         // 没有创建书签就什么也不做
         return;
     }
-    
+
     XCSourceTextRange *textRange = invocation.buffer.selections[0];
     NSInteger startLine = textRange.start.line;
     NSInteger endLine = textRange.end.line;

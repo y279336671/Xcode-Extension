@@ -36,7 +36,9 @@
                 break;
             }
         }
-
+        if (!defaultBookmark) {
+            return;
+        }
         NSMutableArray *defaultBookmarkFor = [[NSMutableArray alloc] initWithArray:defaultBookmark.subItems];
         if (NSArrayCheck(defaultBookmarkFor)) {
             BOOL isHave = NO;
@@ -183,7 +185,7 @@
     if (NSArrayCheck(temp)) {
         for (ItemModel *item in temp) {
             if ([bookmarkModel.funcLocation isEqualToString:item.funcLocation] || [bookmarkModel.keyName isEqualToString:item.keyName]) {
-                if (![self isHaveSameNameBookmark:bookmarkModel]){
+                if (![self isHaveSameNameBookmark:keyName]){
                     item.keyName = keyName;
                 }
                 
@@ -211,11 +213,11 @@
     [self updateAllBookmark:bookmarks];
 }
 
-+ (BOOL)isHaveSameNameBookmark:(ItemModel *)bookmarkModel {
++ (BOOL)isHaveSameNameBookmark:(NSString *)keyName {
     BOOL isHave = NO;
     NSMutableArray *bookmarks = [self fetchBookmarkOject];
     for (ItemModel *item in bookmarks) {
-        if ([item.keyName isEqualToString:bookmarkModel.keyName]) {
+        if ([item.keyName isEqualToString:keyName]) {
             isHave = YES;
         }
     }

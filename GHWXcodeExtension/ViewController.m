@@ -77,6 +77,7 @@
             ItemModel *model = [[ItemModel alloc] init];
             model.keyName = bookmarkName;
             [ItemObjectManager addDefaultBookmark:model];
+            [ItemObjectManager setDefaultBookmark:model];
             
         }
     } else {
@@ -84,6 +85,7 @@
         ItemModel *model = [[ItemModel alloc] init];
         model.keyName = bookmarkName;
         [ItemObjectManager addDefaultBookmark:model];
+        [ItemObjectManager setDefaultBookmark:model];
     }
 }
 
@@ -287,6 +289,6 @@
     if (self.curSelectedModel && NSStringCheck(self.changeKeyNameTextField.stringValue)) {
         [ItemObjectManager changeBookmarWithSourceMode:self.curSelectedModel withKeyName:self.changeKeyNameTextField.stringValue];
     }
-    
+//    [NSWorkspace sharedWorkspace]
 }
 @end
