@@ -108,6 +108,23 @@
 
 }
 
+- (void)runShellWithCommand:(NSString *)command completeBlock:(dispatch_block_t)completeBlock{
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0), ^{
+        NSTask *task = [[NSTask alloc] init];
+        [task setLaunchPath: @"/bin/sh"];
+        NSArray *arguments;
+        arguments = [NSArray arrayWithObjects:@"-c",command, nil];
+        [task setArguments: arguments];
+        [task launch];
+        [task waitUntilExit];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (completeBlock) {
+                completeBlock();
+            }
+        });
+    });
+
+
 - (IBAction)selectedProjectRoot:(id)sender {
     NSError *error;
     NSURL *directoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
