@@ -181,14 +181,45 @@
     NSMutableArray *bookmarks = [self fetchBookmarkOject];
     NSMutableArray *temp = [[NSMutableArray alloc]initWithArray:bookmarks];
     if (NSArrayCheck(temp)) {
-        for (int n = 0; n < temp.count; n++) {
-            ItemModel *model = (ItemModel *)temp[n];
-            if ([model.keyName isEqualToString:bookmarkModel.keyName]) {
-                model.keyName = keyName;
+        for (ItemModel *item in temp) {
+            if ([bookmarkModel.funcLocation isEqualToString:item.funcLocation] || [bookmarkModel.keyName isEqualToString:item.keyName]) {
+                if (![self isHaveSameNameBookmark:bookmarkModel]){
+                    item.keyName = keyName;
+                }
+                
+                break;
+            }
+            NSMutableArray *subItemsTemp = [[NSMutableArray alloc]initWithArray:item.subItems];
+            for (ItemModel *subItem in subItemsTemp) {
+                if ([bookmarkModel.funcLocation isEqualToString:subItem.funcLocation] || [bookmarkModel.keyName isEqualToString:subItem.keyName]) {
+                    subItem.keyName = keyName;
+                    break;
+                }
+
+                NSMutableArray *subsubItemsTemp = [[NSMutableArray alloc]initWithArray:subItem.subItems];
+                for (ItemModel *subsubItem in subsubItemsTemp) {
+                    if ([bookmarkModel.funcLocation isEqualToString:subsubItem.funcLocation] || [bookmarkModel.keyName isEqualToString:subsubItem.keyName]) {
+                        subsubItem.keyName = keyName;
+                        break;
+                    }
+                }
+
             }
         }
     }
+
     [self updateAllBookmark:bookmarks];
+}
+
++ (BOOL)isHaveSameNameBookmark:(ItemModel *)bookmarkModel {
+    BOOL isHave = NO;
+    NSMutableArray *bookmarks = [self fetchBookmarkOject];
+    for (ItemModel *item in bookmarks) {
+        if ([item.keyName isEqualToString:bookmarkModel.keyName]) {
+            isHave = YES;
+        }
+    }
+    return isHave;
 }
 
 
