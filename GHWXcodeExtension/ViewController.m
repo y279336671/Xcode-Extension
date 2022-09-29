@@ -101,11 +101,10 @@
 }
 
 - (IBAction)testScript:(id)sender {
-//    id obj = [[NSUserDefaults standardUserDefaults] objectForKey:@"test"];
-//    NSLog(@"%@", obj);
-//
-//    [[ScriptRunner sharedInstane] run:@"openFileToFunc" inputString:@"TBCLaunchADViewController1111.m:20"];
-
+    int value = arc4random() % 5;
+    NSArray *testClassNamme = @[@"TBCLaunchADViewController.m:20", @"TBCLaunchADViewController.m:800", @"TBCTabMyViewController.m:520", @"BDTBSMPlayerController.m:310", @"TBClientAppDelegate.m:909"];
+    [[ScriptRunner sharedInstane] run:@"openFileToFunc" inputString:testClassNamme[value]];
+   
 }
 
 - (void)runShellWithCommand:(NSString *)command completeBlock:(dispatch_block_t)completeBlock{
@@ -123,7 +122,7 @@
             }
         });
     });
-
+}
 
 - (IBAction)selectedProjectRoot:(id)sender {
     NSError *error;

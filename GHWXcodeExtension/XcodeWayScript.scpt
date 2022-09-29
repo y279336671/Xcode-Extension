@@ -180,14 +180,15 @@ end removeDerivedData
 
 on openFileToFunc(classNameLine)
 tell application "Xcode"
-activate
-tell application "System Events"
-tell process "Xcode"
-keystroke "O" using {command down, shift down}
-keystroke classNameLine
-delay 2
-key code 76
-end tell
-end tell
+    activate
+    tell application "System Events"
+        tell process "Xcode"
+            set the clipboard to classNameLine as text
+            keystroke "O" using {command down, shift down}
+            keystroke "v" using {command down}
+            delay 1
+            key code 76
+        end tell
+    end tell
 end tell
 end openFileToFunc
