@@ -192,3 +192,41 @@ tell application "Xcode"
     end tell
 end tell
 end openFileToFunc
+
+
+on openFileToFuncWithShell(classNameLine)
+do shell script "open " & classNameLine
+tell application "Xcode"
+    activate
+    tell application "System Events"
+        tell process "Xcode"
+            keystroke "l" using {command down}
+            keystroke "70"
+            key code 76
+            key code 53
+        end tell
+    end tell
+end tell
+end openFileToFuncWithShell
+
+
+on openFileToFuncWithLineNum(classPath, lineNum)
+do shell script "open " & classPath
+tell application "Xcode"
+    activate
+    tell application "System Events"
+        tell process "Xcode"
+            keystroke "l" using {command down}
+            keystroke lineNum
+            key code 76
+            key code 53
+        end tell
+    end tell
+end tell
+end openFileToFuncWithLineNum
+
+
+
+on dododoShell(shellScript)
+do shell script shellScript
+end dododoShell

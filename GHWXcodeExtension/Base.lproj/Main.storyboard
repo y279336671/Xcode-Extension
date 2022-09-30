@@ -751,7 +751,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PQz-MT-2Dk">
-                                <rect key="frame" x="706" y="223" width="92" height="32"/>
+                                <rect key="frame" x="703" y="167" width="92" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="testscript" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="n8m-wx-fgQ">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -829,7 +829,7 @@
                                 </tableHeaderView>
                             </scrollView>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hyt-Ox-mLf">
-                                <rect key="frame" x="731" y="183" width="43" height="32"/>
+                                <rect key="frame" x="712" y="237" width="43" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="+" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QHa-hx-4zs">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -860,7 +860,7 @@
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H6D-o4-Fmt">
-                                <rect key="frame" x="731" y="130" width="41" height="32"/>
+                                <rect key="frame" x="714" y="205" width="41" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="-" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="I9a-o2-lDg">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -870,12 +870,33 @@
                                     <action selector="removeBookmarkAction:" target="XfG-lQ-9wD" id="ffM-Jp-wgj"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8EN-tK-xCo">
+                                <rect key="frame" x="703" y="127" width="98" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="testscript1" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7A0-pK-H63">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="testScript1:" target="XfG-lQ-9wD" id="hPy-PC-PJ6"/>
+                                </connections>
+                            </button>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nJY-Eb-Myw">
+                                <rect key="frame" x="310" y="9" width="384" height="126"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Rgm-7C-Zqv">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="changeButton" destination="PAA-ND-3OD" id="nXa-1Y-noP"/>
                         <outlet property="changeKeyNameTextField" destination="2E5-Cu-Fw4" id="4nL-fP-YGx"/>
                         <outlet property="contentOutlineView" destination="Yk9-RZ-vxF" id="1Mm-nw-sml"/>
+                        <outlet property="messageText" destination="Rgm-7C-Zqv" id="x3O-AH-1t7"/>
                         <outlet property="projectPath" destination="Wxs-1G-tM0" id="5oq-UZ-4uH"/>
                         <outlet property="scriptsPath" destination="Kq7-bg-u11" id="PC2-Tj-Afz"/>
                     </connections>

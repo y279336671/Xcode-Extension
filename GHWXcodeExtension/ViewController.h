@@ -11,6 +11,7 @@
 
 - (IBAction)addBookmarkAction:(id)sender;
 - (IBAction)removeBookmarkAction:(id)sender;
+@property (weak) IBOutlet NSTextFieldCell *messageText;
 
 @end
 

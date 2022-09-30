@@ -61,4 +61,37 @@
     return target;
 }
 
+- (void)run:(NSString *)funcName params:(NSDictionary *)params{
+    NSURL *filePath = [self fileScriptPath:@"XcodeWayScript"];
+    NSError *error;
+
+    NSUserAppleScriptTask *task =  [[NSUserAppleScriptTask alloc] initWithURL:filePath error:&error];
+    NSLog(@"%@", error);
+    NSAppleEventDescriptor *event = [self eventDescriptior:funcName params:params];
+    [task executeWithAppleEvent:event completionHandler:^(NSAppleEventDescriptor * _Nullable result, NSError * _Nullable error) {
+        NSLog(@"%@, %@", result, error);
+    }];
+}
+
+- (NSAppleEventDescriptor *)eventDescriptior:(NSString *)funcName params:(NSDictionary *)params {
+    
+    // parameter
+    NSAppleEventDescriptor *parameter1 = [NSAppleEventDescriptor descriptorWithString:params[@"classPath"]];
+    NSAppleEventDescriptor *parameter2 = [NSAppleEventDescriptor descriptorWithString:params[@"lineNumber"]];
+    
+    NSAppleEventDescriptor *parameters = [NSAppleEventDescriptor listDescriptor];
+    [parameters insertDescriptor:parameter1 atIndex:1];
+    [parameters insertDescriptor:parameter2 atIndex:2];
+    
+    NSAppleEventDescriptor *target = [[NSAppleEventDescriptor alloc] initWithEventClass:kASAppleScriptSuite eventID:kASSubroutineEvent targetDescriptor:nil returnID:kAutoGenerateReturnID transactionID:kAnyTransactionID];
+    
+    NSAppleEventDescriptor *function = [NSAppleEventDescriptor descriptorWithString:funcName];
+    [target setParamDescriptor:function forKeyword:keyASSubroutineName];
+    [target setParamDescriptor:parameters forKeyword:keyDirectObject];
+    
+    
+    return target;
+}
+
+
 @end

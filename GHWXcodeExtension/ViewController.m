@@ -99,12 +99,40 @@
 
     // Update the view, if already loaded.
 }
+- (IBAction)testScript1:(id)sender {
+    int value = arc4random() % 5;
+        NSArray *testClassNamme = @[@"TBCLaunchADViewController.m:20", @"TBCLaunchADViewController.m:800", @"TBCTabMyViewController.m:520", @"BDTBSMPlayerController.m:310", @"TBClientAppDelegate.m:909"];
+        [[ScriptRunner sharedInstane] run:@"openFileToFunc" inputString:testClassNamme[value]];
+}
 
 - (IBAction)testScript:(id)sender {
+    // todo 扫所有目录结构, 定时扫.
+    
     int value = arc4random() % 5;
-    NSArray *testClassNamme = @[@"TBCLaunchADViewController.m:20", @"TBCLaunchADViewController.m:800", @"TBCTabMyViewController.m:520", @"BDTBSMPlayerController.m:310", @"TBClientAppDelegate.m:909"];
-    [[ScriptRunner sharedInstane] run:@"openFileToFunc" inputString:testClassNamme[value]];
-   
+        NSArray *testPath = @[@"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/LaunchRelated/TBCLaunchADViewController.m",
+                              @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCInterstitialADManager.m",
+                              @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCLaunchADStatLogHelper.m",
+                              @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCBearParamsGetter.m",
+                              @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/NetworkMonitor/TBCNetworkMonitorManager.m"];
+    NSArray *lineNums = @[@"20",
+                          @"100",
+                          @"5",
+                          @"200",
+                          @"70"];
+    self.messageText.stringValue = [NSString stringWithFormat:@"%@, %@", testPath[value], lineNums[value]];
+        
+    [[ScriptRunner sharedInstane] run:@"openFileToFuncWithLineNum" params:@{
+        @"classPath":testPath[value],
+        @"lineNumber":lineNums[value]
+    }];
+    
+//    NSArray *testPath = @[@"xed -l 100 /Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/LaunchRelated/TBCLaunchADViewController.m",
+//                          @"xed -l 20 /Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCInterstitialADManager.m",
+//                          @"xed -l 230 /Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCLaunchADStatLogHelper.m",
+//                          @"xed -l 10 /Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCBearParamsGetter.m",
+//                          @"xed -l 90 /Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/NetworkMonitor/TBCNetworkMonitorManager.m"];
+//
+//    [[ScriptRunner sharedInstane] run:@"dododoShell" inputString:testPath[value]];
 }
 
 - (void)runShellWithCommand:(NSString *)command completeBlock:(dispatch_block_t)completeBlock{

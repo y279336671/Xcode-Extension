@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (ScriptRunner *)sharedInstane;
 - (void)run:(NSString *)funcName;
 - (void)run:(NSString *)funcName inputString:(NSString *)inputString;
+- (void)run:(NSString *)funcName params:(NSDictionary *)params;
 @end
 
 NS_ASSUME_NONNULL_END
