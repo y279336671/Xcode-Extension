@@ -5,6 +5,7 @@ target 'GHWExtension' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   pod 'MJExtension'
+  pod 'YYCache'
   # Pods for GHWExtension
 
 end
@@ -13,6 +14,7 @@ target 'GHWXcodeExtension' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   pod 'MJExtension'
+  pod 'YYCache'
   # Pods for GHWXcodeExtension
 
 end

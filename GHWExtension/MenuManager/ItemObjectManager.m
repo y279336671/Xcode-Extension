@@ -13,6 +13,8 @@
 
 //-------------------------------插件中的单例和主程序中的单例完全是2个, 所以起不到单例的作用, 貌似唯一能通用的地方就是 NSUserDefault, 所有的增删改查 都要改NSUserDefault--------------------------------
 
+
+
 + (NSMutableArray *)fetchBookmarkOject {
     NSArray *temp =  [[NSArray alloc]initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:kBookmarksInfo]];
     NSMutableArray *bookmarks = [[NSMutableArray alloc] init];
@@ -24,6 +26,54 @@
     return bookmarks;
 }
 
++ (NSString *)fetchFilePath:(ItemModel *)bookmarkModel {
+    NSFileManager * fileManger = [NSFileManager defaultManager];
+    NSString *filename;
+    NSUserDefaults *local = [NSUserDefaults standardUserDefaults];
+    NSString *projectPath = [local stringForKey:kDefaultProjectPath];
+    for (filename in [fileManger enumeratorAtPath:projectPath]) {
+        if ([filename containsString:bookmarkModel.className]) {
+            NSString *filePath = [NSString stringWithFormat:@"%@%@", projectPath, filename];
+            return filePath;
+        }
+    }
+    return @"";
+}
+
++ (void)updateAllFilePath {
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+
+        NSMutableArray *bookmarks = [self fetchBookmarkOject];
+        NSMutableArray *temp = [[NSMutableArray alloc]initWithArray:bookmarks];
+        if (NSArrayCheck(temp)) {
+            for (ItemModel *item in temp) {
+                NSString *filePath = [self fetchFilePath:item];
+                if (NSStringCheck(filePath)) {
+                    item.filePath = filePath;
+                }
+                NSMutableArray *subItemsTemp = [[NSMutableArray alloc]initWithArray:item.subItems];
+                for (ItemModel *subItem in subItemsTemp) {
+                    NSString *subFilePath = [self fetchFilePath:subItem];
+                    if (NSStringCheck(subFilePath)) {
+                        subItem.filePath = subFilePath;
+                    }
+
+                    NSMutableArray *subsubItemsTemp = [[NSMutableArray alloc]initWithArray:subItem.subItems];
+                    for (ItemModel *subsubItem in subsubItemsTemp) {
+                        NSString *subsubFilePath = [self fetchFilePath:subsubItem];
+                        if (NSStringCheck(subsubFilePath)) {
+                            subsubItem.filePath = subsubFilePath;
+                        }
+                    }
+
+                }
+            }
+        }
+
+        [self updateAllBookmark:bookmarks];
+
+    });
+}
 
 
 + (void)addBookmarkObject:(ItemModel *)newModel {
@@ -179,7 +229,7 @@
     [self updateAllBookmark:bookmarks];
 }
 
-+ (void)changeBookmarWithSourceMode:(ItemModel *)bookmarkModel withKeyName:(NSString *)keyName{
++ (void)changeBookmarkWithSourceMode:(ItemModel *)bookmarkModel withKeyName:(NSString *)keyName{
     NSMutableArray *bookmarks = [self fetchBookmarkOject];
     NSMutableArray *temp = [[NSMutableArray alloc]initWithArray:bookmarks];
     if (NSArrayCheck(temp)) {

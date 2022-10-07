@@ -23,6 +23,8 @@
 		21AE120D28D9DE3200A294B8 /* ItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AE120C28D9DE3200A294B8 /* ItemModel.m */; };
 		21AE120E28D9DE3200A294B8 /* ItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AE120C28D9DE3200A294B8 /* ItemModel.m */; };
 		21D0AE1228B4606E00A49757 /* AddToFavorite.m in Sources */ = {isa = PBXBuildFile; fileRef = 21D0AE1128B4606E00A49757 /* AddToFavorite.m */; };
+		5795F51328EA870500AD113B /* FullDiskAccessAuthorizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5795F51228EA870500AD113B /* FullDiskAccessAuthorizer.m */; };
+		5795F51428EA870500AD113B /* FullDiskAccessAuthorizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5795F51228EA870500AD113B /* FullDiskAccessAuthorizer.m */; };
 		D1235212BEBB0480B2BB770C /* Pods_GHWXcodeExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92229F7234384BD68DEED940 /* Pods_GHWXcodeExtension.framework */; };
 		ED6552302318F98E0036A04A /* GHWAddLazyCode.m in Sources */ = {isa = PBXBuildFile; fileRef = ED65522C2318F98E0036A04A /* GHWAddLazyCode.m */; };
 		ED6552372318FB180036A04A /* GHWInitView.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6552362318FB180036A04A /* GHWInitView.m */; };
@@ -105,6 +107,8 @@
 		21D0AE1128B4606E00A49757 /* AddToFavorite.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddToFavorite.m; sourceTree = "<group>"; };
 		22D679596404856FB6BB4145 /* Pods-GHWExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GHWExtension.debug.xcconfig"; path = "Target Support Files/Pods-GHWExtension/Pods-GHWExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		44F77CC4E21EA8A95ADDBA3C /* Pods-GHWXcodeExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GHWXcodeExtension.release.xcconfig"; path = "Target Support Files/Pods-GHWXcodeExtension/Pods-GHWXcodeExtension.release.xcconfig"; sourceTree = "<group>"; };
+		5795F51128EA870500AD113B /* FullDiskAccessAuthorizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FullDiskAccessAuthorizer.h; sourceTree = "<group>"; };
+		5795F51228EA870500AD113B /* FullDiskAccessAuthorizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FullDiskAccessAuthorizer.m; sourceTree = "<group>"; };
 		70022FC8A7C8E96E13E4C19F /* Pods-GHWExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GHWExtension.release.xcconfig"; path = "Target Support Files/Pods-GHWExtension/Pods-GHWExtension.release.xcconfig"; sourceTree = "<group>"; };
 		92229F7234384BD68DEED940 /* Pods_GHWXcodeExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GHWXcodeExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B52E29B332C61AA6549F741F /* Pods-GHWXcodeExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GHWXcodeExtension.debug.xcconfig"; path = "Target Support Files/Pods-GHWXcodeExtension/Pods-GHWXcodeExtension.debug.xcconfig"; sourceTree = "<group>"; };
@@ -286,6 +290,8 @@
 				21A1C87328D8627A000B9FD3 /* CustomTableCellView.m */,
 				21A1C87528D86291000B9FD3 /* CustomTableRowView.h */,
 				21A1C87628D86291000B9FD3 /* CustomTableRowView.m */,
+				5795F51128EA870500AD113B /* FullDiskAccessAuthorizer.h */,
+				5795F51228EA870500AD113B /* FullDiskAccessAuthorizer.m */,
 			);
 			path = GHWXcodeExtension;
 			sourceTree = "<group>";
@@ -526,6 +532,7 @@
 			files = (
 				EDA60A432317F41000B5FA3D /* ViewController.m in Sources */,
 				21A1C87728D86291000B9FD3 /* CustomTableRowView.m in Sources */,
+				5795F51328EA870500AD113B /* FullDiskAccessAuthorizer.m in Sources */,
 				EDA60A4B2317F41000B5FA3D /* main.m in Sources */,
 				21A1C87428D8627A000B9FD3 /* CustomTableCellView.m in Sources */,
 				EDA60A402317F41000B5FA3D /* AppDelegate.m in Sources */,
@@ -546,6 +553,7 @@
 				ED6552302318F98E0036A04A /* GHWAddLazyCode.m in Sources */,
 				217DFF0F288E6ED60056680B /* MenuInfo.m in Sources */,
 				21D0AE1228B4606E00A49757 /* AddToFavorite.m in Sources */,
+				5795F51428EA870500AD113B /* FullDiskAccessAuthorizer.m in Sources */,
 				ED6552372318FB180036A04A /* GHWInitView.m in Sources */,
 				EDC57717232E2EEB00445D4F /* GHWAddImport.m in Sources */,
 				21AE120028D9A0EE00A294B8 /* ScriptRunner.m in Sources */,

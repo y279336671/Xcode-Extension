@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *funName;
 @property (nonatomic, copy) NSString *className;
 @property (nonatomic, copy) NSString *funcLocation;
-
+@property (nonatomic, copy) NSString *filePath;
 @property (nonatomic, copy) NSString *keyName;
 @property (nonatomic, strong) NSMutableArray *subItems;
 

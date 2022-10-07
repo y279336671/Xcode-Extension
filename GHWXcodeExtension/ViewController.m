@@ -11,8 +11,8 @@
 #import "ScriptRunner.h"
 #import "GHWExtensionConst.h"
 #import "ItemObjectManager.h"
-#define  kDefaultProjectPath @"kDefaultProjectPath"
-#define  kDefaultScriptPath  @"kDefaultScriptPath"
+#import "FullDiskAccessAuthorizer.h"
+
 
 
 @interface ViewController ()<NSOutlineViewDelegate, NSOutlineViewDataSource>
@@ -20,7 +20,6 @@
 @property (weak) IBOutlet NSTextField *projectPath;
 @property (weak) IBOutlet NSOutlineView *contentOutlineView;
 @property (weak) IBOutlet NSTextField *changeKeyNameTextField;
-
 @property (weak) IBOutlet NSButton *changeButton;
 - (IBAction)changeKeyName:(id)sender;
 
@@ -40,6 +39,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bindOutlineView) name:NSApplicationWillBecomeActiveNotification object:nil];
     
     [self bindOutlineView];
+    [ItemObjectManager updateAllFilePath];
 }
 
 - (void)dealloc {
@@ -99,33 +99,29 @@
 
     // Update the view, if already loaded.
 }
-- (IBAction)testScript1:(id)sender {
-    int value = arc4random() % 5;
-        NSArray *testClassNamme = @[@"TBCLaunchADViewController.m:20", @"TBCLaunchADViewController.m:800", @"TBCTabMyViewController.m:520", @"BDTBSMPlayerController.m:310", @"TBClientAppDelegate.m:909"];
-        [[ScriptRunner sharedInstane] run:@"openFileToFunc" inputString:testClassNamme[value]];
-}
 
 - (IBAction)testScript:(id)sender {
     // todo 扫所有目录结构, 定时扫.
-    
-    int value = arc4random() % 5;
-        NSArray *testPath = @[@"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/LaunchRelated/TBCLaunchADViewController.m",
-                              @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCInterstitialADManager.m",
-                              @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCLaunchADStatLogHelper.m",
-                              @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCBearParamsGetter.m",
-                              @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/NetworkMonitor/TBCNetworkMonitorManager.m"];
-    NSArray *lineNums = @[@"20",
-                          @"100",
-                          @"5",
-                          @"200",
-                          @"70"];
-    self.messageText.stringValue = [NSString stringWithFormat:@"%@, %@", testPath[value], lineNums[value]];
-        
-    [[ScriptRunner sharedInstane] run:@"openFileToFuncWithLineNum" params:@{
-        @"classPath":testPath[value],
-        @"lineNumber":lineNums[value]
-    }];
-    
+    FullDiskAccessAuthorizer *fullDiskAccessAuthorizer = [FullDiskAccessAuthorizer sharedInstance];
+    [fullDiskAccessAuthorizer requestAuthorization];
+//    int value = arc4random() % 5;
+//    NSArray *testPath = @[@"/Users/yanghe/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/LaunchRelated/TBCLaunchADViewController.m",
+//            @"/Users/yanghe/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCInterstitialADManager.m",
+//            @"/Users/yanghe/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCLaunchADStatLogHelper.m",
+//            @"/Users/yanghe/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCBearParamsGetter.m",
+//            @"/Users/yanghe/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/NetworkMonitor/TBCNetworkMonitorManager.m"];
+//    NSArray *lineNums = @[@"20",
+//            @"100",
+//            @"5",
+//            @"200",
+//            @"70"];
+//    self.messageText.stringValue = [NSString stringWithFormat:@"%@, %@", testPath[value], lineNums[value]];
+//
+//    [[ScriptRunner sharedInstane] run:@"openFileToFuncWithLineNum" params:@{
+//            @"classPath":testPath[value],
+//            @"lineNumber":lineNums[value]
+//    }];
+
 //    NSArray *testPath = @[@"xed -l 100 /Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/LaunchRelated/TBCLaunchADViewController.m",
 //                          @"xed -l 20 /Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCInterstitialADManager.m",
 //                          @"xed -l 230 /Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCLaunchADStatLogHelper.m",
@@ -134,6 +130,15 @@
 //
 //    [[ScriptRunner sharedInstane] run:@"dododoShell" inputString:testPath[value]];
 }
+
+- (IBAction)testScript1:(id)sender {
+//    int value = arc4random() % 5;
+//        NSArray *testClassNamme = @[@"TBCLaunchADViewController.m:20", @"TBCLaunchADViewController.m:800", @"TBCTabMyViewController.m:520", @"BDTBSMPlayerController.m:310", @"TBClientAppDelegate.m:909"];
+//        [[ScriptRunner sharedInstane] run:@"openFileToFunc" inputString:testClassNamme[value]];
+
+
+}
+
 
 - (void)runShellWithCommand:(NSString *)command completeBlock:(dispatch_block_t)completeBlock{
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_UTILITY, 0), ^{
@@ -331,7 +336,7 @@
 - (IBAction)changeKeyName:(id)sender {
 //
     if (self.curSelectedModel && NSStringCheck(self.changeKeyNameTextField.stringValue)) {
-        [ItemObjectManager changeBookmarWithSourceMode:self.curSelectedModel withKeyName:self.changeKeyNameTextField.stringValue];
+        [ItemObjectManager changeBookmarkWithSourceMode:self.curSelectedModel withKeyName:self.changeKeyNameTextField.stringValue];
     }
 //    [NSWorkspace sharedWorkspace]
 }

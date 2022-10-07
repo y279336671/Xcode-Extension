@@ -20,7 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)setDefaultBookmark:(ItemModel *)bookmarkModel;
 + (ItemModel *)fetchDefautlBookmark;
 
-+ (void)changeBookmarWithSourceMode:(ItemModel *)bookmarkModel withKeyName:(NSString *)keyName;
++ (void)updateAllFilePath;
+
++ (void)changeBookmarkWithSourceMode:(ItemModel *)bookmarkModel withKeyName:(NSString *)keyName;
 
 
 @end

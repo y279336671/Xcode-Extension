@@ -108,3 +108,6 @@ return ;\
 #define NSStringCheckForContinue(var) if (!NSStringCheck(var)) {\
 continue;\
 }
+
+#define  kDefaultProjectPath @"kDefaultProjectPath"
+#define  kDefaultScriptPath  @"kDefaultScriptPath"
