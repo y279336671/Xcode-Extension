@@ -16,6 +16,8 @@
 		21A1C87428D8627A000B9FD3 /* CustomTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21A1C87328D8627A000B9FD3 /* CustomTableCellView.m */; };
 		21A1C87728D86291000B9FD3 /* CustomTableRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 21A1C87628D86291000B9FD3 /* CustomTableRowView.m */; };
 		21A41C2D289CB13C00624ED9 /* XcodeWayScript.scpt in Resources */ = {isa = PBXBuildFile; fileRef = 21A41C2C289CB13C00624ED9 /* XcodeWayScript.scpt */; };
+		21A4EBD028F11138009067FB /* EGOCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 21A4EBCF28F11138009067FB /* EGOCache.m */; };
+		21A4EBD128F11138009067FB /* EGOCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 21A4EBCF28F11138009067FB /* EGOCache.m */; };
 		21AE11FF28D9A0EE00A294B8 /* ScriptRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AE11FE28D9A0EE00A294B8 /* ScriptRunner.m */; };
 		21AE120028D9A0EE00A294B8 /* ScriptRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AE11FE28D9A0EE00A294B8 /* ScriptRunner.m */; };
 		21AE120928D9DBA200A294B8 /* ItemObjectManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 21AE120828D9DBA200A294B8 /* ItemObjectManager.m */; };
@@ -97,6 +99,8 @@
 		21A1C87528D86291000B9FD3 /* CustomTableRowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomTableRowView.h; sourceTree = "<group>"; };
 		21A1C87628D86291000B9FD3 /* CustomTableRowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTableRowView.m; sourceTree = "<group>"; };
 		21A41C2C289CB13C00624ED9 /* XcodeWayScript.scpt */ = {isa = PBXFileReference; lastKnownFileType = text; name = XcodeWayScript.scpt; path = GHWXcodeExtension/XcodeWayScript.scpt; sourceTree = SOURCE_ROOT; };
+		21A4EBCE28F11137009067FB /* EGOCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOCache.h; sourceTree = "<group>"; };
+		21A4EBCF28F11138009067FB /* EGOCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOCache.m; sourceTree = "<group>"; };
 		21AE11FD28D9A0EE00A294B8 /* ScriptRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScriptRunner.h; sourceTree = "<group>"; };
 		21AE11FE28D9A0EE00A294B8 /* ScriptRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScriptRunner.m; sourceTree = "<group>"; };
 		21AE120728D9DBA200A294B8 /* ItemObjectManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemObjectManager.h; sourceTree = "<group>"; };
@@ -281,6 +285,8 @@
 				EDA60A3F2317F41000B5FA3D /* AppDelegate.m */,
 				EDA60A412317F41000B5FA3D /* ViewController.h */,
 				EDA60A422317F41000B5FA3D /* ViewController.m */,
+				21A4EBCE28F11137009067FB /* EGOCache.h */,
+				21A4EBCF28F11138009067FB /* EGOCache.m */,
 				EDA60A442317F41000B5FA3D /* Assets.xcassets */,
 				EDA60A462317F41000B5FA3D /* Main.storyboard */,
 				EDA60A492317F41000B5FA3D /* Info.plist */,
@@ -534,6 +540,7 @@
 				21A1C87728D86291000B9FD3 /* CustomTableRowView.m in Sources */,
 				5795F51328EA870500AD113B /* FullDiskAccessAuthorizer.m in Sources */,
 				EDA60A4B2317F41000B5FA3D /* main.m in Sources */,
+				21A4EBD028F11138009067FB /* EGOCache.m in Sources */,
 				21A1C87428D8627A000B9FD3 /* CustomTableCellView.m in Sources */,
 				EDA60A402317F41000B5FA3D /* AppDelegate.m in Sources */,
 				21AE11FF28D9A0EE00A294B8 /* ScriptRunner.m in Sources */,
@@ -550,6 +557,7 @@
 				EDA60A752317F4BF00B5FA3D /* NSString+Extension.m in Sources */,
 				217DFF1D288E7C4A0056680B /* RemoveDerivedData.m in Sources */,
 				EDA60A5D2317F43500B5FA3D /* SourceEditorExtension.m in Sources */,
+				21A4EBD128F11138009067FB /* EGOCache.m in Sources */,
 				ED6552302318F98E0036A04A /* GHWAddLazyCode.m in Sources */,
 				217DFF0F288E6ED60056680B /* MenuInfo.m in Sources */,
 				21D0AE1228B4606E00A49757 /* AddToFavorite.m in Sources */,
