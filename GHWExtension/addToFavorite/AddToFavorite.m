@@ -18,11 +18,8 @@
 }
 
 - (void)processCodeWithInvocation:(XCSourceEditorCommandInvocation *)invocation {
-  id object =  [[EGOCache globalCache] objectForKey:@"test"];
-    NSLog(@">>>>>>>>>>>>%@", object);
-//    NSString *file = @"/Users/yanghe04/Library/Containers/com.yanghe.boring.TBCXcodeExtension/Data/Documents/LocalData.plist";
-//   NSMutableDictionary *localData = [NSMutableDictionary dictionaryWithContentsOfFile:file];
-    
+    id object =  [[EGOCache globalCache] stringForKey:@"testqwe"];
+
     NSMutableArray *bookmarks = [ItemObjectManager fetchBookmarkOject];
     if (!NSArrayCheck(bookmarks)) {
         // 没有创建书签就什么也不做

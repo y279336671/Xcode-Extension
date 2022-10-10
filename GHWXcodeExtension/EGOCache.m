@@ -37,6 +37,7 @@
 static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
 	key = [key stringByReplacingOccurrencesOfString:@"/" withString:@"_"];
 	return [directory stringByAppendingPathComponent:key];
+    // /Users/yanghe04/Library/Application Scripts/com.yanghe.boring.TBCXcodeExtension/EGOCache
 }
 
 #pragma mark -
@@ -67,15 +68,27 @@ static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
 }
 
 - (instancetype)init {
-	NSString* cachesDirectory = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSLocalDomainMask, YES)[0];
-	NSString* oldCachesDirectory = [[[cachesDirectory stringByAppendingPathComponent:[[NSProcessInfo processInfo] processName]] stringByAppendingPathComponent:@"EGOCache"] copy];
+    
+    NSError *error;
+    NSURL *directoryURL = [[NSFileManager defaultManager] URLForDirectory:NSApplicationScriptsDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
+    NSString* cachesDirectory = [self decodeString: directoryURL.resourceSpecifier];
+	NSString* oldCachesDirectory = [[NSString stringWithFormat:@"%@EGOCache",cachesDirectory] copy];
 
 	if([[NSFileManager defaultManager] fileExistsAtPath:oldCachesDirectory]) {
 		[[NSFileManager defaultManager] removeItemAtPath:oldCachesDirectory error:NULL];
 	}
 	
-	cachesDirectory = [[[cachesDirectory stringByAppendingPathComponent:[[NSBundle mainBundle] bundleIdentifier]] stringByAppendingPathComponent:@"EGOCache"] copy];
+	cachesDirectory = [[NSString stringWithFormat:@"%@EGOCache",cachesDirectory] copy];
 	return [self initWithCacheDirectory:cachesDirectory];
+}
+
+//URLDEcode
+-(NSString *)decodeString:(NSString*)encodedString {
+    NSString *decodedString  = (__bridge_transfer NSString *)CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL,
+                                                                                                                     (__bridge CFStringRef)encodedString,
+                                                                                                                     CFSTR(""),
+                                                                                                                     CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
+    return decodedString;
 }
 
 - (instancetype)initWithCacheDirectory:(NSString*)cacheDirectory {
@@ -94,9 +107,12 @@ static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
 		
 		
 		_directory = cacheDirectory;
-
-		_cacheInfo = [[NSDictionary dictionaryWithContentsOfFile:cachePathForKey(_directory, @"EGOCache.plist")] mutableCopy];
-		
+        NSError *error;
+        
+        NSString *filePath = [NSString stringWithFormat:@"file://%@", cachePathForKey(_directory, @"EGOCache.plist")];
+        filePath = [filePath stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+		_cacheInfo = [[NSDictionary dictionaryWithContentsOfURL:[NSURL URLWithString:filePath] error:&error] mutableCopy];
+        
 		if(!_cacheInfo) {
 			_cacheInfo = [[NSMutableDictionary alloc] init];
 		}

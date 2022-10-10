@@ -41,20 +41,7 @@
     [self bindOutlineView];
     [ItemObjectManager updateAllFilePath];
     
-//    NSMutableDictionary *localData = [[NSMutableDictionary alloc] initWithCapacity:20];
-//    NSFileManager *fileManager = [NSFileManager defaultManager];
-//    NSString *file = @"/Users/yanghe04/Library/Containers/com.yanghe.boring.TBCXcodeExtension/Data/Documents/LocalData.plist";
-//    if ([fileManager fileExistsAtPath:file] == NO) {
-//        // todo 是否缺少完全键盘访问权限
-//      BOOL isCreated =  [fileManager createFileAtPath:file contents:nil attributes:nil];
-//        NSLog(@"%@", isCreated);
-//    }
-//        localData = [NSMutableDictionary dictionaryWithContentsOfFile:file];
-//
-//    localData[@"test"] = @"123";
-//    [localData writeToFile:file atomically:YES];
-    
-    [[EGOCache globalCache] setString:@"teset" forKey:@"test"];
+    [[EGOCache globalCache] setString:@"1233" forKey:@"testqwe"];
 }
 
 - (void)dealloc {
