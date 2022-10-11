@@ -25,7 +25,7 @@
 //
 
 #import "EGOCache.h"
-
+#import "ItemModel.h"
 #if DEBUG
 #	define CHECK_FOR_EGOCACHE_PLIST() if([key isEqualToString:@"EGOCache.plist"]) { \
 		NSLog(@"EGOCache.plist is a reserved key and can not be modified."); \
@@ -375,7 +375,9 @@ static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
 
 - (id<NSCoding>)objectForKey:(NSString*)key {
 	if([self hasCacheForKey:key]) {
-        id object = [NSKeyedUnarchiver unarchiveObjectWithData:[self dataForKey:key]];
+        NSError *error;
+        id object =[NSKeyedUnarchiver unarchivedObjectOfClasses:[NSSet setWithArray:@[ItemModel.class, NSDictionary.class, NSArray.class]] fromData:[self dataForKey:key] error:&error];
+        NSLog(@"unarchivedObjectOfClasses:>>>%@", error);
 		return object;
 	} else {
 		return nil;
@@ -387,7 +389,9 @@ static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
 }
 
 - (void)setObject:(id<NSCoding>)anObject forKey:(NSString*)key withTimeoutInterval:(NSTimeInterval)timeoutInterval {
-	[self setData:[NSKeyedArchiver archivedDataWithRootObject:anObject] forKey:key withTimeoutInterval:timeoutInterval];
+    NSError *error;
+	[self setData:[NSKeyedArchiver archivedDataWithRootObject:anObject requiringSecureCoding:NO error:&error] forKey:key withTimeoutInterval:timeoutInterval];
+    NSLog(@"archivedDataWithRootObject:>>>%@", error);
 }
 
 @end

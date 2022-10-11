@@ -17,22 +17,29 @@
 
 
 
-+ (NSMutableArray *)fetchBookmarkOject {    
-    return [[EGOCache globalCache] objectForKey:kBookmarksInfo];;
++ (NSMutableArray *)fetchBookmarkOject {
+    NSMutableArray *bookmarks = (NSMutableArray *)[[EGOCache globalCache] objectForKey:kBookmarksInfo];
+    return bookmarks;
+}
+
++ (NSString *)fetchFileFullPath:(NSString *)filename {
+    NSString *rootPath = [[EGOCache globalCache] stringForKey:kDefaultProjectPath];
+    rootPath = [rootPath substringFromIndex:7];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error;
+    NSArray *direnum = [fileManager subpathsOfDirectoryAtPath:rootPath error:&error];
+    
+    for(NSString *filePath in direnum) {
+        if ([filePath containsString:filename]) {
+            NSString *fileFullPath = [NSString stringWithFormat:@"%@%@",rootPath,filePath];
+            return fileFullPath;
+        };
+    }
+    return @"";
 }
 
 + (NSString *)fetchFilePath:(ItemModel *)bookmarkModel {
-    NSFileManager * fileManger = [NSFileManager defaultManager];
-    NSString *filename;
-    
-    NSString *projectPath = [[EGOCache globalCache] stringForKey:kDefaultProjectPath];
-    for (filename in [fileManger enumeratorAtPath:projectPath]) {
-        if ([filename containsString:bookmarkModel.className]) {
-            NSString *filePath = [NSString stringWithFormat:@"%@%@", projectPath, filename];
-            return filePath;
-        }
-    }
-    return @"";
+    return NSStringCheck(bookmarkModel.className) ? [self fetchFileFullPath:bookmarkModel.className] : @"";
 }
 
 + (void)updateAllFilePath {
