@@ -72,11 +72,11 @@ static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
     NSError *error;
     NSURL *directoryURL = [[NSFileManager defaultManager] URLForDirectory:NSApplicationScriptsDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
     NSString* cachesDirectory = [self decodeString: directoryURL.resourceSpecifier];
-	NSString* oldCachesDirectory = [[NSString stringWithFormat:@"%@EGOCache",cachesDirectory] copy];
-
-	if([[NSFileManager defaultManager] fileExistsAtPath:oldCachesDirectory]) {
-		[[NSFileManager defaultManager] removeItemAtPath:oldCachesDirectory error:NULL];
-	}
+//	NSString* oldCachesDirectory = [[NSString stringWithFormat:@"%@EGOCache",cachesDirectory] copy];
+//
+//	if([[NSFileManager defaultManager] fileExistsAtPath:oldCachesDirectory]) {
+//		[[NSFileManager defaultManager] removeItemAtPath:oldCachesDirectory error:NULL];
+//	}
 	
 	cachesDirectory = [[NSString stringWithFormat:@"%@EGOCache",cachesDirectory] copy];
 	return [self initWithCacheDirectory:cachesDirectory];
@@ -131,7 +131,7 @@ static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
 		
 		[_cacheInfo removeObjectsForKeys:removedKeys];
 		self.frozenCacheInfo = _cacheInfo;
-		[self setDefaultTimeoutInterval:86400];
+		[self setDefaultTimeoutInterval:999999999];
 	}
 	
 	return self;
@@ -274,7 +274,15 @@ static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
 
 - (NSData*)dataForKey:(NSString*)key {
 	if([self hasCacheForKey:key]) {
-		return [NSData dataWithContentsOfFile:cachePathForKey(_directory, key) options:0 error:NULL];
+        NSString *filePath = cachePathForKey(_directory, key);
+        filePath = [filePath stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+        filePath = [NSString stringWithFormat:@"file://%@", filePath];
+//        id object = [NSData dataWithContentsOfFile:filePath options:0 error:NULL];
+        
+//        NSString *filePath = [NSString stringWithFormat:@"file://%@", cachePathForKey(_directory, @"EGOCache.plist")];
+//        filePath = [filePath stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+        id object = [NSData dataWithContentsOfURL:[NSURL URLWithString:filePath]];
+		return object;
 	} else {
 		return nil;
 	}
@@ -367,7 +375,8 @@ static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
 
 - (id<NSCoding>)objectForKey:(NSString*)key {
 	if([self hasCacheForKey:key]) {
-		return [NSKeyedUnarchiver unarchiveObjectWithData:[self dataForKey:key]];
+        id object = [NSKeyedUnarchiver unarchiveObjectWithData:[self dataForKey:key]];
+		return object;
 	} else {
 		return nil;
 	}

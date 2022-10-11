@@ -9,28 +9,23 @@
 #import "ItemObjectManager.h"
 #import "GHWExtensionConst.h"
 #import "MJExtension.h"
+#import "EGOCache.h"
+
 @implementation ItemObjectManager
 
 //-------------------------------插件中的单例和主程序中的单例完全是2个, 所以起不到单例的作用, 貌似唯一能通用的地方就是 NSUserDefault, 所有的增删改查 都要改NSUserDefault--------------------------------
 
 
 
-+ (NSMutableArray *)fetchBookmarkOject {
-    NSArray *temp =  [[NSArray alloc]initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:kBookmarksInfo]];
-    NSMutableArray *bookmarks = [[NSMutableArray alloc] init];
-    for (NSData *data in temp) {
-        ItemModel *model = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-        [bookmarks addObject:model];
-    }
-    
-    return bookmarks;
++ (NSMutableArray *)fetchBookmarkOject {    
+    return [[EGOCache globalCache] objectForKey:kBookmarksInfo];;
 }
 
 + (NSString *)fetchFilePath:(ItemModel *)bookmarkModel {
     NSFileManager * fileManger = [NSFileManager defaultManager];
     NSString *filename;
-    NSUserDefaults *local = [NSUserDefaults standardUserDefaults];
-    NSString *projectPath = [local stringForKey:kDefaultProjectPath];
+    
+    NSString *projectPath = [[EGOCache globalCache] stringForKey:kDefaultProjectPath];
     for (filename in [fileManger enumeratorAtPath:projectPath]) {
         if ([filename containsString:bookmarkModel.className]) {
             NSString *filePath = [NSString stringWithFormat:@"%@%@", projectPath, filename];
@@ -278,10 +273,9 @@
 + (void)updateAllBookmark:(NSMutableArray *)itemModels {
     NSMutableArray *bookmarks = [[NSMutableArray alloc] init];
     for (ItemModel *model in itemModels) {
-        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:model];
-        [bookmarks addObject:data];
+//        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:model];
+        [bookmarks addObject:model];
     }
-    [[NSUserDefaults standardUserDefaults] setObject:bookmarks forKey:kBookmarksInfo];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    [[EGOCache globalCache] setObject:bookmarks forKey:kBookmarksInfo];
 }
 @end

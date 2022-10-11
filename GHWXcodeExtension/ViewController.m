@@ -14,25 +14,27 @@
 #import "FullDiskAccessAuthorizer.h"
 #import "EGOCache.h"
 
-
 @interface ViewController ()<NSOutlineViewDelegate, NSOutlineViewDataSource>
+
 @property (weak) IBOutlet NSTextField *scriptsPath;
 @property (weak) IBOutlet NSTextField *projectPath;
 @property (weak) IBOutlet NSOutlineView *contentOutlineView;
 @property (weak) IBOutlet NSTextField *changeKeyNameTextField;
 @property (weak) IBOutlet NSButton *changeButton;
-- (IBAction)changeKeyName:(id)sender;
 
 @property (nonatomic, strong) ItemModel *curSelectedModel;
+
+- (IBAction)changeKeyName:(id)sender;
+
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSUserDefaults *local = [NSUserDefaults standardUserDefaults];
-    NSString *projectPath = [local stringForKey:kDefaultProjectPath];
-    NSString *scriptPath = [local stringForKey:kDefaultScriptPath];
+
+    NSString *projectPath = [[EGOCache globalCache] stringForKey:kDefaultProjectPath];
+    NSString *scriptPath = [[EGOCache globalCache] stringForKey:kDefaultScriptPath];
     self.projectPath.stringValue = projectPath != nil ? projectPath : @"";
     self.scriptsPath.stringValue = scriptPath != nil ? scriptPath : @"";
 
@@ -41,7 +43,6 @@
     [self bindOutlineView];
     [ItemObjectManager updateAllFilePath];
     
-    [[EGOCache globalCache] setString:@"1233" forKey:@"testqwe"];
 }
 
 - (void)dealloc {
@@ -49,14 +50,12 @@
 }
 
 - (void)viewWillAppear {
-    id obj = [[NSUserDefaults standardUserDefaults] objectForKey:@"test"];
-     NSLog(@"**************%@", obj);
+  
 }
 
 - (void)bindOutlineView {
     [self.contentOutlineView reloadData];
 }
-
 
 - (void)createBookmark:(NSString *)bookmarkName {
     // 查找重名
@@ -79,15 +78,16 @@
             ItemModel *model = [[ItemModel alloc] init];
             model.keyName = bookmarkName;
             [ItemObjectManager addDefaultBookmark:model];
-            [ItemObjectManager setDefaultBookmark:model];
+//            [ItemObjectManager setDefaultBookmark:model];
             
         }
     } else {
         
         ItemModel *model = [[ItemModel alloc] init];
         model.keyName = bookmarkName;
+        model.isDefault = YES;
         [ItemObjectManager addDefaultBookmark:model];
-        [ItemObjectManager setDefaultBookmark:model];
+//        [ItemObjectManager setDefaultBookmark:model];
     }
 }
 
@@ -173,10 +173,7 @@
         if (result == NSModalResponseOK) {
             NSURL *selectedURL = [openPanel URL];
             self.projectPath.stringValue =  [NSString stringWithFormat:@"%@", selectedURL.absoluteURL];
-            NSUserDefaults *local = [NSUserDefaults standardUserDefaults];
-            [local setObject:self.projectPath.stringValue forKey:kDefaultProjectPath];
-            [local synchronize];
-            NSLog(@"%@", selectedURL.absoluteURL);
+            [[EGOCache globalCache] setString:self.projectPath.stringValue forKey:kDefaultProjectPath];
         }
     }];
 }
@@ -204,19 +201,8 @@
                 BOOL success = [fileManager copyItemAtURL:sourceURL toURL:destinationURL error:&error];
                 if (success) {
                     self.scriptsPath.stringValue = [NSString stringWithFormat:@"%@", selectedURL.absoluteURL];
-                    NSUserDefaults *local = [NSUserDefaults standardUserDefaults];
-                    [local setObject:self.scriptsPath.stringValue forKey:kDefaultScriptPath];
-                    [local synchronize];
-//                    self.scriptsPath set
-                    
-//                    NSAlert *alert = [[NSAlert alloc] init];
-//                    [alert setMessageText:@"脚本已安装"];
-//                    [alert addButtonWithTitle:@"确定"];
-//                    [alert setInformativeText:@"自动化脚本安装完成"];
-//                    [alert runModal];
-
-                    // NOTE: This is a bit of a hack to get the Application Scripts path out of the next open or save panel that appears.
-                    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"NSNavLastRootDirectory"];
+                    [[EGOCache globalCache] setString:self.scriptsPath.stringValue forKey:kDefaultScriptPath];
+                    [[EGOCache globalCache] removeCacheForKey:@"NSNavLastRootDirectory"];
                 }
                 else {
                     NSLog(@"%s error = %@", __PRETTY_FUNCTION__, error);
@@ -230,14 +216,7 @@
                             BOOL success = [fileManager copyItemAtURL:sourceURL toURL:destinationURL error:&error];
                             if (success) {
                                 self.scriptsPath.stringValue = [NSString stringWithFormat:@"%@", selectedURL.absoluteURL];
-                                NSUserDefaults *local = [NSUserDefaults standardUserDefaults];
-                                [local setObject:self.scriptsPath.stringValue forKey:kDefaultScriptPath];
-                                [local synchronize];
-//                                NSAlert *alert = [[NSAlert alloc] init];
-//                                [alert setMessageText:@"脚本已更新"];
-//                                [alert addButtonWithTitle:@"确定"];
-//                                [alert setInformativeText:@"自动化脚本更新完成"];
-//                                [alert runModal];
+                                [[EGOCache globalCache] setString:self.scriptsPath.stringValue forKey:kDefaultScriptPath];
                             }
                         }
                     }
@@ -296,9 +275,7 @@
 
 - (nullable NSView *)outlineView:(NSOutlineView *)outlineView viewForTableColumn:(nullable NSTableColumn *)tableColumn item:(id)item {
     CustomTableCellView *cell = [CustomTableCellView cellWithTableView:outlineView owner:self];
-    NSLog(@"item : %@",item);
     ItemModel *itemObject = (ItemModel *)item;
-    
     cell.titleLabel.stringValue = itemObject.keyName ? itemObject.keyName :itemObject.funName;
     return cell;
 }
@@ -309,7 +286,6 @@
     return rowView;
 }
 
-
 // 自定义行高
 - (CGFloat)outlineView:(NSOutlineView *)outlineView heightOfRowByItem:(id)item {
     return 30;
@@ -317,11 +293,9 @@
  
 // 选择节点后的通知
 - (void)outlineViewSelectionDidChange:(NSNotification *)notification {
-    NSLog(@"--");
     NSOutlineView *outlineView = notification.object;
     NSInteger row = [outlineView selectedRow];
     ItemModel *model = [outlineView itemAtRow:row];
-    NSLog(@"name = %@",model);
     self.curSelectedModel = model;
 
 }
@@ -337,10 +311,8 @@
 }
 
 - (IBAction)changeKeyName:(id)sender {
-//
     if (self.curSelectedModel && NSStringCheck(self.changeKeyNameTextField.stringValue)) {
         [ItemObjectManager changeBookmarkWithSourceMode:self.curSelectedModel withKeyName:self.changeKeyNameTextField.stringValue];
     }
-//    [NSWorkspace sharedWorkspace]
 }
 @end

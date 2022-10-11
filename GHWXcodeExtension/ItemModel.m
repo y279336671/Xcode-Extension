@@ -22,6 +22,7 @@
     [coder encodeObject:self.funcLocation forKey:@"funcLocation"];
     [coder encodeObject:self.keyName forKey:@"keyName"];
     [coder encodeObject:self.subItems forKey:@"subItems"];
+    [coder encodeObject:self.filePath forKey:@"filePath"];
     [coder encodeObject:[NSNumber numberWithBool:self.isDefault] forKey:@"isDefault"];
 }
 
@@ -36,6 +37,7 @@
         self.funcLocation = [coder decodeObjectForKey:@"funcLocation"];
         self.keyName = [coder decodeObjectForKey:@"keyName"];
         self.subItems = [coder decodeObjectForKey:@"subItems"];
+        self.filePath = [coder decodeObjectForKey:@"filePath"];
         self.isDefault = [[coder decodeObjectForKey:@"isDefault"] boolValue];
     }
     return self;
