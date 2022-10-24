@@ -78,7 +78,7 @@ static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
 //		[[NSFileManager defaultManager] removeItemAtPath:oldCachesDirectory error:NULL];
 //	}
 	
-	cachesDirectory = [[NSString stringWithFormat:@"%@EGOCache",cachesDirectory] copy];
+	cachesDirectory = [[NSString stringWithFormat:@"%@",cachesDirectory] copy];
 	return [self initWithCacheDirectory:cachesDirectory];
 }
 
@@ -251,7 +251,11 @@ static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
 	NSString* cachePath = cachePathForKey(_directory, key);
 	
 	dispatch_async(_diskQueue, ^{
-		[data writeToFile:cachePath atomically:YES];
+        NSError *error;
+        // todo 完犊子 插件没有写入权限 
+//        Error Domain=NSCocoaErrorDomain Code=513 "您没有将文件“kBookmarksInfo”存储到文件夹“EGOCache”中的权限。" UserInfo={NSFilePath=/Users/yanghe04/Library/Application Scripts/com.yanghe.boring.TBCXcodeExtension/EGOCache/kBookmarksInfo, NSUnderlyingError=0x600001bcafa0 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
+        [data writeToFile:cachePath options:NSDataWritingAtomic error:&error];
+        NSLog(@"%@", error);
 	});
 	
 	[self setCacheTimeoutInterval:timeoutInterval forKey:key];
@@ -376,7 +380,7 @@ static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
 - (id<NSCoding>)objectForKey:(NSString*)key {
 	if([self hasCacheForKey:key]) {
         NSError *error;
-        id object =[NSKeyedUnarchiver unarchivedObjectOfClasses:[NSSet setWithArray:@[ItemModel.class, NSDictionary.class, NSArray.class]] fromData:[self dataForKey:key] error:&error];
+        id object =[NSKeyedUnarchiver unarchivedObjectOfClasses:[NSSet setWithArray:@[ItemModel.class, NSArray.class]] fromData:[self dataForKey:key] error:&error];
         NSLog(@"unarchivedObjectOfClasses:>>>%@", error);
 		return object;
 	} else {

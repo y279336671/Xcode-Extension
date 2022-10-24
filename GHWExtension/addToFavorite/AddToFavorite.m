@@ -65,6 +65,13 @@
                               nil];
     ItemModel *model = [ItemModel mj_objectWithKeyValues:itemInfo];
     [ItemObjectManager addBookmarkObject:model];
+    
+    // todo 查看userdefault 文件路径
+    [[NSUserDefaults standardUserDefaults] setObject:@"123" forKey:@"123"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    NSURL *error = nil;
+    NSURL *directoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
+    NSLog(@"%@", error);
 }
 
 
