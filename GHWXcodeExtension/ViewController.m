@@ -102,28 +102,47 @@
     // Update the view, if already loaded.
 }
 
+
+// todo 有点卡
+-(void)fetchAllFiles {
+    NSString *BASE_PATH = @"/Users/yanghe04/code/baidu/tieba-ios/tbapp";
+    NSURL *fileUrl = [NSURL URLWithString:@"file:///Users/yanghe04/code/baidu/tieba-ios/tbapp"];
+    NSFileManager *myFileManager = [NSFileManager defaultManager];
+    NSDirectoryEnumerationOptions options=(NSDirectoryEnumerationSkipsHiddenFiles|NSDirectoryEnumerationSkipsPackageDescendants);
+    NSArray *keyArray=[NSArray arrayWithObjects:NSURLIsDirectoryKey,NSURLNameKey,nil];
+
+    NSDirectoryEnumerator *dirEnum=[myFileManager enumeratorAtURL:fileUrl includingPropertiesForKeys:keyArray options:options errorHandler:nil];
+
+    for (NSURL *theURL in dirEnum) {
+        
+        NSLog(@">>%@",theURL);
+    }
+}
+
 - (IBAction)testScript:(id)sender {
+    [self fetchAllFiles];
     // todo 扫所有目录结构, 定时扫.
-    FullDiskAccessAuthorizer *fullDiskAccessAuthorizer = [FullDiskAccessAuthorizer sharedInstance];
-    [fullDiskAccessAuthorizer requestAuthorization];
-    NSLog(@"%d", fullDiskAccessAuthorizer.authorizationStatus);
-//    int value = arc4random() % 5;
-//    NSArray *testPath = @[@"/Users/yanghe/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/LaunchRelated/TBCLaunchADViewController.m",
-//            @"/Users/yanghe/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCInterstitialADManager.m",
-//            @"/Users/yanghe/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCLaunchADStatLogHelper.m",
-//            @"/Users/yanghe/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCBearParamsGetter.m",
-//            @"/Users/yanghe/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/NetworkMonitor/TBCNetworkMonitorManager.m"];
-//    NSArray *lineNums = @[@"20",
-//            @"100",
-//            @"5",
-//            @"200",
-//            @"70"];
-//    self.messageText.stringValue = [NSString stringWithFormat:@"%@, %@", testPath[value], lineNums[value]];
-//
-//    [[ScriptRunner sharedInstane] run:@"openFileToFuncWithLineNum" params:@{
-//            @"classPath":testPath[value],
-//            @"lineNumber":lineNums[value]
-//    }];
+//    FullDiskAccessAuthorizer *fullDiskAccessAuthorizer = [FullDiskAccessAuthorizer sharedInstance];
+//    [fullDiskAccessAuthorizer requestAuthorization];
+//    NSLog(@"%d", fullDiskAccessAuthorizer.authorizationStatus);
+    
+    int value = arc4random() % 5;
+    NSArray *testPath = @[@"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/LaunchRelated/TBCLaunchADViewController.m",
+            @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCInterstitialADManager.m",
+            @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCLaunchADStatLogHelper.m",
+            @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCBearParamsGetter.m",
+            @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/NetworkMonitor/TBCNetworkMonitorManager.m"];
+    NSArray *lineNums = @[@"20",
+            @"100",
+            @"5",
+            @"200",
+            @"70"];
+    self.messageText.stringValue = [NSString stringWithFormat:@"%@, %@", testPath[value], lineNums[value]];
+
+    [[ScriptRunner sharedInstane] run:@"openFileToFuncWithLineNum" params:@{
+            @"classPath":testPath[value],
+            @"lineNumber":lineNums[value]
+    }];
 
 //    NSArray *testPath = @[@"xed -l 100 /Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/LaunchRelated/TBCLaunchADViewController.m",
 //                          @"xed -l 20 /Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCInterstitialADManager.m",
@@ -138,8 +157,6 @@
 //    int value = arc4random() % 5;
 //        NSArray *testClassNamme = @[@"TBCLaunchADViewController.m:20", @"TBCLaunchADViewController.m:800", @"TBCTabMyViewController.m:520", @"BDTBSMPlayerController.m:310", @"TBClientAppDelegate.m:909"];
 //        [[ScriptRunner sharedInstane] run:@"openFileToFunc" inputString:testClassNamme[value]];
-
-    [[EGOCache globalCache] setString:@"fuc1" forKey:@"fuc1"];
 }
 
 

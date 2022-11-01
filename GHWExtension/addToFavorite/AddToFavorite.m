@@ -18,21 +18,6 @@
 }
 
 - (void)processCodeWithInvocation:(XCSourceEditorCommandInvocation *)invocation {
-    
-    id object =  [[EGOCache globalCache] stringForKey:@"testqwe"];
-    [[EGOCache globalCache] setString:@"fuck2" forKey:@"fuc1"];
-    [[NSUserDefaults standardUserDefaults] setObject:@"sgsdfre" forKey:@"123"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-//    /Users/yanghe04/Library/Containers/com.yanghe.boring.TBCXcodeExtension/Data/Library/Preferences
-    NSURL *error = nil;
-    
-    NSURL *directoryURL = [[NSFileManager defaultManager] URLForDirectory:NSLibraryDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
-    NSLog(@"%@", error);
-    
-    
-    
-    
-
     NSMutableArray *bookmarks = [ItemObjectManager fetchBookmarkOject];
     if (!NSArrayCheck(bookmarks)) {
         // 没有创建书签就什么也不做
