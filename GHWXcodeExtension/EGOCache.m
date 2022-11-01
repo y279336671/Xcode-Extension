@@ -70,14 +70,19 @@ static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
 - (instancetype)init {
     
     NSError *error;
-    NSURL *directoryURL = [[NSFileManager defaultManager] URLForDirectory:NSApplicationScriptsDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
-    NSString* cachesDirectory = [self decodeString: directoryURL.resourceSpecifier];
-//	NSString* oldCachesDirectory = [[NSString stringWithFormat:@"%@EGOCache",cachesDirectory] copy];
-//
-//	if([[NSFileManager defaultManager] fileExistsAtPath:oldCachesDirectory]) {
-//		[[NSFileManager defaultManager] removeItemAtPath:oldCachesDirectory error:NULL];
-//	}
-	
+    NSURL *directoryURL = [[NSFileManager defaultManager] URLForDirectory:NSLibraryDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
+    NSString *cachesDirectory = [self decodeString: directoryURL.resourceSpecifier];
+    
+//    /Users/yanghe04/Library/Containers/com.yanghe.boring.TBCXcodeExtension/Data/Library/    插件路径
+//    /Users/yanghe04/Library/   主程序路径
+//    /Users/yanghe04/Library/Containers/com.yanghe.boring.TBCXcodeExtension/Data/Library/Preferences  最终路径
+    
+    if ([cachesDirectory containsString:@"Containers/com.yanghe.boring.TBCXcodeExtension/Data/Library/"]) {
+        cachesDirectory = [NSString stringWithFormat:@"%@Preferences", cachesDirectory];
+    } else {
+        cachesDirectory = [NSString stringWithFormat:@"%@Containers/com.yanghe.boring.TBCXcodeExtension/Data/Library/Preferences", cachesDirectory];
+    }
+    
 	cachesDirectory = [[NSString stringWithFormat:@"%@",cachesDirectory] copy];
 	return [self initWithCacheDirectory:cachesDirectory];
 }
@@ -252,7 +257,7 @@ static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
 	
 	dispatch_async(_diskQueue, ^{
         NSError *error;
-        // todo 完犊子 插件没有写入权限 
+        // 完犊子 插件没有写入权限
 //        Error Domain=NSCocoaErrorDomain Code=513 "您没有将文件“kBookmarksInfo”存储到文件夹“EGOCache”中的权限。" UserInfo={NSFilePath=/Users/yanghe04/Library/Application Scripts/com.yanghe.boring.TBCXcodeExtension/EGOCache/kBookmarksInfo, NSUnderlyingError=0x600001bcafa0 {Error Domain=NSPOSIXErrorDomain Code=1 "Operation not permitted"}}
         [data writeToFile:cachePath options:NSDataWritingAtomic error:&error];
         NSLog(@"%@", error);

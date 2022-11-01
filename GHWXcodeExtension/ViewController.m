@@ -139,7 +139,7 @@
 //        NSArray *testClassNamme = @[@"TBCLaunchADViewController.m:20", @"TBCLaunchADViewController.m:800", @"TBCTabMyViewController.m:520", @"BDTBSMPlayerController.m:310", @"TBClientAppDelegate.m:909"];
 //        [[ScriptRunner sharedInstane] run:@"openFileToFunc" inputString:testClassNamme[value]];
 
-
+    [[EGOCache globalCache] setString:@"fuc1" forKey:@"fuc1"];
 }
 
 
