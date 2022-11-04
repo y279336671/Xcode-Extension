@@ -25,7 +25,7 @@
 @property (nonatomic, strong) ItemModel *curSelectedModel;
 
 - (IBAction)changeKeyName:(id)sender;
-
+@property (nonatomic, strong) NSMutableArray *allFilePath;
 @end
 
 @implementation ViewController
@@ -43,6 +43,7 @@
     [self bindOutlineView];
     [ItemObjectManager updateAllFilePath];
     
+    
 }
 
 - (void)dealloc {
@@ -51,6 +52,10 @@
 
 - (void)viewWillAppear {
   
+}
+
+- (void)viewDidAppear{
+    [self updateAllFiles];
 }
 
 - (void)bindOutlineView {
@@ -103,47 +108,59 @@
 }
 
 
-// todo 有点卡
--(void)fetchAllFiles {
-    NSString *BASE_PATH = @"/Users/yanghe04/code/baidu/tieba-ios/tbapp";
-    NSURL *fileUrl = [NSURL URLWithString:@"file:///Users/yanghe04/code/baidu/tieba-ios/tbapp"];
-    NSFileManager *myFileManager = [NSFileManager defaultManager];
-    NSDirectoryEnumerationOptions options=(NSDirectoryEnumerationSkipsHiddenFiles|NSDirectoryEnumerationSkipsPackageDescendants);
-    NSArray *keyArray=[NSArray arrayWithObjects:NSURLIsDirectoryKey,NSURLNameKey,nil];
-
-    NSDirectoryEnumerator *dirEnum=[myFileManager enumeratorAtURL:fileUrl includingPropertiesForKeys:keyArray options:options errorHandler:nil];
-
-    for (NSURL *theURL in dirEnum) {
-        
-        NSLog(@">>%@",theURL);
+-(void)updateAllFiles{
+    NSString *projectPath = [[EGOCache globalCache] stringForKey:kDefaultProjectPath];
+    if (!projectPath) {
+        return;
     }
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSURL *fileUrl = [NSURL URLWithString:projectPath];
+        NSFileManager *myFileManager = [NSFileManager defaultManager];
+        NSDirectoryEnumerationOptions options=(NSDirectoryEnumerationSkipsHiddenFiles|NSDirectoryEnumerationSkipsPackageDescendants);
+        NSArray *keyArray=[NSArray arrayWithObjects:NSURLIsDirectoryKey,NSURLNameKey,nil];
+
+        NSDirectoryEnumerator *dirEnum=[myFileManager enumeratorAtURL:fileUrl includingPropertiesForKeys:keyArray options:options errorHandler:nil];
+//        for (NSURL *url in dirEnum.allObjects) {
+//            url.absoluteString
+//        }
+        self.allFilePath = dirEnum.allObjects;
+        [[EGOCache globalCache] setObject:dirEnum.allObjects forKey:kAllFilesPath];
+    });
 }
 
+
+
+
 - (IBAction)testScript:(id)sender {
-    [self fetchAllFiles];
-    // todo 扫所有目录结构, 定时扫.
-//    FullDiskAccessAuthorizer *fullDiskAccessAuthorizer = [FullDiskAccessAuthorizer sharedInstance];
-//    [fullDiskAccessAuthorizer requestAuthorization];
-//    NSLog(@"%d", fullDiskAccessAuthorizer.authorizationStatus);
+    [self updateAllFiles];
+   
+
     
-    int value = arc4random() % 5;
-    NSArray *testPath = @[@"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/LaunchRelated/TBCLaunchADViewController.m",
-            @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCInterstitialADManager.m",
-            @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCLaunchADStatLogHelper.m",
-            @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCBearParamsGetter.m",
-            @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/NetworkMonitor/TBCNetworkMonitorManager.m"];
-    NSArray *lineNums = @[@"20",
-            @"100",
-            @"5",
-            @"200",
-            @"70"];
-    self.messageText.stringValue = [NSString stringWithFormat:@"%@, %@", testPath[value], lineNums[value]];
+//    int value = arc4random() % 5;
+//    NSArray *testPath = @[@"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/LaunchRelated/TBCLaunchADViewController.m",
+//            @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCInterstitialADManager.m",
+//            @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCLaunchADStatLogHelper.m",
+//            @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCBearParamsGetter.m",
+//            @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/NetworkMonitor/TBCNetworkMonitorManager.m"];
+//    NSArray *lineNums = @[@"20",
+//            @"100",
+//            @"5",
+//            @"200",
+//            @"70"];
+//    self.messageText.stringValue = [NSString stringWithFormat:@"%@, %@", testPath[value], lineNums[value]];
+//
+//    [[ScriptRunner sharedInstane] run:@"openFileToFuncWithLineNum" params:@{
+//            @"classPath":testPath[value],
+//            @"lineNumber":lineNums[value]
+//    }];
 
-    [[ScriptRunner sharedInstane] run:@"openFileToFuncWithLineNum" params:@{
-            @"classPath":testPath[value],
-            @"lineNumber":lineNums[value]
-    }];
-
+    
+    
+    
+    //    FullDiskAccessAuthorizer *fullDiskAccessAuthorizer = [FullDiskAccessAuthorizer sharedInstance];
+    //    [fullDiskAccessAuthorizer requestAuthorization];
+    //    NSLog(@"%d", fullDiskAccessAuthorizer.authorizationStatus);
 //    NSArray *testPath = @[@"xed -l 100 /Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/LaunchRelated/TBCLaunchADViewController.m",
 //                          @"xed -l 20 /Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCInterstitialADManager.m",
 //                          @"xed -l 230 /Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCLaunchADStatLogHelper.m",
@@ -153,7 +170,20 @@
 //    [[ScriptRunner sharedInstane] run:@"dododoShell" inputString:testPath[value]];
 }
 
+- (NSString *)fetchFilePathWithFileName:(NSString *)fileName {
+    if (self.allFilePath){
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"absoluteString CONTAINS %@", fileName];
+        NSArray *result = [self.allFilePath filteredArrayUsingPredicate:predicate];
+        if (NSArrayCheck(result)) {
+            NSURL *url = result.firstObject[0];
+            return url.absoluteString;
+        }
+    }
+
+}
+
 - (IBAction)testScript1:(id)sender {
+    [self fetchFilePathWithFileName:@"TBCLaunchADViewController.m"];
 //    int value = arc4random() % 5;
 //        NSArray *testClassNamme = @[@"TBCLaunchADViewController.m:20", @"TBCLaunchADViewController.m:800", @"TBCTabMyViewController.m:520", @"BDTBSMPlayerController.m:310", @"TBClientAppDelegate.m:909"];
 //        [[ScriptRunner sharedInstane] run:@"openFileToFunc" inputString:testClassNamme[value]];
@@ -331,5 +361,14 @@
     if (self.curSelectedModel && NSStringCheck(self.changeKeyNameTextField.stringValue)) {
         [ItemObjectManager changeBookmarkWithSourceMode:self.curSelectedModel withKeyName:self.changeKeyNameTextField.stringValue];
     }
+}
+
+
+
+-(NSArray *)allFilePath {
+    if(!_allFilePath){
+        _allFilePath = (NSArray *)[[EGOCache globalCache] objectForKey:kAllFilesPath];
+    }
+    return _allFilePath;
 }
 @end

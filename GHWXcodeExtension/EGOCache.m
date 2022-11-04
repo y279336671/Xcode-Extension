@@ -385,8 +385,8 @@ static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
 - (id<NSCoding>)objectForKey:(NSString*)key {
 	if([self hasCacheForKey:key]) {
         NSError *error;
-        id object =[NSKeyedUnarchiver unarchivedObjectOfClasses:[NSSet setWithArray:@[ItemModel.class, NSArray.class]] fromData:[self dataForKey:key] error:&error];
-        NSLog(@"unarchivedObjectOfClasses:>>>%@", error);
+        id object =[NSKeyedUnarchiver unarchivedObjectOfClasses:[NSSet setWithArray:@[ItemModel.class, NSArray.class, NSMutableArray.class, NSObject.class]] fromData:[self dataForKey:key] error:&error];
+        NSLog(@"archivedDataWithRootObject:>>>%@,%@", error, object);
 		return object;
 	} else {
 		return nil;
@@ -400,7 +400,7 @@ static inline NSString* cachePathForKey(NSString* directory, NSString* key) {
 - (void)setObject:(id<NSCoding>)anObject forKey:(NSString*)key withTimeoutInterval:(NSTimeInterval)timeoutInterval {
     NSError *error;
 	[self setData:[NSKeyedArchiver archivedDataWithRootObject:anObject requiringSecureCoding:NO error:&error] forKey:key withTimeoutInterval:timeoutInterval];
-    NSLog(@"archivedDataWithRootObject:>>>%@", error);
+  
 }
 
 @end

@@ -111,3 +111,5 @@ continue;\
 
 #define  kDefaultProjectPath @"kDefaultProjectPath"
 #define  kDefaultScriptPath  @"kDefaultScriptPath"
+
+#define  kAllFilesPath  @"kAllFilesPath"
