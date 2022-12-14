@@ -43,7 +43,6 @@
     [self bindOutlineView];
     [ItemObjectManager updateAllFilePath];
     
-    
 }
 
 - (void)dealloc {
@@ -83,16 +82,12 @@
             ItemModel *model = [[ItemModel alloc] init];
             model.keyName = bookmarkName;
             [ItemObjectManager addDefaultBookmark:model];
-//            [ItemObjectManager setDefaultBookmark:model];
-            
         }
     } else {
-        
         ItemModel *model = [[ItemModel alloc] init];
         model.keyName = bookmarkName;
         model.isDefault = YES;
         [ItemObjectManager addDefaultBookmark:model];
-//        [ItemObjectManager setDefaultBookmark:model];
     }
 }
 
@@ -100,13 +95,9 @@
     [ItemObjectManager removeBookmark:self.curSelectedModel];
 }
 
-
 - (void)setRepresentedObject:(id)representedObject {
     [super setRepresentedObject:representedObject];
-
-    // Update the view, if already loaded.
 }
-
 
 -(void)updateAllFiles{
     NSString *projectPath = [[EGOCache globalCache] stringForKey:kDefaultProjectPath];
@@ -121,46 +112,41 @@
         NSArray *keyArray=[NSArray arrayWithObjects:NSURLIsDirectoryKey,NSURLNameKey,nil];
 
         NSDirectoryEnumerator *dirEnum=[myFileManager enumeratorAtURL:fileUrl includingPropertiesForKeys:keyArray options:options errorHandler:nil];
-//        for (NSURL *url in dirEnum.allObjects) {
-//            url.absoluteString
-//        }
         self.allFilePath = dirEnum.allObjects;
         [[EGOCache globalCache] setObject:dirEnum.allObjects forKey:kAllFilesPath];
     });
 }
 
 
-
-
 - (IBAction)testScript:(id)sender {
-    [self updateAllFiles];
+//    [self updateAllFiles];
    
 
     
-    int value = arc4random() % 5;
-    NSArray *testPath = @[@"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/LaunchRelated/TBCLaunchADViewController.m",
-            @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCInterstitialADManager.m",
-            @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCLaunchADStatLogHelper.m",
-            @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCBearParamsGetter.m",
-            @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/NetworkMonitor/TBCNetworkMonitorManager.m"];
-    NSArray *lineNums = @[@"20",
-            @"100",
-            @"5",
-            @"200",
-            @"70"];
-    
-    NSString *filePath = [self fetchFilePathWithFileName:@"TBCLaunchADViewController.m"];
-    if (NSStringCheck(filePath)) {
-        // 去掉 "file://"
-        filePath = [filePath stringByReplacingOccurrencesOfString:@"file://" withString:@""];
-    }
-
-    self.messageText.stringValue = [NSString stringWithFormat:@"%@, %@", testPath[value], lineNums[value]];
-
-    [[ScriptRunner sharedInstane] run:@"openFileToFuncWithLineNum" params:@{
-            @"classPath":testPath[value],
-            @"lineNumber":lineNums[value]
-    }];
+//    int value = arc4random() % 5;
+//    NSArray *testPath = @[@"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/LaunchRelated/TBCLaunchADViewController.m",
+//            @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCInterstitialADManager.m",
+//            @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCLaunchADStatLogHelper.m",
+//            @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCBearParamsGetter.m",
+//            @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/NetworkMonitor/TBCNetworkMonitorManager.m"];
+//    NSArray *lineNums = @[@"20",
+//            @"100",
+//            @"5",
+//            @"200",
+//            @"70"];
+//
+//    NSString *filePath = [self fetchFilePathWithFileName:@"TBCLaunchADViewController.m"];
+//    if (NSStringCheck(filePath)) {
+//        // 去掉 "file://"
+//        filePath = [filePath stringByReplacingOccurrencesOfString:@"file://" withString:@""];
+//    }
+//
+//    self.messageText.stringValue = [NSString stringWithFormat:@"%@, %@", testPath[value], lineNums[value]];
+//
+//    [[ScriptRunner sharedInstane] run:@"openFileToFuncWithLineNum" params:@{
+//            @"classPath":testPath[value],
+//            @"lineNumber":lineNums[value]
+//    }];
 
 //    1. 让代码稳定运行
 //    2. 让下一个人快速读懂
@@ -233,8 +219,6 @@
         }
     }];
 }
-
-
 
 - (IBAction)installAutomationScript:(id)sender {
     NSError *error;
@@ -385,8 +369,6 @@
         [ItemObjectManager changeBookmarkWithSourceMode:self.curSelectedModel withKeyName:self.changeKeyNameTextField.stringValue];
     }
 }
-
-
 
 -(NSArray *)allFilePath {
     if(!_allFilePath){
