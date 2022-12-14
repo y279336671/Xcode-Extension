@@ -137,25 +137,34 @@
    
 
     
-//    int value = arc4random() % 5;
-//    NSArray *testPath = @[@"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/LaunchRelated/TBCLaunchADViewController.m",
-//            @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCInterstitialADManager.m",
-//            @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCLaunchADStatLogHelper.m",
-//            @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCBearParamsGetter.m",
-//            @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/NetworkMonitor/TBCNetworkMonitorManager.m"];
-//    NSArray *lineNums = @[@"20",
-//            @"100",
-//            @"5",
-//            @"200",
-//            @"70"];
-//    self.messageText.stringValue = [NSString stringWithFormat:@"%@, %@", testPath[value], lineNums[value]];
-//
-//    [[ScriptRunner sharedInstane] run:@"openFileToFuncWithLineNum" params:@{
-//            @"classPath":testPath[value],
-//            @"lineNumber":lineNums[value]
-//    }];
-
+    int value = arc4random() % 5;
+    NSArray *testPath = @[@"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/LaunchRelated/TBCLaunchADViewController.m",
+            @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCInterstitialADManager.m",
+            @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCLaunchADStatLogHelper.m",
+            @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/TBCAD/TBCBearParamsGetter.m",
+            @"/Users/yanghe04/code/baidu/tieba-ios/tbapp/Services/IDK/Sources/CommonService/NetworkMonitor/TBCNetworkMonitorManager.m"];
+    NSArray *lineNums = @[@"20",
+            @"100",
+            @"5",
+            @"200",
+            @"70"];
     
+    NSString *filePath = [self fetchFilePathWithFileName:@"TBCLaunchADViewController.m"];
+    if (NSStringCheck(filePath)) {
+        // 去掉 "file://"
+        filePath = [filePath stringByReplacingOccurrencesOfString:@"file://" withString:@""];
+    }
+
+    self.messageText.stringValue = [NSString stringWithFormat:@"%@, %@", testPath[value], lineNums[value]];
+
+    [[ScriptRunner sharedInstane] run:@"openFileToFuncWithLineNum" params:@{
+            @"classPath":testPath[value],
+            @"lineNumber":lineNums[value]
+    }];
+
+//    1. 让代码稳定运行
+//    2. 让下一个人快速读懂
+//    3. 严格执行以上两条
     
     
     //    FullDiskAccessAuthorizer *fullDiskAccessAuthorizer = [FullDiskAccessAuthorizer sharedInstance];
@@ -175,15 +184,15 @@
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"absoluteString CONTAINS %@", fileName];
         NSArray *result = [self.allFilePath filteredArrayUsingPredicate:predicate];
         if (NSArrayCheck(result)) {
-            NSURL *url = result.firstObject[0];
+            NSURL *url = result.firstObject;
             return url.absoluteString;
         }
     }
-
+    return @"";
 }
 
 - (IBAction)testScript1:(id)sender {
-    [self fetchFilePathWithFileName:@"TBCLaunchADViewController.m"];
+//    [self fetchFilePathWithFileName:@"TBCLaunchADViewController.m"];
 //    int value = arc4random() % 5;
 //        NSArray *testClassNamme = @[@"TBCLaunchADViewController.m:20", @"TBCLaunchADViewController.m:800", @"TBCTabMyViewController.m:520", @"BDTBSMPlayerController.m:310", @"TBClientAppDelegate.m:909"];
 //        [[ScriptRunner sharedInstane] run:@"openFileToFunc" inputString:testClassNamme[value]];
@@ -344,8 +353,22 @@
     NSInteger row = [outlineView selectedRow];
     ItemModel *model = [outlineView itemAtRow:row];
     self.curSelectedModel = model;
+    
+    
+    NSString *filePath = [self fetchFilePathWithFileName:model.className];
+    if (NSStringCheck(filePath)) {
+        // 去掉 "file://"
+        filePath = [filePath stringByReplacingOccurrencesOfString:@"file://" withString:@""];
+    }
 
+    self.messageText.stringValue = [NSString stringWithFormat:@"%@, %@", filePath, model.startLine];
+
+    [[ScriptRunner sharedInstane] run:@"openFileToFuncWithLineNum" params:@{
+            @"classPath":NSStringSafeVoidValue(filePath),
+            @"lineNumber":NSStringSafeVoidValue(model.startLine),
+    }];
 }
+
 - (IBAction)removeBookmarkAction:(id)sender {
     [self removeBookmarks];
 }
